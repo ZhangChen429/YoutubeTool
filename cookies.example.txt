@@ -2,7 +2,7 @@
 # 示例文件，只含说明。
 # 1. 在浏览器中登录 YouTube，并打开 youtube.com 页面。
 # 2. 打开 Get cookies.txt LOCALLY，选择 Netscape 格式，点击 Export As 导出当前站点。
-# 3. 将导出的文件命名为 cookies.txt，放在 YoutubeTool 仓库根目录，与 download.bat 同级。
+# 3. 把导出的文件拖到仓库根目录的 import-cookies.bat。校验通过后会更新 cookies.txt。
 # 4. 运行 download.bat，脚本会自动读取 cookies.txt。
 # 真实 cookies.txt 含有登录会话，请保存在本机。它已由 .gitignore 排除。
 # 扩展安装及 Cookie 过期后的导出步骤见 README.md。

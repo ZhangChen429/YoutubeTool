@@ -14,9 +14,9 @@
 
 1. 在浏览器中登录 YouTube，保持当前标签页在 `youtube.com`，然后打开 **Get cookies.txt LOCALLY**。
 2. 将 **Export Format** 设为 **Netscape**，点击 **Export As** 导出当前站点。只导出当前站点即可。
-3. 把文件保存到 `download.bat` 同一目录，命名为 `cookies.txt`。运行 `download.bat` 时会自动读取它。
+3. 把导出的文件拖到仓库根目录的 `import-cookies.bat`。校验通过后会更新 `cookies.txt`，校验失败时保留旧文件。运行 `download.bat` 时会自动读取它。
 
-如果 yt-dlp 提示 Cookie 已失效，可在扩展详情里允许其在无痕或 InPrivate 模式下运行。在新的无痕窗口登录 YouTube，然后在同一个标签页打开 `https://www.youtube.com/robots.txt`，按上述方式导出并覆盖 `cookies.txt`，最后关闭整个无痕窗口。参见 [yt-dlp 官方说明](https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies)。
+如果 yt-dlp 提示 Cookie 已失效，可在扩展详情里允许其在无痕或 InPrivate 模式下运行。在新的无痕窗口登录 YouTube，然后在同一个标签页打开 `https://www.youtube.com/robots.txt`，按上述方式导出并拖到 `import-cookies.bat`，最后关闭整个无痕窗口。参见 [yt-dlp 官方说明](https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies)。
 
 `cookies.txt` 含有登录会话信息，已由 `.gitignore` 排除。请只保存在本机。
 

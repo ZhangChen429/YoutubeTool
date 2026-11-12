@@ -1,6 +1,29 @@
 param([string]$Url, [switch]$Version)
 
 $ErrorActionPreference = 'Stop'
+function Invoke-VideoDownload {
+    param([string[]]$DownloadArguments)
+
+    $ErrorActionPreference = 'Continue'
+    $MediaForbidden = $false
+    $RefreshCookies = $false
+    & $YtDlp @DownloadArguments -- $uri.AbsoluteUri 2>&1 | ForEach-Object {
+        $Line = $_.ToString()
+        if ($Line -match '^ERROR:\s+unable to download video data: HTTP Error 403\b') {
+            $MediaForbidden = $true
+        }
+        if ($Line -match 'provided YouTube account cookies are no longer valid|Sign in to confirm you.re not a bot') {
+            $RefreshCookies = $true
+        }
+        Write-Host $Line
+    }
+    $Code = $LASTEXITCODE
+    if ($RefreshCookies) {
+        Write-Host 'Export fresh YouTube cookies in Netscape format and drag the file onto import-cookies.bat.'
+    }
+    return @{ Code = $Code; MediaForbidden = $MediaForbidden }
+}
+
 try {
     if (-not $Version) {
         if (-not $Url) { $Url = Read-Host 'Paste a YouTube video URL' }
@@ -52,29 +75,12 @@ try {
         $Arguments += @('--cookies', $Cookies)
     }
 
-    $MediaForbidden = $false
-    $PreviousErrorAction = $ErrorActionPreference
-    try {
-        # Windows PowerShell wraps redirected native stderr as error records.
-        $ErrorActionPreference = 'Continue'
-        & $YtDlp @Arguments -- $uri.AbsoluteUri 2>&1 | ForEach-Object {
-            $Line = $_.ToString()
-            if ($Line -match '^ERROR:\s+unable to download video data: HTTP Error 403\b') {
-                $MediaForbidden = $true
-            }
-            Write-Host $Line
-        }
-        $DownloadExitCode = $LASTEXITCODE
-    } finally {
-        $ErrorActionPreference = $PreviousErrorAction
-    }
-
-    if ($DownloadExitCode -ne 0 -and $MediaForbidden -and $Arguments -notcontains '--format') {
+    $Result = Invoke-VideoDownload $Arguments
+    if ($Result.Code -ne 0 -and $Result.MediaForbidden -and $Arguments -notcontains '--format') {
         Write-Host 'Media request returned HTTP 403. Retrying once with a combined video and audio format...'
-        & $YtDlp @Arguments --format b -- $uri.AbsoluteUri
-        exit $LASTEXITCODE
+        $Result = Invoke-VideoDownload ($Arguments + @('--format', 'b'))
     }
-    exit $DownloadExitCode
+    exit $Result.Code
 } catch {
     [Console]::Error.WriteLine($_.Exception.Message)
     exit 1
