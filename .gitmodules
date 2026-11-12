@@ -7,3 +7,6 @@
 [submodule "vendor/get-cookies-txt-locally"]
 	path = vendor/get-cookies-txt-locally
 	url = https://github.com/kairi003/Get-cookies.txt-LOCALLY.git
+[submodule "vendor/cookie-editor"]
+	path = vendor/cookie-editor
+	url = https://github.com/Moustachauve/cookie-editor.git

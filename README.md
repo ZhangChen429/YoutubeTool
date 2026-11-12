@@ -20,6 +20,23 @@
 
 `cookies.txt` 含有登录会话信息，已由 `.gitignore` 排除。请只保存在本机。
 
+## 使用 Cookie-Editor
+
+[Cookie-Editor](https://github.com/Moustachauve/cookie-editor) 是另一个可选的导出扩展。仓库将其固定为 `v1.13.0`。已经安装的用户可以直接使用现有扩展。
+
+要从仓库源码安装，请先安装 Node.js 和 npm，然后在仓库根目录运行以下 PowerShell 命令：
+
+```powershell
+git submodule update --init -- vendor/cookie-editor
+cd vendor/cookie-editor
+npm.cmd ci
+npx.cmd --no-install grunt json-replace:chrome clean:chrome copy:chrome replace:chrome
+```
+
+在 `chrome://extensions/` 开启开发者模式，点「加载已解压的扩展程序」，选择 `vendor/cookie-editor/build/chrome`。如果使用 Edge，把命令里的四个 `:chrome` 改为 `:edge`，然后在 `edge://extensions/` 加载 `vendor/cookie-editor/build/edge`。
+
+在已登录的 YouTube 标签页打开 Cookie-Editor，点 **Export → Netscape**。把剪贴板内容粘贴到记事本，保存为本地 `.txt` 文件，再拖到仓库根目录的 `import-cookies.bat`。导入成功后，`download.bat` 会自动读取更新后的 `cookies.txt`。
+
 ## 启动 VideoCaptioner
 
 在 Windows x64 上克隆仓库后，双击根目录的 `run.bat`。首次启动需要 Git 和网络连接，启动器会初始化 VideoCaptioner 子模块，并通过 uv 准备 Python 3.12 和锁定的依赖。如果找不到 uv，会将它下载到仓库的 `.runtime/`。需要使用仓库自带的 FFmpeg 时，先运行 `git lfs pull`。
