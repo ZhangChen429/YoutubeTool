@@ -1,0 +1,9 @@
+[submodule "VideoCaptioner"]
+	path = VideoCaptioner
+	url = https://github.com/WEIFENG2333/VideoCaptioner.git
+[submodule "vendor/yt-dlp"]
+	path = vendor/yt-dlp
+	url = https://github.com/yt-dlp/yt-dlp.git
+[submodule "vendor/get-cookies-txt-locally"]
+	path = vendor/get-cookies-txt-locally
+	url = https://github.com/kairi003/Get-cookies.txt-LOCALLY.git
