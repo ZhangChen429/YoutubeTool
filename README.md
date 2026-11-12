@@ -19,3 +19,7 @@
 如果 yt-dlp 提示 Cookie 已失效，可在扩展详情里允许其在无痕或 InPrivate 模式下运行。在新的无痕窗口登录 YouTube，然后在同一个标签页打开 `https://www.youtube.com/robots.txt`，按上述方式导出并覆盖 `cookies.txt`，最后关闭整个无痕窗口。参见 [yt-dlp 官方说明](https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies)。
 
 `cookies.txt` 含有登录会话信息，已由 `.gitignore` 排除。请只保存在本机。
+
+## 启动 VideoCaptioner
+
+在 Windows x64 上克隆仓库后，双击根目录的 `run.bat`。首次启动需要 Git 和网络连接，启动器会初始化 VideoCaptioner 子模块，并通过 uv 准备 Python 3.12 和锁定的依赖。如果找不到 uv，会将它下载到仓库的 `.runtime/`。需要使用仓库自带的 FFmpeg 时，先运行 `git lfs pull`。
