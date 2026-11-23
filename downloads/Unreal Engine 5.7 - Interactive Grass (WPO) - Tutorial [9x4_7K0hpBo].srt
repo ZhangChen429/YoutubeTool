@@ -1,0 +1,499 @@
+1
+00:00:00,080 --> 00:00:04,015
+Hello everyone and welcome back to the channel
+大家好，欢迎回到本频道
+
+2
+00:00:04,015 --> 00:00:06,320
+Many roads lead to rome
+条条大路通罗马
+
+3
+00:00:06,320 --> 00:00:11,700
+But only a few lead to interactive foliage in unreal engine
+但只有少数几条能通向虚幻引擎中的交互式植被
+
+4
+00:00:11,700 --> 00:00:15,190
+There are multiple ways like world position offset
+有多种方式，比如世界位置偏移（WPO）
+
+5
+00:00:15,190 --> 00:00:18,560
+Pivot painter or skeletal mesh systems
+Pivot Painter 或骨骼网格体系统
+
+6
+00:00:18,560 --> 00:00:22,120
+in this video we'll focus on a simple and lightweight
+本期视频我们将重点介绍一种简单且轻量级的
+
+7
+00:00:22,120 --> 00:00:26,372
+World position offset based setup for gress interaction
+基于世界位置偏移的草地交互方案
+
+8
+00:00:26,372 --> 00:00:30,962
+While i'm already working on a separate pivot painter tutorial
+另外，我已经在制作一期单独的 Pivot Painter 教程
+
+9
+00:00:30,962 --> 00:00:35,682
+World position offset is part of the material system
+世界位置偏移属于材质系统的一部分
+
+10
+00:00:35,682 --> 00:00:41,025
+For example , wind effects are typically created using wp o
+例如，风效果通常就是使用 WPO 制作的
+
+11
+00:00:41,025 --> 00:00:47,122
+most quicks of foliage assets already use the internal ms foliage material
+大多数植被资源包已经使用了内置的 MS Foliage 植被材质
+
+12
+00:00:47,122 --> 00:00:49,447
+Where the wind is set up
+其中已经设置好了风效果
+
+13
+00:00:49,447 --> 00:00:54,380
+You can simply add today's interaction to the existing wp o
+你只需把今天讲的交互添加到现有的 WPO 中
+
+14
+00:00:54,380 --> 00:00:57,775
+and plug it back into the world position offset
+再把它重新接入世界位置偏移
+
+15
+00:00:57,775 --> 00:01:00,870
+Or use it in your own material setup
+或者将其用于你自己的材质设置中
+
+16
+00:01:00,870 --> 00:01:04,642
+Our grass should only react when the player is close
+我们的草地应该只在玩家靠近时产生反应
+
+17
+00:01:04,642 --> 00:01:08,990
+So we need a mask based on the player's position
+因此我们需要一个基于玩家位置的遮罩
+
+18
+00:01:08,990 --> 00:01:12,800
+Since we can't access the player directly in the material
+由于在材质中无法直接访问玩家
+
+19
+00:01:12,800 --> 00:01:17,457
+We sent the position through a material parameter collection
+我们通过材质参数集来传递位置
+
+20
+00:01:17,457 --> 00:01:21,010
+Open it and add a new vector parameter
+打开它并添加一个新的向量参数
+
+21
+00:01:21,010 --> 00:01:23,410
+And name it player position
+将其命名为 Player Position
+
+22
+00:01:23,410 --> 00:01:25,860
+Now open your player blueprint
+现在打开你的玩家蓝图
+
+23
+00:01:25,860 --> 00:01:27,190
+In the event graph
+在事件图表中
+
+24
+00:01:27,190 --> 00:01:30,450
+Add a set vector parameter value note
+添加一个“设置向量参数值”节点
+
+25
+00:01:30,450 --> 00:01:36,430
+Select your collection and choose player position for the value use
+选择你的参数集，并为数值选择 Player Position
+
+26
+00:01:36,430 --> 00:01:38,430
+Get act or location
+使用“获取 Actor 位置”
+
+27
+00:01:38,430 --> 00:01:41,830
+This automatically converts the position into a format
+这会自动将位置转换为一种格式
+
+28
+00:01:41,830 --> 00:01:43,920
+the material can read
+让材质能够读取
+
+29
+00:01:43,920 --> 00:01:46,680
+Connected to event tick
+连接到事件 Tick
+
+30
+00:01:46,680 --> 00:01:50,870
+But don't worry . updating a single parameter like this
+但别担心，像这样更新单个参数
+
+31
+00:01:50,870 --> 00:01:54,057
+Has no no to sybil performance impact
+不会造成明显的性能影响
+
+32
+00:01:54,057 --> 00:01:58,900
+Now open your grass material and add a collection parameter
+现在打开你的草地材质，并添加一个集合参数
+
+33
+00:01:58,900 --> 00:01:59,830
+Note
+节点
+
+34
+00:01:59,830 --> 00:02:04,030
+Sign your collection and select player position
+选择你的集合，并选中 Player Position
+
+35
+00:02:04,030 --> 00:02:07,562
+We only need x , y and z values
+我们只需要 X、Y 和 Z 值
+
+36
+00:02:07,562 --> 00:02:10,930
+So right click and add a component mask
+所以右键单击并添加一个组件蒙版
+
+37
+00:02:10,930 --> 00:02:14,700
+Note : then enable r , g and b
+节点，然后启用 R、G 和 B
+
+38
+00:02:14,700 --> 00:02:18,010
+Right click and search for world's position
+右键单击并搜索 World Position
+
+39
+00:02:18,010 --> 00:02:20,890
+This will add an absolute world position
+这会添加一个绝对世界位置
+
+40
+00:02:20,890 --> 00:02:26,920
+Note : then subtract the player's position from it using a subtract node
+节点，然后使用减法节点从中减去玩家位置
+
+41
+00:02:28,200 --> 00:02:32,260
+This gives us the direction vector from the grass to the player
+这样我们就得到了从草指向玩家的方向向量
+
+42
+00:02:32,260 --> 00:02:37,000
+Now we calculate the distance using a vector length note
+现在用Vector Length节点计算距离
+
+43
+00:02:37,000 --> 00:02:40,260
+Then divided by a scale of parameter
+然后除以一个缩放参数
+
+44
+00:02:40,260 --> 00:02:42,635
+To control the size of the effect
+来控制影响范围的大小
+
+45
+00:02:42,635 --> 00:02:47,420
+Name it radius and sets the default value to around one hundred
+把它命名为Radius，默认值设为100左右
+
+46
+00:02:49,350 --> 00:02:53,450
+Now we use a power note to shape the fall off
+接着用Power节点来塑造衰减曲线
+
+47
+00:02:53,450 --> 00:02:58,562
+So the transition becomes smoother or sharper depending on the value
+这样过渡会随数值变得更平滑或更锐利
+
+48
+00:02:58,562 --> 00:03:03,370
+Promote the exponent to a parameter and name it fall off
+把指数提升为参数，命名为Falloff
+
+49
+00:03:03,370 --> 00:03:06,140
+For now we set the value to one
+暂时先把值设为1
+
+50
+00:03:08,070 --> 00:03:15,137
+Then we clamp the result using saturrate to keep it in a clean zero to one range
+然后用Saturate钳制结果，保持在干净的0到1范围内
+
+51
+00:03:15,137 --> 00:03:18,850
+And finally we inverted using one minus
+最后用1减去它来做反转
+
+52
+00:03:18,850 --> 00:03:23,880
+So the effect is the strongest close to the player and fates outwards
+这样效果在玩家附近最强，向外逐渐衰减
+
+53
+00:03:24,910 --> 00:03:26,900
+Now that our mask is ready
+现在遮罩已经准备好了
+
+54
+00:03:26,900 --> 00:03:29,200
+We first pushed the grass down
+我们先让草向下压
+
+55
+00:03:29,200 --> 00:03:31,590
+Where the player is standing
+在玩家站立的位置
+
+56
+00:03:31,590 --> 00:03:36,160
+At a scale of parameter name it z offset
+用一个缩放参数，命名为Z Offset
+
+57
+00:03:36,160 --> 00:03:39,720
+And set it to around negative fifty
+把它设为-50左右
+
+58
+00:03:39,720 --> 00:03:44,305
+Then right click and search for make vector three
+然后右键搜索Make Vector3
+
+59
+00:03:44,305 --> 00:03:47,430
+Pluck the scale of value into the b input
+把缩放值连到B输入
+
+60
+00:03:47,430 --> 00:03:50,805
+And set r and g to zero
+并把R和G设为0
+
+61
+00:03:50,805 --> 00:03:53,790
+Then multiplied this vector or with a mask
+然后用遮罩乘以这个向量
+
+62
+00:03:53,790 --> 00:03:58,187
+So only the area inside the radius gets affected
+这样只有半径内的区域会受到影响
+
+63
+00:03:58,187 --> 00:04:03,072
+Now pluck the result into the world's position offset
+现在把结果连到World Position Offset
+
+64
+00:04:03,072 --> 00:04:08,250
+If there is already a wind setup at your result on top of it
+如果已经有风的效果，就叠加在它上面
+
+65
+00:04:08,250 --> 00:04:12,450
+Otherwise plug it directly into the wp o
+否则直接连到WPO
+
+66
+00:04:12,450 --> 00:04:14,912
+Now we can test it
+现在可以测试一下
+
+67
+00:04:14,912 --> 00:04:16,380
+It works
+生效了
+
+68
+00:04:16,380 --> 00:04:19,339
+The grass is pushed down by the player
+草被玩家压下去了
+
+69
+00:04:20,760 --> 00:04:23,285
+Now let's add bending
+接下来添加弯曲效果
+
+70
+00:04:23,285 --> 00:04:27,920
+We take the result from our earlier distance calculation
+我们取之前距离计算的结果
+
+71
+00:04:27,920 --> 00:04:31,325
+The world position minus the player position
+也就是世界位置减去玩家位置
+
+72
+00:04:31,325 --> 00:04:37,480
+Then we multiply it with a constant three vector or set to one one zero
+然后乘以一个常量向量，设为110
+
+73
+00:04:37,480 --> 00:04:41,220
+So we only affect x and y but ignore a z
+这样只影响X和Y，忽略Z
+
+74
+00:04:42,220 --> 00:04:47,137
+After that we normalized the result to keep the direction clean
+之后对结果做归一化，保持方向干净
+
+75
+00:04:47,137 --> 00:04:50,870
+Then we multiply it with a bent strength parameter
+再乘以一个弯曲强度参数
+
+76
+00:04:50,870 --> 00:04:53,390
+To control how strong the effect is
+用来控制效果的强度
+
+77
+00:04:54,470 --> 00:04:58,950
+We'll use a starting value of around fifty for the band strength
+弯曲强度的起始值用50左右
+
+78
+00:04:58,950 --> 00:05:03,410
+Next at a linear gradient note from this node
+接下来从这个节点接一个LinearGradient节点
+
+79
+00:05:03,410 --> 00:05:05,860
+We used a v gradient output
+我们使用V方向渐变输出
+
+80
+00:05:05,860 --> 00:05:10,530
+Since it gives us the vertical gradient from button to top
+因为它能给出从下到上的垂直渐变
+
+81
+00:05:10,530 --> 00:05:13,730
+then we invert it using one minus
+然后我们用 1 减去它来反转
+
+82
+00:05:13,730 --> 00:05:20,322
+Because we want the grass to stay stable at the bottom and only bent towards the top
+因为我们希望草在底部保持稳定，只在顶部弯曲
+
+83
+00:05:20,322 --> 00:05:24,080
+After that , we multiply it with our band multiplier
+之后，我们将它与弯曲倍数相乘
+
+84
+00:05:24,080 --> 00:05:27,092
+To control the strength of the effect
+来控制效果的强度
+
+85
+00:05:27,092 --> 00:05:30,410
+Now we multiplied this with our mask
+现在我们把它与遮罩相乘
+
+86
+00:05:30,410 --> 00:05:32,030
+So the banding only happens
+这样弯曲就只会发生在
+
+87
+00:05:32,030 --> 00:05:34,290
+insight the interaction radius
+交互半径之内
+
+88
+00:05:36,110 --> 00:05:38,590
+Then we added to our z offset
+然后我们把它加到 Z 偏移上
+
+89
+00:05:38,590 --> 00:05:42,030
+combining both effects into the final result
+将两种效果结合成最终结果
+
+90
+00:05:49,520 --> 00:05:51,220
+In the material instance
+在材质实例中
+
+91
+00:05:51,220 --> 00:05:55,560
+You can now easily tweak all parameters like ben's strength
+你现在可以轻松调整所有参数，比如弯曲强度
+
+92
+00:05:55,560 --> 00:05:59,280
+Z offset and radius to adjust the effect
+Z 偏移和半径，来调节效果
+
+93
+00:05:59,280 --> 00:06:03,350
+This works really well for grass and small foliage
+这非常适合草和小型植被
+
+94
+00:06:03,350 --> 00:06:09,160
+While larger plants or trees are usually better handled with pivot painter setups
+而更大的植物或树木通常更适合用 Pivot Painter 设置来处理
+
+95
+00:06:09,160 --> 00:06:13,832
+Edit tutorial for exactly that is already in progress
+关于这一点的教程已经在制作中了
+
+96
+00:06:13,832 --> 00:06:16,042
+That's it for today
+今天就到这里
+
+97
+00:06:16,042 --> 00:06:18,980
+I hope you liked it and it was helpful
+希望你喜欢，也对你有帮助
+
+98
+00:06:18,980 --> 00:06:21,320
+If you want more tutorials like this
+如果你想看更多这样的教程
+
+99
+00:06:21,320 --> 00:06:22,970
+Just leave a comment
+就留个评论吧
+
+100
+00:06:22,970 --> 00:06:23,680
+Cheers
+下次见

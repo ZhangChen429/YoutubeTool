@@ -1,0 +1,2663 @@
+1
+00:00:07,180 --> 00:00:09,800
+Hey what's up youtube a wild back 
+
+2
+00:00:09,800 --> 00:00:14,735
+I started a series on creating realistic grass in a new engine 
+
+3
+00:00:14,735 --> 00:00:18,240
+In part one i explained how i created an efficient
+
+4
+00:00:18,240 --> 00:00:21,580
+Win system using niagara with controllable strength 
+
+5
+00:00:21,580 --> 00:00:24,087
+Direction , turbulance and guests 
+
+6
+00:00:24,087 --> 00:00:25,710
+It's quite a solid system 
+
+7
+00:00:25,710 --> 00:00:29,167
+And tuesday i'm still very happy with it 
+
+8
+00:00:29,167 --> 00:00:30,460
+In part two 
+
+9
+00:00:30,460 --> 00:00:32,380
+i did my best to explain 
+
+10
+00:00:32,380 --> 00:00:34,460
+How i built a very complex grass
+
+11
+00:00:34,460 --> 00:00:39,700
+Shado with features like an uncommon beatboard technique to maximize pixel coverage 
+
+12
+00:00:39,700 --> 00:00:45,140
+Programmable bend scale clmp wind animation and accurate normans 
+
+13
+00:00:45,140 --> 00:00:47,890
+The vertex shadow is the ambit expensive 
+
+14
+00:00:47,890 --> 00:00:51,560
+But this technique is definitely shiable if you know what you're doing 
+
+15
+00:00:51,560 --> 00:00:55,240
+And if you're quite aggressive with vertex count and elds 
+
+16
+00:00:55,240 --> 00:00:58,740
+My goal at the time was not to build a realistic grass
+
+17
+00:00:58,740 --> 00:01:01,040
+Shadow that could run on mobile anyway 
+
+18
+00:01:01,040 --> 00:01:02,640
+Quite the contrary actually 
+
+19
+00:01:02,640 --> 00:01:04,260
+I was trying to see how far
+
+20
+00:01:04,260 --> 00:01:05,860
+I could push the shell
+
+21
+00:01:05,860 --> 00:01:09,292
+without worrying too much about performance for once 
+
+22
+00:01:09,292 --> 00:01:11,890
+Now , as promised here's part three 
+
+23
+00:01:11,890 --> 00:01:16,457
+Well , i'll discuss my workflow for creating footage assets using blender w 
+
+24
+00:01:16,457 --> 00:01:20,560
+I already did a video on creating stylized trees using blender 
+
+25
+00:01:20,560 --> 00:01:23,650
+So make sure to check it out now 
+
+26
+00:01:23,650 --> 00:01:29,430
+Today's video was severely delayed because creating footage for real time applications in blender
+
+27
+00:01:29,430 --> 00:01:31,350
+Isn't a streamlined process 
+
+28
+00:01:31,350 --> 00:01:33,030
+It's not overly complex 
+
+29
+00:01:33,030 --> 00:01:35,710
+But the task is so specific that , well 
+
+30
+00:01:35,710 --> 00:01:40,445
+Blender is not tailored for that precise use case right 
+
+31
+00:01:40,445 --> 00:01:43,570
+There are quite a few buttons to press to get there 
+
+32
+00:01:43,570 --> 00:01:44,820
+let's put it that way 
+
+33
+00:01:44,820 --> 00:01:48,280
+And at one point i thought it'd be a good idea to create an adon
+
+34
+00:01:48,280 --> 00:01:51,130
+That would make my life much , much easier 
+
+35
+00:01:51,130 --> 00:01:54,450
+But then things got a bit more complicated and unsplated
+
+36
+00:01:54,450 --> 00:01:56,750
+And had those of projects to finish as well 
+
+37
+00:01:56,750 --> 00:02:00,530
+Hence the delay anyway knows that i'm almost done with it 
+
+38
+00:02:00,530 --> 00:02:04,550
+Time to finally speak about creating fooliage assets in blender 
+
+39
+00:02:04,550 --> 00:02:05,890
+So in this video 
+
+40
+00:02:05,890 --> 00:02:11,020
+I'll show my standby step process to create this grass asset without using any adult 
+
+41
+00:02:11,020 --> 00:02:12,990
+And in a fourth and final part 
+
+42
+00:02:12,990 --> 00:02:15,830
+I'll show what my blender adam aims to provide 
+
+43
+00:02:15,830 --> 00:02:17,410
+How to use it tends on 
+
+44
+00:02:17,410 --> 00:02:18,720
+I'm quite happy with it 
+
+45
+00:02:18,720 --> 00:02:20,860
+So stay tuned for the upcoming video 
+
+46
+00:02:20,860 --> 00:02:22,380
+Anyway , in enough from blink 
+
+47
+00:02:22,380 --> 00:02:24,080
+Let's jump right into it 
+
+48
+00:02:31,380 --> 00:02:34,100
+First stuff i'm going to delete everything 
+
+49
+00:02:37,200 --> 00:02:39,340
+Then i'm going to create a camera 
+
+50
+00:02:39,340 --> 00:02:43,800
+Shift a camera press alt error to reset its rotation
+
+51
+00:02:43,800 --> 00:02:45,840
+And let's offset it in z 
+
+52
+00:02:50,560 --> 00:02:53,600
+cool ！ now let's check what the camera se 
+
+53
+00:02:57,240 --> 00:03:02,070
+Okay , so next i'm going to send this cameras type to orthographic 
+
+54
+00:03:02,070 --> 00:03:05,560
+I may also change the width whatever not important 
+
+55
+00:03:06,780 --> 00:03:10,000
+What's important however is render resolution 
+
+56
+00:03:10,000 --> 00:03:13,322
+So let's use ten twenty four and five twelve 
+
+57
+00:03:13,322 --> 00:03:17,270
+Next let's change the same color management . very important 
+
+58
+00:03:17,270 --> 00:03:20,497
+The view transform needs to be set to rule
+
+59
+00:03:20,497 --> 00:03:23,550
+And in film i'm going to enable transparent 
+
+60
+00:03:23,550 --> 00:03:27,200
+you may as also reduce the filter size to sharpen your renders 
+
+61
+00:03:27,200 --> 00:03:30,540
+A little bit at the coast of some areasing up to you 
+
+62
+00:03:30,540 --> 00:03:32,230
+One point five is fine 
+
+63
+00:03:32,230 --> 00:03:35,510
+Next i'm going to send the background color to pure black 
+
+64
+00:03:35,510 --> 00:03:38,670
+Quite important to get rid of any ambient lighting 
+
+65
+00:03:38,670 --> 00:03:40,770
+And that should be it for the cup up 
+
+66
+00:03:40,770 --> 00:03:43,330
+So that's the convast i'm going to work with 
+
+67
+00:03:43,330 --> 00:03:43,810
+Okay 
+
+68
+00:03:43,810 --> 00:03:47,262
+The ratio is driven by the random resolution
+
+69
+00:03:47,262 --> 00:03:51,080
+And the overall resides by the cameras autographic width 
+
+70
+00:03:53,160 --> 00:03:54,920
+To better your visualize this 
+
+71
+00:03:54,920 --> 00:03:56,640
+i'm going to create a plane 
+
+72
+00:03:58,620 --> 00:04:01,360
+And scale it to match the orthographic with
+
+73
+00:04:01,360 --> 00:04:05,940
+And render aspect ratio display as we are frame 
+
+74
+00:04:10,120 --> 00:04:13,320
+If two to rename it to say confess 
+
+75
+00:04:14,390 --> 00:04:18,190
+and then prevent the object from being selected and rendered 
+
+76
+00:04:21,360 --> 00:04:26,990
+I manager going to turn off the greed and axis in the viewport personnel preferences 
+
+77
+00:04:26,990 --> 00:04:30,800
+next i'm going to rename this correction to say scene 
+
+78
+00:04:32,270 --> 00:04:35,785
+And create a new one named say hi polly 
+
+79
+00:04:35,785 --> 00:04:40,090
+So my goal and the point is to model the high poly foliage assets
+
+80
+00:04:40,090 --> 00:04:42,490
+And lays them flat on that canvas 
+
+81
+00:04:49,000 --> 00:04:50,520
+For the sake of this video 
+
+82
+00:04:50,520 --> 00:04:52,400
+I'll stick to simple things 
+
+83
+00:04:52,400 --> 00:04:55,420
+I'm going to create a plane press tab 
+
+84
+00:04:55,420 --> 00:04:59,300
+Turn to edit mode and press x and x to scale 
+
+85
+00:04:59,300 --> 00:05:00,620
+Turning the x axis 
+
+86
+00:05:02,900 --> 00:05:05,800
+Then control r to a live vertical edge loop here 
+
+87
+00:05:05,800 --> 00:05:10,367
+And i'm right away going to set it be well weight to one point o 
+
+88
+00:05:10,367 --> 00:05:15,675
+Then control r again to a multiple hoion that edge loops using the scroll whe
+
+89
+00:05:15,675 --> 00:05:18,470
+Next i'm going to enable proportional editing
+
+90
+00:05:18,470 --> 00:05:22,180
+and change the fall of selecting the tough vertices 
+
+91
+00:05:22,180 --> 00:05:25,830
+And using the score will to change the proportional editing rages 
+
+92
+00:05:25,830 --> 00:05:30,472
+I'm going to press s , s and x again to create some kind of pointy end 
+
+93
+00:05:30,472 --> 00:05:31,830
+This is a bit dirl 
+
+94
+00:05:31,830 --> 00:05:34,802
+So feel free to be a little bit more creative than this 
+
+95
+00:05:34,802 --> 00:05:38,932
+Then i'm going to scale these edges along the x axis as well 
+
+96
+00:05:38,932 --> 00:05:41,410
+And then why not pull these two vertices
+
+97
+00:05:41,410 --> 00:05:46,532
+Abort a little bit by double tapping the g keand moving the most apod 
+
+98
+00:05:46,532 --> 00:05:48,920
+Same with this done wild this time 
+
+99
+00:05:50,760 --> 00:05:53,940
+Next back into object mode using the tab key 
+
+100
+00:05:53,940 --> 00:05:55,800
+I'm going to add a bear modifier
+
+101
+00:05:55,800 --> 00:05:58,160
+And set its limit method to wait 
+
+102
+00:06:03,040 --> 00:06:05,840
+we use the amount and add one more segment 
+
+103
+00:06:09,400 --> 00:06:12,280
+Then i'm going to add a subdivision modifier 
+
+104
+00:06:12,280 --> 00:06:15,000
+Let's use two subdivisions in the viewport
+
+105
+00:06:15,000 --> 00:06:16,807
+And three in the render 
+
+106
+00:06:16,807 --> 00:06:21,490
+Okay , that bel modifier doesn't serve much ppose . so yet
+
+107
+00:06:21,490 --> 00:06:23,990
+So using tab turn to edit mode 
+
+108
+00:06:23,990 --> 00:06:30,135
+Again , i'm going to select this edge loop by holding alt shift and left clicking on that edge 
+
+109
+00:06:30,135 --> 00:06:32,870
+Press control i to inverge the selection
+
+110
+00:06:32,870 --> 00:06:35,315
+And h to hide vertices 
+
+111
+00:06:35,315 --> 00:06:37,730
+Next using proportional adt 
+
+112
+00:06:37,730 --> 00:06:42,970
+Again i'm going to select and pull that vertex app by pressing g and then z 
+
+113
+00:06:48,360 --> 00:06:50,680
+I'll age to unhide verses 
+
+114
+00:06:50,680 --> 00:06:51,900
+All right 
+
+115
+00:06:51,900 --> 00:06:54,440
+This end here is a bit too sharp to me 
+
+116
+00:06:54,440 --> 00:06:56,520
+So i'm going to select these two vertices 
+
+117
+00:06:56,520 --> 00:07:00,150
+Press shift s and select curser to select it 
+
+118
+00:07:00,150 --> 00:07:02,850
+Then i may use the curser as a pivot point
+
+119
+00:07:02,850 --> 00:07:06,020
+So that i may reduce the thickness a bit around that area 
+
+120
+00:07:06,020 --> 00:07:10,120
+Still using the proportional editing and tapping s s followed by z 
+
+121
+00:07:10,120 --> 00:07:13,140
+let's change the fall off to something portiz 
+
+122
+00:07:15,500 --> 00:07:16,860
+Hip like so 
+
+123
+00:07:20,380 --> 00:07:23,100
+It's still a little bit too sharp overall 
+
+124
+00:07:23,100 --> 00:07:25,900
+So it may scale the object along the z axis
+
+125
+00:07:25,900 --> 00:07:28,445
+Still using the cursor or the prevot point 
+
+126
+00:07:28,445 --> 00:07:33,160
+Okay , apply this scale using control a reset the pivot mode 
+
+127
+00:07:33,160 --> 00:07:36,860
+And then i'm going to twist the objects pivot point like so 
+
+128
+00:07:45,020 --> 00:07:47,690
+Finally right click shade smooth 
+
+129
+00:07:47,690 --> 00:07:52,660
+Oh i might actually add a little bit of thickness using a solidify modifier 
+
+130
+00:07:55,340 --> 00:07:57,900
+drag it up above the steps of face modifier 
+
+131
+00:07:59,260 --> 00:08:00,940
+trick a thickness sitting 
+
+132
+00:08:04,020 --> 00:08:07,380
+and well that's my grass blade base model 
+
+133
+00:08:14,000 --> 00:08:17,520
+first i'm going to assign a new material to that object 
+
+134
+00:08:19,240 --> 00:08:24,680
+now because the plane i originally started with is by default unwrapped like 
+
+135
+00:08:24,680 --> 00:08:27,510
+So the grass blade model i ended up with
+
+136
+00:08:27,510 --> 00:08:29,360
+should have a similar uv map 
+
+137
+00:08:29,360 --> 00:08:32,990
+Just with a few more edge loops using the slide operator
+
+138
+00:08:32,990 --> 00:08:35,690
+Or to move the top and bottobiases on the mesh 
+
+139
+00:08:35,690 --> 00:08:40,372
+Should also have modified their position on the uv map but no biggi 
+
+140
+00:08:40,372 --> 00:08:44,340
+So to texture is grass blade and trades pvr passes 
+
+141
+00:08:44,340 --> 00:08:48,500
+Well i could paint some grass blade texture using this uv map 
+
+142
+00:08:48,500 --> 00:08:51,940
+Say an albedo texture roughly texture and so on 
+
+143
+00:08:51,940 --> 00:08:55,240
+I'm however are going to stick with a much simpler method
+
+144
+00:08:55,240 --> 00:08:58,830
+And use gradients to create an output the pbr passes
+
+145
+00:08:58,830 --> 00:09:02,500
+And i'm going to use this uv map for that purpose 
+
+146
+00:09:02,500 --> 00:09:06,420
+but first i'm going to create a couple of shadow ao vs 
+
+147
+00:09:07,860 --> 00:09:08,940
+albedo 
+
+148
+00:09:10,100 --> 00:09:11,100
+Roughness
+
+149
+00:09:12,140 --> 00:09:16,540
+picular opacity is that one can be of type value 
+
+150
+00:09:17,680 --> 00:09:21,000
+um norman random 
+
+151
+00:09:22,280 --> 00:09:25,420
+Height and transmission 
+
+152
+00:09:25,420 --> 00:09:26,570
+Why not 
+
+153
+00:09:26,570 --> 00:09:29,170
+Next in the compositing workspace 
+
+154
+00:09:29,170 --> 00:09:31,370
+I'm going to enable use nodes
+
+155
+00:09:31,370 --> 00:09:34,310
+And i get to see or shadow lvi created
+
+156
+00:09:34,310 --> 00:09:36,850
+Lied in the radio layers node 
+
+157
+00:09:38,340 --> 00:09:40,860
+I'm going to create a file output node
+
+158
+00:09:40,860 --> 00:09:44,380
+And add and rename inputs to match these passes 
+
+159
+00:09:58,820 --> 00:10:02,295
+Next i'm going to specify the desire to output path 
+
+160
+00:10:02,295 --> 00:10:05,740
+png is bind rgba a bits 
+
+161
+00:10:05,740 --> 00:10:09,747
+And disabled compression on tire lif for faster of safetime 
+
+162
+00:10:09,747 --> 00:10:12,390
+Well at this point if i do a render 
+
+163
+00:10:12,390 --> 00:10:15,370
+I should see in the specified folder one 
+
+164
+00:10:15,370 --> 00:10:17,390
+Png file for each path 
+
+165
+00:10:17,390 --> 00:10:19,590
+Unfortunately , as far as i knew 
+
+166
+00:10:19,590 --> 00:10:24,450
+The way they are named is kind of hard coded there's no way to get rid of that frame
+
+167
+00:10:24,450 --> 00:10:26,000
+Count in the name for instance 
+
+168
+00:10:26,000 --> 00:10:28,940
+So that's really annoying a quirk in the workflows 
+
+169
+00:10:28,940 --> 00:10:33,207
+At my upcoming i don't aims to solve amongst many oils 
+
+170
+00:10:33,207 --> 00:10:36,950
+Anyway , each image for no contains only black pixels 
+
+171
+00:10:36,950 --> 00:10:40,172
+so time to actually trail these passes 
+
+172
+00:10:40,172 --> 00:10:42,450
+That happens in the material 
+
+173
+00:10:42,450 --> 00:10:48,707
+For each path i'm going to create an aov output node and specify the correct name 
+
+174
+00:10:48,707 --> 00:10:51,950
+Albedo , roughness and soon 
+
+175
+00:11:00,180 --> 00:11:03,820
+All these passes buds your acity of type color 
+
+176
+00:11:03,820 --> 00:11:06,460
+So i'm only interested in the color input pm 
+
+177
+00:11:06,460 --> 00:11:08,490
+Okay , for the opacity pass 
+
+178
+00:11:08,490 --> 00:11:12,610
+I'm just interesting in outputting a value of one point o that's it
+
+179
+00:11:12,610 --> 00:11:15,910
+So that's how i'm going to generate the pba passes 
+
+180
+00:11:15,910 --> 00:11:17,430
+See if i do a render 
+
+181
+00:11:17,430 --> 00:11:19,710
+I get to see the updated opacity 
+
+182
+00:11:21,100 --> 00:11:23,680
+All right , let's start with a roughness pass 
+
+183
+00:11:23,680 --> 00:11:26,440
+First time going to create a uv map node 
+
+184
+00:11:26,440 --> 00:11:30,360
+By the way , i found no better way to visualize what i'm working on
+
+185
+00:11:30,360 --> 00:11:33,090
+But to use materas emission pin 
+
+186
+00:11:33,090 --> 00:11:34,650
+Let me know in the comments below
+
+187
+00:11:34,650 --> 00:11:36,680
+If you can think of a better solution 
+
+188
+00:11:36,680 --> 00:11:41,170
+Although feel free to share if you have any tips to improve this overall workflow 
+
+189
+00:11:41,170 --> 00:11:42,680
+I'm just showing what i know 
+
+190
+00:11:42,680 --> 00:11:46,080
+But blender has not been my main priority for a long time now
+
+191
+00:11:46,080 --> 00:11:48,570
+And the software is progressing at a huge base 
+
+192
+00:11:48,570 --> 00:11:49,960
+So it's hard to keep track of 
+
+193
+00:11:49,960 --> 00:11:51,680
+Also new features and walk flows 
+
+194
+00:11:51,680 --> 00:11:54,380
+Anyway , using a separate ex wise in node 
+
+195
+00:11:54,380 --> 00:11:57,980
+I can isolate the hoanal gradient of that uv map 
+
+196
+00:11:59,509 --> 00:12:01,470
+let's subtract o point five 
+
+197
+00:12:05,060 --> 00:12:06,860
+yet is the absolute value 
+
+198
+00:12:08,680 --> 00:12:12,040
+And multiplied by two to created by linear gradient 
+
+199
+00:12:13,650 --> 00:12:18,130
+I might even use a power operation to control the gradients full of 
+
+200
+00:12:20,070 --> 00:12:23,310
+I use the one minus operation to invert it as well 
+
+201
+00:12:30,680 --> 00:12:34,740
+Using a mixed node i'm going to send the base rough nest to open eight
+
+202
+00:12:34,740 --> 00:12:37,870
+And then say open twenty five around the edges 
+
+203
+00:12:37,870 --> 00:12:42,170
+And i'm going to highlight the center line just a tiny bit like so 
+
+204
+00:12:47,680 --> 00:12:50,840
+Well that's my roughness map for the grass blade
+
+205
+00:12:50,840 --> 00:12:54,750
+Simple but should provide a somewhat interesting picular behavior 
+
+206
+00:12:54,750 --> 00:12:58,830
+I follow eyebowling things though values may need further tricks
+
+207
+00:12:58,830 --> 00:13:02,150
+Once tested in engine with a proper er lighting condition 
+
+208
+00:13:07,540 --> 00:13:08,920
+For the speakular map 
+
+209
+00:13:08,920 --> 00:13:10,520
+I'm going to do the same thing 
+
+210
+00:13:10,520 --> 00:13:13,250
+Except that i'm going to flip gradients around
+
+211
+00:13:13,250 --> 00:13:15,700
+And use quite low values overall 
+
+212
+00:13:17,860 --> 00:13:19,900
+Again , that's just an example 
+
+213
+00:13:19,900 --> 00:13:23,680
+That's as you mean , that's the artistic direction you're aiming for 
+
+214
+00:13:23,680 --> 00:13:26,760
+And it's quite fun to try new things with grass shaders 
+
+215
+00:13:26,760 --> 00:13:28,240
+Try new looks and so on 
+
+216
+00:13:28,240 --> 00:13:30,620
+Especially for stylized rendering of course 
+
+217
+00:13:34,300 --> 00:13:36,560
+Anyway , regarding the ivido pass 
+
+218
+00:13:36,560 --> 00:13:40,380
+Well i'm going to use similar tricks to generate coral gradients 
+
+219
+00:13:42,840 --> 00:13:45,420
+I'm also going to use the random value blender
+
+220
+00:13:45,420 --> 00:13:49,810
+Generates pay object to bring in some extraccolour variation paragrass blade 
+
+221
+00:13:49,810 --> 00:13:52,320
+There are plenty of shadow tricks to think of you 
+
+222
+00:13:52,320 --> 00:13:53,980
+But i'm keeping it simple 
+
+223
+00:14:04,360 --> 00:14:05,700
+For the normal pass 
+
+224
+00:14:05,700 --> 00:14:09,459
+I can simply remember the wards based normals to a zero to one range
+
+225
+00:14:09,459 --> 00:14:11,079
+and feed the white channel 
+
+226
+00:14:19,440 --> 00:14:20,780
+Further from them pass 
+
+227
+00:14:20,780 --> 00:14:21,900
+Well you guessed it 
+
+228
+00:14:21,900 --> 00:14:24,800
+The objects from the value will do just fine 
+
+229
+00:14:26,170 --> 00:14:28,510
+And finally easy height pass 
+
+230
+00:14:28,510 --> 00:14:31,390
+That one is a little bit more involved 
+
+231
+00:14:31,390 --> 00:14:33,530
+I'm going to create a cube 
+
+232
+00:14:38,080 --> 00:14:43,422
+Displayed as bones prevented from being rendered 
+
+233
+00:14:43,422 --> 00:14:47,650
+Enter edit mode to offset vertices by one unit in z 
+
+234
+00:14:47,650 --> 00:14:49,920
+So select all press g 
+
+235
+00:14:49,920 --> 00:14:52,420
+Z and one on the name pad 
+
+236
+00:14:52,420 --> 00:14:56,390
+Then i'm going to scale it down by fifty percent and applies the skate 
+
+237
+00:14:59,960 --> 00:15:03,000
+Next , using a texture accoordinator node 
+
+238
+00:15:04,530 --> 00:15:08,382
+I can specify this cube to generate object coordinates 
+
+239
+00:15:08,382 --> 00:15:11,800
+Isolate the z component to create a vertical gradient
+
+240
+00:15:11,800 --> 00:15:14,130
+And therefore generate a height map 
+
+241
+00:15:14,130 --> 00:15:16,160
+Just have to scale the cube in z
+
+242
+00:15:16,160 --> 00:15:19,420
+And shift in z position to create the desire red range 
+
+243
+00:15:27,920 --> 00:15:33,720
+Finally for the transmission i may simply use it tubon gradient derived from new visas 
+
+244
+00:15:33,720 --> 00:15:37,080
+Well voa at that point i just have to draw render
+
+245
+00:15:37,080 --> 00:15:40,475
+To save all pbr passes to disk 
+
+246
+00:15:40,475 --> 00:15:43,780
+Rendering a single grass blade is quite diso 
+
+247
+00:15:43,780 --> 00:15:46,020
+So let's create a couple of grass gramps 
+
+248
+00:15:50,180 --> 00:15:52,000
+I'm fast for while a bit here 
+
+249
+00:15:52,000 --> 00:15:57,400
+because in the end it's just a matter of duplicating that when grass blade entering edit mode 
+
+250
+00:15:57,400 --> 00:16:03,080
+and use proportional editing to move vertices around and create interesting shapes and whatnt 
+
+251
+00:16:10,480 --> 00:16:12,860
+You may fool around with modifiers as well 
+
+252
+00:16:12,860 --> 00:16:15,960
+Like bend , twist and soon the sky is the limit 
+
+253
+00:16:15,960 --> 00:16:17,680
+Let your creativity speak 
+
+254
+00:16:19,360 --> 00:16:22,520
+So do that to create a couple of grass crumbs volds 
+
+255
+00:16:22,520 --> 00:16:27,650
+But be sure to leave enough room in between glimpse that's very important to prevent bleeding
+
+256
+00:16:27,650 --> 00:16:29,770
+Mods are two picking a sigon anyway 
+
+257
+00:16:29,770 --> 00:16:31,270
+that's pretty much sheet 
+
+258
+00:16:32,540 --> 00:16:34,660
+I'm just going to update the high trench
+
+259
+00:16:34,660 --> 00:16:35,580
+and that's it 
+
+260
+00:16:39,320 --> 00:16:41,360
+press rondo and tada 
+
+261
+00:16:55,400 --> 00:16:57,752
+Here comes a very annoying part 
+
+262
+00:16:57,752 --> 00:16:59,580
+Dilating textures 
+
+263
+00:16:59,580 --> 00:17:01,310
+Seize this albedo texture 
+
+264
+00:17:01,310 --> 00:17:03,440
+You might think it's good to go , right 
+
+265
+00:17:03,440 --> 00:17:05,902
+Imported in newi
+
+266
+00:17:05,902 --> 00:17:09,700
+Use its rgb components to drive a materials albedo
+
+267
+00:17:09,700 --> 00:17:12,760
+And their effectionate for your opacity mask 
+
+268
+00:17:12,760 --> 00:17:18,340
+However notice is black hot lines that are creeping in the more distant i am to the mesh 
+
+269
+00:17:21,060 --> 00:17:23,580
+If i get rid of the textures affechannel 
+
+270
+00:17:23,580 --> 00:17:28,180
+I can see that albedo pixels were written where there was an alpha value 
+
+271
+00:17:28,180 --> 00:17:29,820
+Even the tiniest amount 
+
+272
+00:17:29,820 --> 00:17:32,730
+Hence the idea is think it's a binary state
+
+273
+00:17:32,730 --> 00:17:34,960
+And that's totally expected 
+
+274
+00:17:34,960 --> 00:17:38,820
+however , that albedo texture is killed down by half 
+
+275
+00:17:38,820 --> 00:17:41,620
+and then half more and again and again to create 
+
+276
+00:17:41,620 --> 00:17:43,395
+What we call the meat chain
+
+277
+00:17:43,395 --> 00:17:48,000
+That's to lose the rendering engine to sample very few pixels from the texture 
+
+278
+00:17:48,000 --> 00:17:50,800
+If the object is teeny tiny on the screen 
+
+279
+00:17:50,800 --> 00:17:55,702
+It's an optimization trick as well as a way to prevent aliasing . and it's great 
+
+280
+00:17:55,702 --> 00:17:56,670
+The dumb side 
+
+281
+00:17:56,670 --> 00:18:00,310
+However , is that a texture of stars to turn into a blurry miss
+
+282
+00:18:00,310 --> 00:18:02,640
+As it feels are you go along the meat chain 
+
+283
+00:18:02,640 --> 00:18:06,260
+Therefore pixels that our outside is opacity mask
+
+284
+00:18:06,260 --> 00:18:09,770
+Gradually participate more and more in the final color 
+
+285
+00:18:09,770 --> 00:18:10,880
+You know the words 
+
+286
+00:18:10,880 --> 00:18:14,470
+This background color is bleeding in and you get black outlines 
+
+287
+00:18:14,470 --> 00:18:15,770
+So to prevent this 
+
+288
+00:18:15,770 --> 00:18:17,690
+Textures have to be dilated 
+
+289
+00:18:17,690 --> 00:18:19,950
+And there are many solutions to do this 
+
+290
+00:18:19,950 --> 00:18:22,240
+Photoshop is of course a solution 
+
+291
+00:18:22,240 --> 00:18:25,530
+But i aggress or suggest a free and open source alternative 
+
+292
+00:18:25,530 --> 00:18:29,270
+You may , for instance , use gmp and its value propagate filter 
+
+293
+00:18:29,270 --> 00:18:30,929
+Set it to more opaque 
+
+294
+00:18:30,929 --> 00:18:35,640
+Click okay , and tab control if until the texture is entirely floated 
+
+295
+00:18:39,980 --> 00:18:43,220
+then we apply the initial out for channel and volu 
+
+296
+00:18:49,120 --> 00:18:50,640
+Visually it's the same 
+
+297
+00:18:50,640 --> 00:18:54,940
+but no background pixels on the wrong your black but contain corals 
+
+298
+00:18:54,940 --> 00:18:56,942
+And that's one solution
+
+299
+00:18:56,942 --> 00:18:59,550
+You can as though of course duplicate the layer 
+
+300
+00:18:59,550 --> 00:19:01,320
+Blaze the underlying one 
+
+301
+00:19:01,320 --> 00:19:03,510
+Merge wins and repeat 
+
+302
+00:19:07,700 --> 00:19:09,740
+And we apply your fat channel 
+
+303
+00:19:09,740 --> 00:19:13,300
+You can probably build a script in gm to do that for you 
+
+304
+00:19:16,020 --> 00:19:18,800
+Image magic is probably a solution as well 
+
+305
+00:19:18,800 --> 00:19:21,900
+There's probably a common lines that exists to batch process
+
+306
+00:19:21,900 --> 00:19:24,277
+A bunch of images or in one go 
+
+307
+00:19:24,277 --> 00:19:28,090
+No didating textures come with two important good chess 
+
+308
+00:19:28,090 --> 00:19:29,790
+One is file size 
+
+309
+00:19:29,790 --> 00:19:30,670
+For instance 
+
+310
+00:19:30,670 --> 00:19:36,880
+Deleting a texture using a brew results in an image that is mostly comprised of smooth quence 
+
+311
+00:19:40,000 --> 00:19:41,270
+And algorithms
+
+312
+00:19:41,270 --> 00:19:44,740
+Large blocks of the same colore winstead be ideal 
+
+313
+00:19:44,740 --> 00:19:47,180
+Segunar cha dileting a texture
+
+314
+00:19:47,180 --> 00:19:49,960
+Doesn't really solve a black hotline problem 
+
+315
+00:19:49,960 --> 00:19:52,050
+Well , i mean it kind of solves it 
+
+316
+00:19:52,050 --> 00:19:53,750
+But not in an ideal way 
+
+317
+00:19:53,750 --> 00:19:55,670
+Although it's usually good enough 
+
+318
+00:19:55,670 --> 00:19:59,730
+You see pixels from the background are going to bleeding no matter what 
+
+319
+00:19:59,730 --> 00:20:04,340
+And so in the distance you'll get to see some of that background color creeping in 
+
+320
+00:20:04,340 --> 00:20:08,620
+The thing is , most dilation algorithms work from the edges 
+
+321
+00:20:08,620 --> 00:20:14,580
+Their first dilated background color is going to be biased towards the edge color , if that makes sense 
+
+322
+00:20:14,580 --> 00:20:17,140
+Some things that may be very apparent if
+
+323
+00:20:17,140 --> 00:20:19,220
+Let's say for some artistic reasons 
+
+324
+00:20:19,220 --> 00:20:21,645
+You have very bright edges , right 
+
+325
+00:20:21,645 --> 00:20:25,290
+And actually the same issue appears in know your textures as well 
+
+326
+00:20:25,290 --> 00:20:31,605
+And roughness and speaklar maps may quite often features that kind of edge treatment , especially for grass , right 
+
+327
+00:20:31,605 --> 00:20:35,720
+This bright edges may result in a bright dilated background 
+
+328
+00:20:35,720 --> 00:20:38,030
+Which is going to bleeding with meat maps 
+
+329
+00:20:38,030 --> 00:20:40,230
+Again , it's not usually a big issue 
+
+330
+00:20:40,230 --> 00:20:41,780
+But it's something to know 
+
+331
+00:20:41,780 --> 00:20:45,330
+So dileting textures can be a pain in the beat 
+
+332
+00:20:45,330 --> 00:20:48,650
+it's a process that comes with a few technical accdalties 
+
+333
+00:20:48,650 --> 00:20:53,770
+And that i believe still for most artists involves a lot of manual labor 
+
+334
+00:20:53,770 --> 00:20:56,130
+Meaning lots of clicking on buttons 
+
+335
+00:20:56,130 --> 00:20:58,310
+So to serve the file compression 
+
+336
+00:20:58,310 --> 00:21:01,450
+Edge bias and time consuming process issues 
+
+337
+00:21:01,450 --> 00:21:06,775
+A new technique was presented at gdc twenty nineteen called mip floating 
+
+338
+00:21:06,775 --> 00:21:10,290
+and someone was kind enough to release a python script 
+
+339
+00:21:10,290 --> 00:21:12,370
+That implements it for free 
+
+340
+00:21:16,180 --> 00:21:20,340
+All right , so there are a couple of steps to make that python script walking blender 
+
+341
+00:21:20,340 --> 00:21:22,980
+But hopefully nothing seem to problematic 
+
+342
+00:21:22,980 --> 00:21:25,690
+First i'm going to open this github page 
+
+343
+00:21:25,690 --> 00:21:27,890
+Link is in the video description below 
+
+344
+00:21:27,890 --> 00:21:30,490
+I'm also going to give the author i shut out 
+
+345
+00:21:30,490 --> 00:21:32,045
+Thanks for the script 
+
+346
+00:21:32,045 --> 00:21:33,850
+Now if your familiar with git 
+
+347
+00:21:33,850 --> 00:21:35,830
+You may get defines with a pool 
+
+348
+00:21:35,830 --> 00:21:38,450
+But don't loading the zip from the github page
+
+349
+00:21:38,450 --> 00:21:40,365
+Although does a job 
+
+350
+00:21:40,365 --> 00:21:43,757
+So i'm going to unzip it and work up 
+
+351
+00:21:43,757 --> 00:21:47,710
+Next step piece to create a python script in blender like so
+
+352
+00:21:47,710 --> 00:21:50,960
+And use the code sample provided on the git page 
+
+353
+00:21:54,500 --> 00:21:59,160
+Now that me floating python script uses a python image library
+
+354
+00:21:59,160 --> 00:22:02,202
+Aka pill or its work pillow 
+
+355
+00:22:02,202 --> 00:22:05,690
+The thing is , blender comes with its own version of python
+
+356
+00:22:05,690 --> 00:22:08,090
+And it does not have that image library 
+
+357
+00:22:08,090 --> 00:22:11,537
+So i need to install it for that specific python version 
+
+358
+00:22:11,537 --> 00:22:13,680
+A very annoying process to figure out
+
+359
+00:22:13,680 --> 00:22:15,860
+When you don't know what you're doing like me 
+
+360
+00:22:15,860 --> 00:22:17,660
+But here's what worked for me 
+
+361
+00:22:17,660 --> 00:22:20,270
+As usual , feel free to do things differently 
+
+362
+00:22:20,270 --> 00:22:26,320
+I'm going to open a command prompt in windows in administrator mode using the city command 
+
+363
+00:22:26,320 --> 00:22:30,920
+I'm going to navigate to where the blender python executable is installed 
+
+364
+00:22:35,800 --> 00:22:38,560
+using it times then going to install pip 
+
+365
+00:22:40,430 --> 00:22:43,950
+And finally using pip i'm going to install pillow
+
+366
+00:22:43,950 --> 00:22:47,230
+And that should allow me to import pill in blender 
+
+367
+00:22:53,200 --> 00:22:57,207
+Note , however , that pill is not imported in that python script 
+
+368
+00:22:57,207 --> 00:23:01,670
+Well limeine it is it's that miflooding libraries that imports it 
+
+369
+00:23:01,670 --> 00:23:03,510
+So it's definitely a requirement 
+
+370
+00:23:03,510 --> 00:23:04,030
+Okay 
+
+371
+00:23:04,030 --> 00:23:08,400
+Therefore the next step is to make that mifloating library import walk
+
+372
+00:23:08,400 --> 00:23:11,280
+Because python has no knowledge of it yet 
+
+373
+00:23:11,280 --> 00:23:15,490
+So i'm going to copy the path where that library is located 
+
+374
+00:23:15,490 --> 00:23:17,500
+next import c 
+
+375
+00:23:20,140 --> 00:23:22,470
+And make python aware of that path 
+
+376
+00:23:22,470 --> 00:23:26,140
+Voa that should arrome to imposes me floating in library 
+
+377
+00:23:27,160 --> 00:23:32,200
+Final step is to specify where my pvr passes are located on disk 
+
+378
+00:23:33,930 --> 00:23:36,770
+Renaes them as they contend the propelsif 
+
+379
+00:23:45,460 --> 00:23:50,960
+Twix the script a little bit so that it processes all passes and va rens the script
+
+380
+00:23:50,960 --> 00:23:54,190
+And images on disk should be flooded 
+
+381
+00:23:54,190 --> 00:23:57,300
+You notice images are so much transparent still 
+
+382
+00:23:57,300 --> 00:23:58,890
+But it's no biggie 
+
+383
+00:23:58,890 --> 00:24:01,399
+the rgb channels are correctiflooded 
+
+384
+00:24:01,399 --> 00:24:03,760
+So you can just get rid of that alpha channel
+
+385
+00:24:03,760 --> 00:24:07,340
+Or import images in ue without the alpha channel 
+
+386
+00:24:11,720 --> 00:24:14,240
+All right . i'm going to create a new scene 
+
+387
+00:24:15,780 --> 00:24:18,740
+Shift a image mesh plane
+
+388
+00:24:18,740 --> 00:24:23,020
+And opens your acity map in the shading workspace 
+
+389
+00:24:23,020 --> 00:24:25,700
+I'm going to use the color as alpha 
+
+390
+00:24:29,600 --> 00:24:32,120
+Use a non color corrose space 
+
+391
+00:24:32,120 --> 00:24:34,470
+Set the emission strength to one 
+
+392
+00:24:34,470 --> 00:24:37,080
+and set the random method to blended 
+
+393
+00:24:39,620 --> 00:24:41,520
+Back in the modelling workspace 
+
+394
+00:24:41,520 --> 00:24:44,290
+I'm going to change the viewport shedding mode 
+
+395
+00:24:44,290 --> 00:24:46,480
+Add a to disselect all 
+
+396
+00:24:46,480 --> 00:24:49,140
+And i'm going to make sure i mean vertex mode 
+
+397
+00:24:49,140 --> 00:24:51,907
+So tap one on the keyboard to do that 
+
+398
+00:24:51,907 --> 00:24:57,182
+And i'm going to right click while holding control to create vertex here
+
+399
+00:24:57,182 --> 00:24:59,660
+And keep doing that to detroit 
+
+400
+00:24:59,660 --> 00:25:01,460
+Fills group of grass blades 
+
+401
+00:25:06,380 --> 00:25:09,275
+No , there are a couple of things to think about here 
+
+402
+00:25:09,275 --> 00:25:13,280
+Vertices must never be placed outside this converse 
+
+403
+00:25:13,280 --> 00:25:15,940
+It's very important for upcoming step 
+
+404
+00:25:15,940 --> 00:25:19,372
+I also want to leave them in a margin just a bit 
+
+405
+00:25:19,372 --> 00:25:21,800
+I want to leave some order margin as well 
+
+406
+00:25:21,800 --> 00:25:24,820
+Like not to be too close to his og groups , right 
+
+407
+00:25:24,820 --> 00:25:28,880
+And of course i want to think about the vertex count and how to use that 
+
+408
+00:25:28,880 --> 00:25:31,600
+It is to best minimize overdraw 
+
+409
+00:25:31,600 --> 00:25:34,010
+Meaning has the least amount of transparent
+
+410
+00:25:34,010 --> 00:25:36,610
+Pixels with the least amount of vertices 
+
+411
+00:25:36,610 --> 00:25:41,600
+For instance , adding a vertex here would reduce overdraw by some amount 
+
+412
+00:25:41,600 --> 00:25:43,190
+But is it worth it 
+
+413
+00:25:43,190 --> 00:25:47,010
+Well , there is likely no right on zero up to you to decide 
+
+414
+00:25:47,010 --> 00:25:50,190
+And i want to think about vertex animation 
+
+415
+00:25:50,190 --> 00:25:52,190
+Like how to place vertices
+
+416
+00:25:52,190 --> 00:25:54,870
+So the cat can be best deformed to apply
+
+417
+00:25:54,870 --> 00:25:57,312
+Good looking with animation and so on 
+
+418
+00:25:57,312 --> 00:26:00,520
+Finally , i also want to think about house of card
+
+419
+00:26:00,520 --> 00:26:04,800
+can be deformed and bent to create an interesting volume and silhouette 
+
+420
+00:26:04,800 --> 00:26:06,900
+And then just have a flat cd
+
+421
+00:26:06,900 --> 00:26:11,125
+Don't worry too much about it that at first though this will come with experience 
+
+422
+00:26:11,125 --> 00:26:13,800
+Anyway , i'm going to select these four vertices
+
+423
+00:26:13,800 --> 00:26:16,120
+and tab the f k to create a quad 
+
+424
+00:26:16,120 --> 00:26:19,470
+And keep doing that until the whole car is your east 
+
+425
+00:26:19,470 --> 00:26:21,900
+It's important at this point to make sure
+
+426
+00:26:21,900 --> 00:26:24,410
+Normals are facing the correct way z 
+
+427
+00:26:24,410 --> 00:26:27,540
+So i'm going to activate the face orientation oily
+
+428
+00:26:27,540 --> 00:26:32,120
+and if any geometry is shown in red selected and flip the normes 
+
+429
+00:26:37,520 --> 00:26:38,340
+Moving on 
+
+430
+00:26:38,340 --> 00:26:41,620
+I'm going to add an edge group here using control r 
+
+431
+00:26:41,620 --> 00:26:43,840
+And with these two vertices selected 
+
+432
+00:26:43,840 --> 00:26:46,600
+i'm going to press j to create an edge 
+
+433
+00:26:46,600 --> 00:26:49,240
+And turns out i can place that is like
+
+434
+00:26:49,240 --> 00:26:52,080
+So to get rid of that unnecessary triangle 
+
+435
+00:26:53,970 --> 00:26:55,040
+Cool 
+
+436
+00:26:55,040 --> 00:26:55,610
+Oh 
+
+437
+00:26:55,610 --> 00:26:58,820
+and actually i'm going to add a via text here at an edge 
+
+438
+00:26:58,820 --> 00:27:04,860
+Via jk the world type g to slide that vtex along that edge to get rid of that trangle 
+
+439
+00:27:04,860 --> 00:27:10,290
+That's going to allow me to extract a bit more volume from that card in the upcoming step 
+
+440
+00:27:10,290 --> 00:27:12,520
+Anyway , that's ldz route 
+
+441
+00:27:12,520 --> 00:27:15,870
+I'm going to repeat the process for l d one and two 
+
+442
+00:27:15,870 --> 00:27:19,310
+Ideally reducing the vertex count by half each time 
+
+443
+00:27:19,310 --> 00:27:25,705
+The last eld should likely be just a single quid or even a single triangle when possible 
+
+444
+00:27:25,705 --> 00:27:28,890
+Winston repeat for the ozil cars and voila 
+
+445
+00:27:28,890 --> 00:27:35,480
+I'm just going to make sure that is all lay flattened that plane by scanning the object to zero in zero 
+
+446
+00:27:35,480 --> 00:27:37,450
+Next i'm going to double checks that
+
+447
+00:27:37,450 --> 00:27:41,697
+No verses lay outside the combs and it looks okay to me
+
+448
+00:27:41,697 --> 00:27:45,540
+Pressing seven on the ipad to ensure i'm looking from above 
+
+449
+00:27:45,540 --> 00:27:51,160
+i'm going to tap a to select everything press you and select project from view 
+
+450
+00:27:51,160 --> 00:27:55,890
+Bones and well uv london and cards are ready to go 
+
+451
+00:27:55,890 --> 00:27:59,050
+Well almost . i'm going to do one more step
+
+452
+00:27:59,050 --> 00:28:03,330
+That is going to facilitate lds selection further down the road 
+
+453
+00:28:03,330 --> 00:28:07,090
+so i'm going to say this mattyre is lds zero 
+
+454
+00:28:08,640 --> 00:28:09,720
+duplicated 
+
+455
+00:28:12,360 --> 00:28:13,919
+Name it l d one
+
+456
+00:28:14,980 --> 00:28:17,730
+And applied to the eld one cards 
+
+457
+00:28:17,730 --> 00:28:22,940
+By the way the l key is very useful to expand the selection to the whole mesh 
+
+458
+00:28:29,020 --> 00:28:31,690
+Anyway , duplicate the material once more 
+
+459
+00:28:31,690 --> 00:28:36,202
+Name mel d two and apply it to the eld two cds 
+
+460
+00:28:36,202 --> 00:28:40,810
+That way i can use material selection feature to select lds
+
+461
+00:28:40,810 --> 00:28:43,530
+And that will come handy in just a minute 
+
+462
+00:28:51,160 --> 00:28:53,200
+All right , we are almost done 
+
+463
+00:28:53,200 --> 00:28:55,320
+I'm going to select this object
+
+464
+00:28:55,320 --> 00:28:58,105
+And press control c to copy it 
+
+465
+00:28:58,105 --> 00:29:00,240
+Create a new scene
+
+466
+00:29:00,240 --> 00:29:02,500
+And control v to past it 
+
+467
+00:29:03,650 --> 00:29:05,890
+I'm going to delete the compass 
+
+468
+00:29:08,580 --> 00:29:10,680
+Then i'm going to select this bit 
+
+469
+00:29:10,680 --> 00:29:15,300
+Press control l and press p to separate the geometry
+
+470
+00:29:16,360 --> 00:29:18,760
+And rinse and repeat for your accounts 
+
+471
+00:29:22,340 --> 00:29:25,500
+next in object mode i'm going to recenttell them 
+
+472
+00:29:31,080 --> 00:29:32,840
+and apply is our location 
+
+473
+00:29:34,360 --> 00:29:35,600
+In object mode 
+
+474
+00:29:35,600 --> 00:29:37,800
+Still i'm going to select all objects 
+
+475
+00:29:37,800 --> 00:29:43,640
+Press r x and type ninety using the num pad and applies the rotation 
+
+476
+00:29:43,640 --> 00:29:47,210
+Press shift c to receive the cursor on the view 
+
+477
+00:29:47,210 --> 00:29:48,760
+Select all objects 
+
+478
+00:29:48,760 --> 00:29:50,060
+Go to edit mode 
+
+479
+00:29:50,060 --> 00:29:54,660
+Tap three for the side view and select one of these vertices at the top 
+
+480
+00:29:54,660 --> 00:29:57,970
+next i'm going to use the proportional editing once more 
+
+481
+00:29:57,970 --> 00:29:59,330
+With a sharp fall off
+
+482
+00:29:59,330 --> 00:30:02,130
+To apply a reasonable amount of curatrial 
+
+483
+00:30:05,760 --> 00:30:07,380
+Same looking from above 
+
+484
+00:30:07,380 --> 00:30:11,080
+I'm going to bend the geometry just a little bit like so 
+
+485
+00:30:14,320 --> 00:30:17,540
+finally i'm going to isolate one of these objects 
+
+486
+00:30:17,540 --> 00:30:21,725
+And see how i can make these cards look at tiny bit more appealing 
+
+487
+00:30:21,725 --> 00:30:25,980
+The goal is to try and make these cards have the maximum amount of pixel
+
+488
+00:30:25,980 --> 00:30:28,610
+Courage when looked at from any angle
+
+489
+00:30:28,610 --> 00:30:31,280
+A flat carl brings the worst case scenario 
+
+490
+00:30:31,280 --> 00:30:33,460
+Look at it from the side i need disappears 
+
+491
+00:30:33,460 --> 00:30:33,980
+Right 
+
+492
+00:30:33,980 --> 00:30:36,640
+And so that's where being a bit smart with the way
+
+493
+00:30:36,640 --> 00:30:38,700
+You create your cs is going to help 
+
+494
+00:30:38,700 --> 00:30:41,580
+So yeah , it's all about using your best judgment
+
+495
+00:30:41,580 --> 00:30:44,840
+and trying not to deviate too much from the higher elods 
+
+496
+00:30:44,840 --> 00:30:49,480
+Because you likely have quite a bit of geometry to work with for the l d zero , right 
+
+497
+00:30:49,480 --> 00:30:52,260
+So you can likely create an interesting volume 
+
+498
+00:30:52,260 --> 00:30:52,750
+Sure 
+
+499
+00:30:52,750 --> 00:30:56,980
+But keep in mind that this l d zero is going to quite appropriate
+
+500
+00:30:56,980 --> 00:30:59,220
+transition to the eld one at some point 
+
+501
+00:30:59,220 --> 00:31:01,120
+And then l d two and so on 
+
+502
+00:31:01,120 --> 00:31:03,160
+So there are a balance to find , right 
+
+503
+00:31:03,160 --> 00:31:05,140
+Twik too much the eld zero
+
+504
+00:31:05,140 --> 00:31:09,350
+And the lds switch is potentially going to be quite noticeable in game 
+
+505
+00:31:09,350 --> 00:31:10,380
+On the other hand 
+
+506
+00:31:10,380 --> 00:31:13,440
+It's a good idea to leverage the higher vertex count
+
+507
+00:31:13,440 --> 00:31:15,820
+And add some extra oof to that fat card 
+
+508
+00:31:15,820 --> 00:31:17,135
+If that makes sense 
+
+509
+00:31:17,135 --> 00:31:20,020
+Anyway , repeat the process for all calves 
+
+510
+00:31:20,020 --> 00:31:22,720
+Use shade smooth on all objects 
+
+511
+00:31:22,720 --> 00:31:23,820
+Rename them 
+
+512
+00:31:28,900 --> 00:31:30,780
+and put them in a collection 
+
+513
+00:31:39,139 --> 00:31:42,510
+So let's step piece two crazy in game grass assets 
+
+514
+00:31:42,510 --> 00:31:46,300
+I'm going to create a linked duplicate of this collection 
+
+515
+00:31:48,420 --> 00:31:51,560
+And i'm going to select all objects in that collection
+
+516
+00:31:51,560 --> 00:31:56,067
+And press alt d one or two times to duplicate cds 
+
+517
+00:31:56,067 --> 00:32:01,630
+Next i'm going to use a randomized transform operator to spread these scale apart
+
+518
+00:32:01,630 --> 00:32:04,230
+And then manually find tune the result 
+
+519
+00:32:15,420 --> 00:32:19,780
+Here i'm just trying to ensure cards i'll somewhat evenly spaced out 
+
+520
+00:32:19,780 --> 00:32:24,980
+and that the asset has a decent silhoueet and volume when looked at from any angle 
+
+521
+00:32:45,020 --> 00:32:46,860
+And that looks good to me 
+
+522
+00:32:46,860 --> 00:32:49,540
+I'm not being too serious about it to be honest 
+
+523
+00:32:49,540 --> 00:32:51,687
+It's an asset for to toil of joel 
+
+524
+00:32:51,687 --> 00:32:52,310
+Anyway 
+
+525
+00:32:52,310 --> 00:32:54,710
+No is probably the time to bake pivots
+
+526
+00:32:54,710 --> 00:32:58,180
+Using my data baker adam or your preferred method 
+
+527
+00:32:58,180 --> 00:33:02,650
+and the reason i've kept erodio one and two part of the same object 
+
+528
+00:33:02,650 --> 00:33:07,130
+Is that i really like to bake a random value pair card in uv 
+
+529
+00:33:07,130 --> 00:33:10,490
+It's extremely useful for lots of shadoor tricks
+
+530
+00:33:10,490 --> 00:33:13,820
+Like say two of sense the wind animation pair card 
+
+531
+00:33:13,820 --> 00:33:18,000
+Or add a bit of kt variation to the albedo paccar and zone 
+
+532
+00:33:18,000 --> 00:33:23,820
+And the way my adam works when this random value is generated and baked pair object 
+
+533
+00:33:23,820 --> 00:33:27,020
+So having separated elods into different objects
+
+534
+00:33:27,020 --> 00:33:30,140
+Would have generated a different random value pair eld 
+
+535
+00:33:30,140 --> 00:33:32,410
+And that be usually problematic 
+
+536
+00:33:32,410 --> 00:33:36,310
+Say i use that random value to offset the wind animation paccount 
+
+537
+00:33:36,310 --> 00:33:39,940
+Switching lds in game would result in a different offset
+
+538
+00:33:39,940 --> 00:33:42,825
+And a set and jump in the wind animation , right 
+
+539
+00:33:42,825 --> 00:33:46,760
+So here i kept all lds part of the same object to entrol 
+
+540
+00:33:46,760 --> 00:33:50,210
+They share the same random value if that makes sense 
+
+541
+00:33:50,210 --> 00:33:53,120
+But knows that pivots an extra data are baked
+
+542
+00:33:53,120 --> 00:33:56,330
+And that all cards are merged into one single object 
+
+543
+00:33:56,330 --> 00:34:00,710
+I can use the material selection feo to isolate each eld 
+
+544
+00:34:02,470 --> 00:34:05,470
+then get rid of the lg one and two materials 
+
+545
+00:34:07,800 --> 00:34:10,240
+and export each two fbx 
+
+546
+00:34:11,620 --> 00:34:12,440
+In new way 
+
+547
+00:34:12,440 --> 00:34:14,940
+i'm then going to improve the l d zero 
+
+548
+00:34:25,380 --> 00:34:26,900
+then the eld one 
+
+549
+00:34:31,100 --> 00:34:32,500
+and lerd two 
+
+550
+00:34:36,620 --> 00:34:39,720
+I may and fine tune the lds distances 
+
+551
+00:34:39,720 --> 00:34:45,520
+But it's probably something to tweak once aggrass asset is putting your quote unquote game in context 
+
+552
+00:34:45,520 --> 00:34:49,800
+Because in that preview window well eats how to grasp the view distance 
+
+553
+00:35:01,080 --> 00:35:03,880
+Anyway i'm also going to add mature slot
+
+554
+00:35:03,880 --> 00:35:07,010
+to say hey is the l d two in the far distance 
+
+555
+00:35:07,010 --> 00:35:10,900
+Is going to use a different grass shader and match cheaper one 
+
+556
+00:35:17,680 --> 00:35:21,310
+Before diving into zzo i want to mention a couple of things 
+
+557
+00:35:21,310 --> 00:35:23,230
+When it takes your packing
+
+558
+00:35:23,230 --> 00:35:26,110
+It's common practice to reduce memory usage 
+
+559
+00:35:26,110 --> 00:35:30,970
+And i released on my patron it tools that lets you practextures in and gene 
+
+560
+00:35:30,970 --> 00:35:34,040
+For instance , the height , roughness and speaklar maps
+
+561
+00:35:34,040 --> 00:35:37,535
+Could be packed into a single rgb texture 
+
+562
+00:35:37,535 --> 00:35:41,100
+Same with a random on transmission maps or any useum app 
+
+563
+00:35:41,100 --> 00:35:45,290
+Pretty opacity is probably best kept as a separate image of
+
+564
+00:35:45,290 --> 00:35:48,410
+Packed into the albedo affechannel for better compression 
+
+565
+00:35:48,410 --> 00:35:49,810
+But you may disagre 
+
+566
+00:35:49,810 --> 00:35:52,030
+There are no right or wrong ways to practics 
+
+567
+00:35:52,030 --> 00:35:55,850
+Js it's a du next to ptexture color space
+
+568
+00:35:55,850 --> 00:35:57,010
+I'll be brief here
+
+569
+00:35:57,010 --> 00:35:58,990
+Because this is a topic on its own 
+
+570
+00:35:58,990 --> 00:36:05,420
+the gist of it is that ideally you should walk in lina's space so srgb should be disabled 
+
+571
+00:36:05,420 --> 00:36:10,867
+And your untire texturing walkflu from start to finish to the comforthis code of space 
+
+572
+00:36:10,867 --> 00:36:13,930
+Next , texture settings not allowed to say here 
+
+573
+00:36:13,930 --> 00:36:16,730
+Gray scale textures should be set to gray scale 
+
+574
+00:36:20,220 --> 00:36:22,660
+unpacked textures two mask 
+
+575
+00:36:27,200 --> 00:36:29,260
+Finally , texture usage 
+
+576
+00:36:29,260 --> 00:36:31,840
+Most maps here should be quite spread forward 
+
+577
+00:36:31,840 --> 00:36:34,090
+I'll be doing a roughness speaker hanson 
+
+578
+00:36:34,090 --> 00:36:37,730
+You might however wonder what's the purpose of that round the map 
+
+579
+00:36:37,730 --> 00:36:41,660
+Well , this is usually great to add a bit of pixel depth of it
+
+580
+00:36:41,660 --> 00:36:44,377
+And reduce that flat can look a little bit 
+
+581
+00:36:44,377 --> 00:36:46,730
+Pixel depth of set comes at a cost though 
+
+582
+00:36:46,730 --> 00:36:50,370
+And has issues with dynamic shadows something to keep in mind 
+
+583
+00:36:51,900 --> 00:36:53,220
+Same for the height map 
+
+584
+00:36:53,220 --> 00:36:55,660
+It can be used to add some pixel lips offset
+
+585
+00:36:55,660 --> 00:36:56,960
+As though to be honest 
+
+586
+00:36:56,960 --> 00:37:01,070
+It's probably not going to be that useful as is on grass scouts 
+
+587
+00:37:01,070 --> 00:37:03,080
+Height maps are mostly used for hide
+
+588
+00:37:03,080 --> 00:37:06,890
+Blending two sets of textures like quiz landscape layers . right 
+
+589
+00:37:06,890 --> 00:37:12,810
+I just wanted to show you that it's possible to quite easily run under a height map in blender 
+
+590
+00:37:12,810 --> 00:37:15,060
+Same is true for the transmission map 
+
+591
+00:37:15,060 --> 00:37:18,830
+It could be used to drive the sips surface scattering amount or all also things 
+
+592
+00:37:18,830 --> 00:37:23,570
+But using a simple tub on graent to do that is probably a bit naive under 
+
+593
+00:37:23,570 --> 00:37:25,620
+But again , i just wanted to show you
+
+594
+00:37:25,620 --> 00:37:28,940
+What's possible up to you to let your creativities speak 
+
+595
+00:37:28,940 --> 00:37:35,830
+And up to you to output the gradients and coordata from blender that you need to build your own grass shader 
+
+596
+00:37:35,830 --> 00:37:39,280
+Speaking of , he has a very simple grass shadow example 
+
+597
+00:37:39,280 --> 00:37:41,760
+This is quite a crude shadow to be honest 
+
+598
+00:37:41,760 --> 00:37:43,975
+I'm just going to briefly go very
+
+599
+00:37:43,975 --> 00:37:46,960
+because building aggress shader is a topic on its own 
+
+600
+00:37:46,960 --> 00:37:49,320
+And is out of the scope of this video 
+
+601
+00:37:49,320 --> 00:37:52,540
+It's something i've cover out in previous videos anyway 
+
+602
+00:37:52,540 --> 00:37:54,410
+So here's the albedo map
+
+603
+00:37:54,410 --> 00:37:57,820
+Multiplied with clothes based on a tub and predicted noise 
+
+604
+00:37:57,820 --> 00:38:01,940
+Texture and the painstance and paccad random values 
+
+605
+00:38:03,789 --> 00:38:05,030
+Roughness and speaker 
+
+606
+00:38:05,030 --> 00:38:08,738
+Our maps are left ed towards the constant value at a distance 
+
+607
+00:38:08,738 --> 00:38:10,809
+There are tricks involving mipmaps 
+
+608
+00:38:10,809 --> 00:38:13,630
+Two bags and behaviour or directly in the texture 
+
+609
+00:38:13,630 --> 00:38:17,010
+Again something i already covered in a precious video 
+
+610
+00:38:17,010 --> 00:38:19,310
+here's your opacity map with a shadow pass 
+
+611
+00:38:19,310 --> 00:38:22,310
+Switch to desert near the tips and fake light
+
+612
+00:38:22,310 --> 00:38:26,060
+Bleeding through the grass a little bit and casting a weaker shadow 
+
+613
+00:38:26,060 --> 00:38:27,520
+here's the normal map 
+
+614
+00:38:28,850 --> 00:38:31,210
+Tension space normals are used as well 
+
+615
+00:38:31,210 --> 00:38:34,210
+Space normans a huge hack but whatever 
+
+616
+00:38:44,240 --> 00:38:48,800
+some hacky wind animation using my spirit , a reprojection material function 
+
+617
+00:38:50,380 --> 00:38:55,030
+And finally some pixel dips offset at a distance 
+
+618
+00:38:55,030 --> 00:38:57,580
+That pixel depth offset is disabled
+
+619
+00:38:57,580 --> 00:39:00,150
+When the animation is termed off as well 
+
+620
+00:39:01,470 --> 00:39:04,310
+Roughness and picture out are both constants 
+
+621
+00:39:05,470 --> 00:39:10,190
+Same for the normans and vr that's a decent looking grass asset 
+
+622
+00:39:11,670 --> 00:39:15,250
+The real difficulty lies in building a large cross field
+
+623
+00:39:15,250 --> 00:39:17,900
+That looks good under all lighting conditions 
+
+624
+00:39:17,900 --> 00:39:21,770
+That feels natural , that obviously platforms well
+
+625
+00:39:21,770 --> 00:39:26,465
+And that hers the file distance transition with the underlying landscape material will
+
+626
+00:39:26,465 --> 00:39:29,840
+Will a huge technical and artistic challenge 
+
+627
+00:39:29,840 --> 00:39:31,620
+But baby steps , you know 
+
+628
+00:39:31,620 --> 00:39:35,150
+Making a decent looking grass asset is a nice first step 
+
+629
+00:39:35,150 --> 00:39:37,920
+You may practice by building extra variations 
+
+630
+00:39:37,920 --> 00:39:40,080
+Trying different looks and so on 
+
+631
+00:39:40,080 --> 00:39:44,270
+Now obviously this entire workflow isn't tailored from the night
+
+632
+00:39:44,270 --> 00:39:46,560
+Because flow i'm not gonna lie 
+
+633
+00:39:46,560 --> 00:39:49,380
+I kind of hate what walking with the night means
+
+634
+00:39:49,380 --> 00:39:52,619
+When it comes to foliage assets and very tax animation 
+
+635
+00:39:52,619 --> 00:39:55,570
+So i'm sticking with the old ways flow 
+
+636
+00:39:55,570 --> 00:39:56,520
+And yeah 
+
+637
+00:39:56,520 --> 00:40:01,790
+I think that's it that's my walkthrough for creating four each assets in blender 
+
+638
+00:40:01,790 --> 00:40:05,270
+I'm sure are steps that could be simplified and sped up 
+
+639
+00:40:05,270 --> 00:40:07,630
+But it's only know nothing too complex
+
+640
+00:40:07,630 --> 00:40:10,860
+And i feel like i can get things done relatively quickly 
+
+641
+00:40:10,860 --> 00:40:15,920
+As that said , i'm hoping to drastically speed of the process with my upcoming adam 
+
+642
+00:40:15,920 --> 00:40:17,760
+It still needs a bit of walkthrough 
+
+643
+00:40:17,760 --> 00:40:18,932
+So stay tuned 
+
+644
+00:40:18,932 --> 00:40:22,960
+Anyway , that concludes this free path series on realistic grass 
+
+645
+00:40:22,960 --> 00:40:26,670
+Now this asset slightly leans towards tyler's grass 
+
+646
+00:40:26,670 --> 00:40:32,160
+But honestly , there are pretty much no difference between creating realistic and stylus assets 
+
+647
+00:40:32,160 --> 00:40:36,370
+The work who is pretty much item tical it's all about artistic direction
+
+648
+00:40:36,370 --> 00:40:38,830
+And how much time you spend on adding details 
+
+649
+00:40:38,830 --> 00:40:40,980
+And so you could for instance 
+
+650
+00:40:40,980 --> 00:40:42,840
+Skirt these high poly assets 
+
+651
+00:40:42,840 --> 00:40:47,630
+Rely on more intricate texturing techniques to generate the pbr passes and so on 
+
+652
+00:40:47,630 --> 00:40:50,330
+But yeah , creating highly realistic assets
+
+653
+00:40:50,330 --> 00:40:53,650
+should be no different than creating stylized assets 
+
+654
+00:40:53,650 --> 00:40:55,550
+That's it for today's video 
+
+655
+00:40:55,550 --> 00:40:56,950
+I hope you liked it 
+
+656
+00:40:56,950 --> 00:41:00,340
+Files are available as such a one world on my patron 
+
+657
+00:41:00,340 --> 00:41:04,900
+You can also find a turn of great educational uv projects demos on assets 
+
+658
+00:41:04,900 --> 00:41:06,720
+So feel free to take a look at it 
+
+659
+00:41:06,720 --> 00:41:09,715
+Any support is much much appreciated 
+
+660
+00:41:09,715 --> 00:41:12,860
+Speaking of , thanks to all view for sticking around
+
+661
+00:41:12,860 --> 00:41:15,260
+And thanks for your incredible support 
+
+662
+00:41:15,260 --> 00:41:16,530
+You are best 
+
+663
+00:41:16,530 --> 00:41:18,780
+All right , i will see you in the next video 
+
+664
+00:41:18,780 --> 00:41:20,700
+In the meantime , take care of yourself 
+
+665
+00:41:20,700 --> 00:41:23,080
+Enjoy your summaral break if you have one 
+
+666
+00:41:23,080 --> 00:41:23,900
+Bye bye

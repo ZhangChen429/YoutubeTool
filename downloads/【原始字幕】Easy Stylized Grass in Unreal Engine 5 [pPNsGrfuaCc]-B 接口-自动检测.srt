@@ -1,0 +1,3964 @@
+1
+00:00:00,120 --> 00:00:00,590
+Hello
+大家好
+
+2
+00:00:00,590 --> 00:00:07,875
+In this video I'm going to be taking you through the process of building some stylized grass inside Unreal Engine
+在本视频中，我将带大家完成在虚幻引擎中制作风格化草地的过程
+
+3
+00:00:07,920 --> 00:00:10,410
+We're going to be doing it completely from scratch
+我们会完全从零开始制作
+
+4
+00:00:10,420 --> 00:00:16,328
+So we're going to start by using the modeling tools inside Unreal Engine to make our base geometry
+首先，我们会使用虚幻引擎中的建模工具来制作基础几何体
+
+5
+00:00:16,340 --> 00:00:22,840
+Then we'll cover how to make a basic stylized material for that grass that includes some grass wind
+然后讲解如何为草地制作一个基础的风格化材质，其中包含草地随风摆动的效果
+
+6
+00:00:22,860 --> 00:00:28,098
+Then I will show you how to create a PCG graph using that grass
+接着我会演示如何用这些草创建一个 PCG 图表
+
+7
+00:00:28,100 --> 00:00:35,611
+And I will show you my secret for creating much more naturalistic looking grass scattering across your landscape
+并分享我的秘诀，让你能在地形上散布出更自然逼真的草地
+
+8
+00:00:35,620 --> 00:00:36,900
+So we have a lot to cover
+所以内容很多
+
+9
+00:00:36,900 --> 00:00:37,896
+So let's get into it
+那我们就开始吧
+
+10
+00:00:37,900 --> 00:00:40,958
+I'm going to be starting with this level
+我将从这个关卡开始
+
+11
+00:00:40,980 --> 00:00:44,640
+All of the project files that I'm using for this tutorial
+本教程用到的所有项目文件
+
+12
+00:00:44,640 --> 00:00:48,159
+You can go ahead and download them from the link in the description
+大家可以通过描述中的链接下载
+
+13
+00:00:48,160 --> 00:00:50,331
+If you'd like to either follow along with me
+如果你想跟着我一起操作
+
+14
+00:00:50,340 --> 00:00:54,196
+Or use this grass that I'm modeling here in some of your projects
+或者想把我这里建模的草地用到你自己的项目中
+
+15
+00:00:54,200 --> 00:00:56,410
+You can go ahead and grab them from the link below
+都可以通过下方链接获取
+
+16
+00:00:56,420 --> 00:00:58,812
+But I'm going to be starting with this level here
+不过我会从这个关卡开始
+
+17
+00:00:58,820 --> 00:01:03,645
+And we're going to be doing all of our modeling for the grass in this empty level here
+我们将在旁边这个空关卡里完成草地的所有建模工作
+
+18
+00:01:03,680 --> 00:01:08,126
+The first thing I'm going to do is add something to the level
+我要做的第一件事是往关卡里添加一个东西
+
+19
+00:01:08,126 --> 00:01:11,696
+To use as a scale reference to model next to
+作为建模时的比例参照
+
+20
+00:01:11,710 --> 00:01:15,616
+Because when I'm modeling grass I don't always know how big it is
+因为建模草地时，我并不总能确定它有多大
+
+21
+00:01:15,620 --> 00:01:18,051
+And so I need something to model it next to
+所以我需要旁边有个参照物
+
+22
+00:01:18,060 --> 00:01:21,804
+So that I can get a feel for how big it should be how tall how wide
+这样我就能感受到它应该多大、多高、多宽
+
+23
+00:01:21,822 --> 00:01:23,932
+It's just really helpful as I'm modeling
+这在建模时真的很有帮助
+
+24
+00:01:23,940 --> 00:01:27,252
+So I'm going to come over here to the Engine Content folder
+所以我要到这边的“引擎内容”文件夹
+
+25
+00:01:27,260 --> 00:01:29,276
+And if you don't see this folder
+如果你看不到这个文件夹
+
+26
+00:01:29,280 --> 00:01:33,240
+You can just enable it by going to Settings on the right side here
+可以在右侧的“设置”里启用它
+
+27
+00:01:33,260 --> 00:01:36,536
+And choosing Show Engine Content here
+然后勾选这里的“显示引擎内容”
+
+28
+00:01:36,540 --> 00:01:39,328
+Once you do that it should show up here in the bottom left corner
+启用后，它应该会出现在左下角
+
+29
+00:01:39,340 --> 00:01:42,140
+And you're gonna click on Engine in the Content Browser
+然后在内容浏览器中点击“Engine”
+
+30
+00:01:42,140 --> 00:01:43,820
+And we're gonna type in Character
+我们输入“Character”
+
+31
+00:01:43,820 --> 00:01:47,645
+Which should bring up this very simple mannequin character
+应该就会出现这个非常简单的假人角色
+
+32
+00:01:47,660 --> 00:01:52,448
+I'll drag one of these into my level to use as a starting point for scale
+我把它拖一个到关卡里，作为比例起点
+
+33
+00:01:52,480 --> 00:01:55,270
+And then we can go ahead and jump into our modeling tools
+然后我们就可以进入建模工具了
+
+34
+00:01:55,280 --> 00:01:59,224
+Which you will find up here in the top left corner in the dropdown
+它位于左上角的下拉菜单中
+
+35
+00:01:59,230 --> 00:02:00,847
+Where it says Select Mode
+在显示“选择模式”的地方
+
+36
+00:02:00,850 --> 00:02:04,702
+We're going to go ahead and click on that and come to Modeling
+我们点击它，然后选择“建模”
+
+37
+00:02:04,710 --> 00:02:07,869
+If you do not see the Modeling mode in this dropdown
+如果这个下拉菜单里没有“建模”模式
+
+38
+00:02:07,870 --> 00:02:10,002
+it means you need to enable it as a plugin
+说明你需要以插件形式启用它
+
+39
+00:02:10,009 --> 00:02:12,729
+You can come up here to the Edit dropdown
+你可以到上方的“编辑”下拉菜单
+
+40
+00:02:12,750 --> 00:02:16,008
+Come to Plugins and type in Modeling
+选择“插件”，然后输入“Modeling”
+
+41
+00:02:16,010 --> 00:02:20,266
+We're going to be choosing this Modeling Tools Editor Mode
+我们将选择这个建模工具编辑器模式
+
+42
+00:02:20,300 --> 00:02:23,308
+Once you have that enabled you should see it here in the dropdown
+启用之后，你应该能在这个下拉菜单里看到它
+
+43
+00:02:23,310 --> 00:02:25,122
+We're going to go ahead and select that
+我们继续，选中它
+
+44
+00:02:25,140 --> 00:02:27,810
+I'm not going to go into every part of the Modeling Mode
+我不会讲解建模模式的每一个部分
+
+45
+00:02:27,820 --> 00:02:32,692
+I'll be showing you the particular tools that we're going to be using to model the grass in this case
+我会向你展示我们在这个案例中用来制作草模型的特定工具
+
+46
+00:02:32,740 --> 00:02:36,226
+We're going to start with this Create section here
+我们从这里的“创建”部分开始
+
+47
+00:02:36,250 --> 00:02:40,876
+These are all divided by theme or step in the process of modeling
+这些都是按主题或建模流程中的步骤划分的
+
+48
+00:02:40,876 --> 00:02:42,932
+And the first one is Create
+第一个就是“创建”
+
+49
+00:02:42,960 --> 00:02:45,196
+We're going to start in the Create mode here
+我们将从这里的创建模式开始
+
+50
+00:02:45,220 --> 00:02:47,846
+And these are all the basic shapes or tools
+这些都是基础形状或工具
+
+51
+00:02:47,846 --> 00:02:51,684
+For making shapes that you can start with when modeling in Unreal Engine
+用来制作你在虚幻引擎中建模时的起始形状
+
+52
+00:02:51,700 --> 00:02:54,164
+And we are going to be using the Rectangle tool
+而我们将使用矩形工具
+
+53
+00:02:54,180 --> 00:02:58,668
+If you want to make more realistic grass you can use maybe a cone or something
+如果你想做更逼真的草，可以用圆锥体之类的
+
+54
+00:02:58,686 --> 00:03:00,732
+That has a little bit more geometry to it
+它的几何体稍微多一点
+
+55
+00:03:00,750 --> 00:03:05,222
+But we're gonna be doing something that's super stylized super efficient and optimized
+但我们要做的是非常风格化、非常高效且经过优化的东西
+
+56
+00:03:05,250 --> 00:03:07,993
+So I'm gonna be starting with a rectangle here
+所以我会从一个矩形开始
+
+57
+00:03:08,000 --> 00:03:08,980
+So click on that
+点击它
+
+58
+00:03:08,980 --> 00:03:12,270
+And this will give me a tool to create a rectangle
+这样我就有了创建矩形的工具
+
+59
+00:03:12,280 --> 00:03:16,200
+which I can make by clicking somewhere in my level here
+我可以在关卡里某处点击来创建
+
+60
+00:03:16,210 --> 00:03:18,190
+And I'm just gonna zero everything out
+我会把所有参数都归零
+
+61
+00:03:18,190 --> 00:03:20,643
+So it's the standard thing you should see
+这样就是你该看到的标准状态
+
+62
+00:03:20,650 --> 00:03:24,882
+I'm going to click somewhere in my level to place the geometry that I'm making
+我会在关卡里点击一下，把正在制作的几何体放进去
+
+63
+00:03:24,900 --> 00:03:26,832
+And I'll just move it up here
+然后把它往上移到这里
+
+64
+00:03:26,840 --> 00:03:31,256
+And I can use some of these to model the shape of it
+我可以用这里的一些工具来塑造它的形状
+
+65
+00:03:31,270 --> 00:03:34,551
+But I don't really need to do that in the modeling section here
+但其实我不需要在这个建模部分里做这件事
+
+66
+00:03:34,560 --> 00:03:36,030
+I'm just going to do that as I go
+我就边做边调整
+
+67
+00:03:36,040 --> 00:03:40,618
+Because I'll just rotate it into the position that I think I'll need for my grass
+因为我只要把它旋转到我需要的草的位置就行
+
+68
+00:03:40,630 --> 00:03:41,560
+Translate up here
+在这里向上平移
+
+69
+00:03:41,580 --> 00:03:41,940
+Okay
+好
+
+70
+00:03:41,940 --> 00:03:42,700
+That looks good
+看起来不错
+
+71
+00:03:42,700 --> 00:03:44,420
+So go ahead and hit Accept
+那就继续，点击“接受”
+
+72
+00:03:44,420 --> 00:03:48,320
+And that will make the starting mesh for my grass
+这样就会生成我草的初始网格
+
+73
+00:03:48,330 --> 00:03:49,566
+So now it's way too big
+现在它太大了
+
+74
+00:03:49,570 --> 00:03:52,396
+So I'll come in here and move it down
+所以我会过来把它往下移
+
+75
+00:03:52,400 --> 00:03:54,829
+And scale it down like this
+然后像这样缩小
+
+76
+00:03:54,830 --> 00:03:56,560
+Maybe this is a good starting point
+也许这是个不错的起点
+
+77
+00:03:56,570 --> 00:04:01,929
+So now we need to start modeling the actual shape of the grass out of this plane
+现在我们需要在这个平面上开始塑造草的实际形状
+
+78
+00:04:01,930 --> 00:04:05,450
+I will go to the modeling section here
+我会转到这里的建模部分
+
+79
+00:04:05,450 --> 00:04:08,405
+It just says Model but has a bunch of modeling tools
+它只写着“模型”，但里面有一堆建模工具
+
+80
+00:04:08,410 --> 00:04:11,070
+And we will go to the PolyGroup Edit
+然后我们会进入“多边形组编辑”
+
+81
+00:04:11,080 --> 00:04:13,864
+There's a bunch of different ways of modeling the shape
+有很多种不同的方式来对形状进行建模
+
+82
+00:04:13,870 --> 00:04:15,904
+We'll use this one for this example
+这个示例中我们就用这一种
+
+83
+00:04:15,910 --> 00:04:19,525
+And there's a bunch of tools here for modeling the mesh
+这里有很多用于对网格体进行建模的工具
+
+84
+00:04:19,529 --> 00:04:22,035
+What we're gonna do here is under Shape Edits
+接下来我们要做的是，在“形状编辑”下
+
+85
+00:04:22,050 --> 00:04:24,945
+We're going to go ahead and choose Insert Edge Loop
+选择“插入循环边”
+
+86
+00:04:24,950 --> 00:04:28,182
+And this is how we can start to add some density to our mesh
+这样我们就能开始给网格体增加一些密度
+
+87
+00:04:28,190 --> 00:04:29,939
+You could also do that in the Create step
+你也可以在“创建”步骤中这样做
+
+88
+00:04:29,940 --> 00:04:31,137
+But I just wanted to show you this
+但我只是想给你展示一下这个
+
+89
+00:04:31,140 --> 00:04:33,876
+So it gives you a little bit more power
+这样能让你拥有更多控制力
+
+90
+00:04:33,876 --> 00:04:36,096
+As you're modeling to add or remove geometry
+在你建模时添加或移除几何体
+
+91
+00:04:36,100 --> 00:04:37,155
+As you're working
+在你操作的过程中
+
+92
+00:04:37,155 --> 00:04:40,531
+Insert Edge Loop is going to add a division in our geometry
+“插入循环边”会在我们的几何体中添加一条分割线
+
+93
+00:04:40,550 --> 00:04:44,182
+And whichever direction we hover over here and click in
+我们在这里朝哪个方向悬停并点击
+
+94
+00:04:44,190 --> 00:04:47,634
+And I'm going to add one in the up and down vertical
+我要在上下垂直方向添加一条
+
+95
+00:04:47,660 --> 00:04:48,808
+So go ahead and click
+那就点击一下
+
+96
+00:04:48,810 --> 00:04:52,554
+And that's going to separate the geometry like that to add subdivision
+这样就会像这样分割几何体，从而增加细分
+
+97
+00:04:52,580 --> 00:04:54,173
+So that we can use that to model
+这样我们就可以用它来建模
+
+98
+00:04:54,180 --> 00:04:56,700
+Then I'm going to go ahead and add one here
+然后我在这里再添加一条
+
+99
+00:04:56,710 --> 00:04:58,990
+And here and here
+这里，还有这里
+
+100
+00:04:58,990 --> 00:04:59,848
+That should be enough
+这应该就够了
+
+101
+00:04:59,850 --> 00:05:03,360
+But you can see we can use these tools to add more if we need to
+但你可以看到，如果需要的话，我们可以用这些工具添加更多
+
+102
+00:05:03,370 --> 00:05:05,064
+So go ahead and hit Done
+那就点击“完成”
+
+103
+00:05:05,070 --> 00:05:08,046
+And now our mesh has been divided a few times
+现在我们的网格体已经被分割了几次
+
+104
+00:05:08,050 --> 00:05:09,690
+So we can use it to model
+这样我们就可以用它来建模了
+
+105
+00:05:09,690 --> 00:05:12,966
+So now if I just drag over some of these vertices
+那么现在，如果我拖选其中一些顶点
+
+106
+00:05:12,970 --> 00:05:14,979
+Vertices are these points
+顶点就是这些点
+
+107
+00:05:14,980 --> 00:05:16,170
+They make up the mesh
+它们构成了网格体
+
+108
+00:05:16,170 --> 00:05:18,087
+We have vertices which are points
+我们有顶点，也就是这些点
+
+109
+00:05:18,090 --> 00:05:20,790
+We have edges which connect those vertices
+我们有边，用来连接这些顶点
+
+110
+00:05:20,800 --> 00:05:25,504
+And we have polygons which are faces that fill in that shape
+我们还有多边形，也就是填充该形状的面
+
+111
+00:05:25,520 --> 00:05:28,475
+That's all the modeling tools we need to get started here
+这就是我们开始这里所需的所有建模工具
+
+112
+00:05:28,500 --> 00:05:30,528
+So we're going to be selecting the vertices
+所以我们要选择这些顶点
+
+113
+00:05:30,530 --> 00:05:32,290
+And these which are these points
+也就是这些点
+
+114
+00:05:32,290 --> 00:05:34,710
+And I can start moving them around
+然后我就可以开始移动它们
+
+115
+00:05:34,710 --> 00:05:37,986
+And this will help me actually model my shape
+这会帮助我真正地对形状进行建模
+
+116
+00:05:37,990 --> 00:05:41,602
+So I'm going to create a shape for this grass
+所以我要为这株草创建一个形状
+
+117
+00:05:41,610 --> 00:05:45,163
+I'm also going to grab this vertex in the middle and drag it up
+我还会抓住中间这个顶点，把它向上拖
+
+118
+00:05:45,190 --> 00:05:48,678
+Because I want to create a pointy shape for the grass
+因为我想为草创建一个尖尖的形状
+
+119
+00:05:48,690 --> 00:05:50,320
+I'll move these down
+我会把这些向下移
+
+120
+00:05:50,320 --> 00:05:52,630
+Grab these other vertices and move them down
+抓住这些其他顶点，把它们向下移
+
+121
+00:05:52,630 --> 00:05:55,858
+And we'll grab the middle string of vertices
+然后我们选中中间那一串顶点
+
+122
+00:05:55,860 --> 00:05:57,752
+And we'll also pull it out a little bit
+再稍微把它往外拉一点
+
+123
+00:05:57,752 --> 00:06:02,008
+To give the grass just a slight bit of a bend to it a bit concave
+让草叶稍微弯一点，带一点内凹的弧度
+
+124
+00:06:02,020 --> 00:06:06,900
+And we'll just continue to shape this until we get a shape that we like
+然后我们继续调整它的形状，直到做出我们满意的样子
+
+125
+00:06:06,910 --> 00:06:08,938
+I'm going to go ahead and make it even thinner
+我接下来要把它再变细一点
+
+126
+00:06:08,950 --> 00:06:10,250
+Drag over the vertices
+框选这些顶点
+
+127
+00:06:10,250 --> 00:06:11,790
+Drag it in here
+把它往里面拖
+
+128
+00:06:11,790 --> 00:06:16,284
+This might take a little bit of time to get a good bent shape that you'd like
+可能需要花点时间，才能调出你满意的弯曲形状
+
+129
+00:06:16,320 --> 00:06:18,630
+I think something like this will work
+我觉得像这样就差不多了
+
+130
+00:06:18,640 --> 00:06:22,708
+This is really where you decide the style of the grass itself
+草本身的风格其实就是在这一步决定的
+
+131
+00:06:22,720 --> 00:06:25,460
+Whether it's really straight and pointy
+是笔直尖锐的
+
+132
+00:06:25,460 --> 00:06:29,165
+Whether it has a lot more bend or wiggling shapes to it
+还是弯曲更多、带点波浪起伏的形状
+
+133
+00:06:29,170 --> 00:06:30,770
+Whether it twists and curls
+是扭转卷曲的
+
+134
+00:06:30,770 --> 00:06:32,607
+This is really where you get to have fun
+这一步其实很有意思，你可以尽情发挥
+
+135
+00:06:32,610 --> 00:06:35,238
+And decide what kind of shape and thickness
+决定它的形状和粗细
+
+136
+00:06:35,240 --> 00:06:38,516
+And the overall bend that your grass shape has
+以及整片草叶的弯曲程度
+
+137
+00:06:38,520 --> 00:06:42,662
+We're really just trying to get our first generic grass blade here
+我们现在只是先做出第一片通用的草叶
+
+138
+00:06:42,670 --> 00:06:45,519
+So once we have a shape that we like here
+所以一旦调出我们满意的形状
+
+139
+00:06:45,520 --> 00:06:48,589
+We can go ahead and hit Accept
+就可以直接点“接受”了
+
+140
+00:06:48,590 --> 00:06:49,110
+Okay
+好
+
+141
+00:06:49,110 --> 00:06:50,028
+That looks pretty good
+看起来挺不错的
+
+142
+00:06:50,030 --> 00:06:53,154
+I'm going to just scale it down even more
+我再把它缩小一点
+
+143
+00:06:53,180 --> 00:06:54,638
+Okay that looks great
+好，这样看起来很棒
+
+144
+00:06:54,640 --> 00:06:57,552
+Don't worry about it disappearing when you look behind it
+不用担心从背面看时它会消失
+
+145
+00:06:57,570 --> 00:07:00,157
+We're going to fix that in our actual material
+我们会在实际材质里解决这个问题
+
+146
+00:07:00,170 --> 00:07:02,050
+It will be a double sided material
+它会是一个双面材质
+
+147
+00:07:02,050 --> 00:07:03,370
+So we won't have to worry about that
+所以不用担心这个问题
+
+148
+00:07:03,380 --> 00:07:05,996
+But let's take this geometry here
+不过我们先拿这块几何体
+
+149
+00:07:06,000 --> 00:07:09,645
+And let's go ahead and create a clump out of it
+用它来做一丛草
+
+150
+00:07:09,650 --> 00:07:12,995
+Now this is a process you can do by taking this geometry
+这个过程你可以这样做：拿这块几何体
+
+151
+00:07:13,004 --> 00:07:16,421
+By holding Alt and dragging off of it to create a duplicate
+按住 Alt 拖动它来复制一份
+
+152
+00:07:16,450 --> 00:07:18,582
+You could go ahead and make another grass here
+然后在这里再做一片草
+
+153
+00:07:18,590 --> 00:07:19,570
+And make it smaller
+把它缩小
+
+154
+00:07:19,570 --> 00:07:22,276
+And start to duplicate these around
+然后开始把这些复制到周围
+
+155
+00:07:22,290 --> 00:07:24,930
+And create a differently shaped clump with this grass
+用这些草组成一个形状不同的草丛
+
+156
+00:07:24,936 --> 00:07:26,168
+That's completely valid
+这完全可行
+
+157
+00:07:26,180 --> 00:07:27,395
+You could do that if you want to
+你想这么做也可以
+
+158
+00:07:27,400 --> 00:07:30,953
+I'm going to show you a trick for doing it a lot quicker
+我来教你一个能快很多的小技巧
+
+159
+00:07:30,970 --> 00:07:32,468
+And that is to come over here
+那就是到这边来
+
+160
+00:07:32,470 --> 00:07:37,585
+Go to the Transform section with our geometry selected here
+在选中这块几何体的情况下，进入 Transform（变换）区域
+
+161
+00:07:37,610 --> 00:07:39,890
+We can go and choose Pattern
+我们可以去选择图案
+
+162
+00:07:39,890 --> 00:07:44,132
+This is going to create a pattern with the geometry
+这会用几何体创建一个图案
+
+163
+00:07:44,140 --> 00:07:46,894
+And there are a few different options for us to start with here
+这里有几个不同的选项供我们开始
+
+164
+00:07:46,900 --> 00:07:48,839
+As you can see by default
+如你所见，默认情况下
+
+165
+00:07:48,840 --> 00:07:50,944
+Just duplicating it in a line
+只是把它排成一条线复制
+
+166
+00:07:50,950 --> 00:07:55,130
+We can under Shape here choose a different shape that we want to use
+我们可以在形状这里选择想要使用的不同形状
+
+167
+00:07:55,130 --> 00:07:56,600
+I'm actually using a grid
+我实际用的是网格
+
+168
+00:07:56,610 --> 00:07:59,899
+So now it's creating the grass in this grid shape
+所以现在它以这种网格形状创建草
+
+169
+00:07:59,910 --> 00:08:02,948
+And now we need to start modifying the parameters
+现在我们需要开始修改参数
+
+170
+00:08:02,951 --> 00:08:05,989
+to give us a look that looks more natural and clumpy
+让它看起来更自然、更成簇
+
+171
+00:08:06,000 --> 00:08:10,396
+I'm gonna come to Grid Pattern X and Grid Pattern Y
+我要来到网格图案X和网格图案Y
+
+172
+00:08:10,396 --> 00:08:13,850
+Which are the X and Y of this grid here
+也就是这里网格的X和Y
+
+173
+00:08:13,860 --> 00:08:18,116
+And I'm gonna lower Extent X and Extent Y here
+我要降低这里的范围X和范围Y
+
+174
+00:08:18,120 --> 00:08:22,944
+And that's gonna squish these grasses a little closer together
+这样会把草稍微挤得更近一些
+
+175
+00:08:22,960 --> 00:08:31,180
+So lower Extent X and Extent Y until they are in a clump like that
+所以降低范围X和范围Y，直到它们像那样成一簇
+
+176
+00:08:31,190 --> 00:08:34,985
+And you can use Count X and Count Y
+你可以用数量X和数量Y
+
+177
+00:08:34,985 --> 00:08:39,815
+to choose how many blades are in a little row here
+来选择这里每一小排有多少根草叶
+
+178
+00:08:39,840 --> 00:08:43,659
+Just determine how many grasses we'll start with when building our clump
+就是决定我们构建草丛时初始有多少草
+
+179
+00:08:43,679 --> 00:08:45,789
+This could be a small little tuft
+这可以是一小撮
+
+180
+00:08:45,800 --> 00:08:47,480
+Or it could be a denser clump
+也可以是一簇更密的
+
+181
+00:08:47,480 --> 00:08:49,064
+I'm gonna make a denser clump
+我要做一个更密的簇
+
+182
+00:08:49,064 --> 00:08:51,176
+because I find that's a little bit easier
+因为我发现这样更容易
+
+183
+00:08:51,179 --> 00:08:54,273
+to scatter over a landscape and get it to look dense enough
+在景观上散布并让它看起来足够密集
+
+184
+00:08:54,310 --> 00:08:56,884
+Maybe even make a few different options with this
+甚至可以用这个做几个不同的选项
+
+185
+00:08:56,890 --> 00:08:58,780
+So we'll start with this grid here
+所以我们从这里的这个网格开始
+
+186
+00:08:58,780 --> 00:09:02,224
+And the next thing I'm gonna come down to here
+接下来我要来到这里
+
+187
+00:09:02,224 --> 00:09:05,668
+is the Rotation Translation and Scale options
+是旋转、平移和缩放选项
+
+188
+00:09:05,680 --> 00:09:09,026
+The option we want to switch on is called Jitter
+我们要开启的选项叫抖动
+
+189
+00:09:09,030 --> 00:09:11,934
+So if we switch on Jitter under Rotation
+所以如果我们在旋转下开启抖动
+
+190
+00:09:11,934 --> 00:09:14,596
+we can come to the X Y and Z values
+我们可以来到X、Y、Z值
+
+191
+00:09:14,600 --> 00:09:16,712
+The Z value is spinning it around like this
+Z值是像这样旋转它
+
+192
+00:09:16,720 --> 00:09:20,548
+So we want to add Jitter to the Z value
+所以我们要给Z值添加抖动
+
+193
+00:09:20,560 --> 00:09:23,470
+And you can see it's starting to twirl the grass around
+你可以看到它开始让草旋转起来
+
+194
+00:09:23,480 --> 00:09:27,011
+And give them some random kind of spinning look
+给它们一些随机的旋转效果
+
+195
+00:09:27,020 --> 00:09:29,152
+So they're now pointing in different directions
+所以它们现在指向不同的方向
+
+196
+00:09:29,160 --> 00:09:29,480
+Okay
+好的
+
+197
+00:09:29,480 --> 00:09:32,548
+And we can also come and add some translation jitter
+我们也可以来添加一些平移抖动
+
+198
+00:09:32,560 --> 00:09:34,373
+We can mess with the X here
+我们可以调整这里的X
+
+199
+00:09:34,373 --> 00:09:36,186
+Add some positioning jitter
+添加一些位置抖动
+
+200
+00:09:36,200 --> 00:09:37,298
+And some in the Y here
+这里再加一些Y的
+
+201
+00:09:37,298 --> 00:09:40,409
+So now you can see it's starting to look like a more rounded clump
+所以现在你可以看到，它开始看起来像更圆润的一簇草了
+
+202
+00:09:40,440 --> 00:09:42,840
+And we can also add some scale jitter
+我们还可以加一些缩放抖动
+
+203
+00:09:42,840 --> 00:09:44,040
+So switch that on
+把它打开
+
+204
+00:09:44,040 --> 00:09:49,905
+And if we increase it it will add some randomness to the grass
+如果调大，它就会给草增加一些随机性
+
+205
+00:09:49,915 --> 00:09:51,923
+This is showing me something
+这让我看出了点问题
+
+206
+00:09:51,923 --> 00:09:53,429
+a mistake that I made
+我犯的一个错误
+
+207
+00:09:53,440 --> 00:09:56,770
+which is that I did not change the pivot point of the grass
+就是我没有更改草的轴心点
+
+208
+00:09:56,770 --> 00:09:58,620
+before I added it to this clump
+在把它加进这个草丛之前
+
+209
+00:09:58,640 --> 00:10:01,170
+So let's go ahead and do that first
+所以咱们先把这个处理一下
+
+210
+00:10:01,180 --> 00:10:04,798
+Because I want to be able to add some random scale to the grass
+因为我想能给草加一些随机缩放
+
+211
+00:10:04,800 --> 00:10:08,346
+And right now it's scaling the grass from the middle of the grass
+而现在它是从草的中部进行缩放的
+
+212
+00:10:08,360 --> 00:10:10,080
+So it's scaling it up and down like this
+所以它就会这样上下缩放
+
+213
+00:10:10,080 --> 00:10:12,667
+So you can see it has created some floating grass
+你能看到它产生了一些悬空的草
+
+214
+00:10:12,680 --> 00:10:14,480
+So we'll go ahead and hit Cancel
+所以我们先点取消
+
+215
+00:10:14,480 --> 00:10:17,540
+And thankfully it saves all of our settings in the tool
+还好，工具会保存我们所有的设置
+
+216
+00:10:17,560 --> 00:10:21,781
+So when we come back to it it'll just snap it back to those changes we just did
+所以当我们再回来时，它会直接恢复成我们刚才的修改
+
+217
+00:10:21,795 --> 00:10:22,567
+Just kind of nice
+还挺方便的
+
+218
+00:10:22,567 --> 00:10:26,041
+We can see here the pivot point is in the center of the grass
+这里可以看到，轴心点在草的中心
+
+219
+00:10:26,070 --> 00:10:31,578
+So I am going to come to the same section here under Transform
+所以我要来到 Transform 下面的同一个区域
+
+220
+00:10:31,590 --> 00:10:34,348
+There's an Edit Pivot tool
+这里有一个编辑轴心工具
+
+221
+00:10:34,350 --> 00:10:39,250
+So when I click that on I can go ahead and drag my pivot point down
+点开之后，我就可以把轴心点往下拖
+
+222
+00:10:39,266 --> 00:10:41,480
+To the base of the grass like that
+拖到草的底部，就像这样
+
+223
+00:10:41,510 --> 00:10:42,440
+That is what I want
+这就是我想要的效果
+
+224
+00:10:42,440 --> 00:10:44,114
+So now go ahead and hit Accept
+现在点接受
+
+225
+00:10:44,130 --> 00:10:47,968
+And now my pivot point is in the right place where I want it
+现在我的轴心点就在我想要的位置了
+
+226
+00:10:47,970 --> 00:10:51,102
+Okay so now we can come back to our Pattern tool
+好，现在我们可以回到图案工具
+
+227
+00:10:51,110 --> 00:10:54,400
+And we can see it's scaling all the grass correctly
+可以看到它现在会正确地缩放所有草了
+
+228
+00:10:54,410 --> 00:10:56,610
+So we need to play with this too
+所以这个参数我们也得调一调
+
+229
+00:10:56,610 --> 00:10:57,985
+Not push it too far
+不要调得太过
+
+230
+00:10:57,990 --> 00:11:00,170
+So they still look like natural shapes
+让它们看起来仍然像自然的形状
+
+231
+00:11:00,170 --> 00:11:01,914
+maybe something like 0 5
+也许大概 0.5
+
+232
+00:11:01,940 --> 00:11:03,500
+Or 0 6 works pretty well
+或者 0.6 效果就挺不错
+
+233
+00:11:03,502 --> 00:11:06,622
+That has a nice blend of different heights at this point
+这时候不同高度的混合看起来很自然
+
+234
+00:11:06,640 --> 00:11:09,920
+We could also modify the overall size of our grass blades
+我们也可以修改草叶的整体大小
+
+235
+00:11:09,920 --> 00:11:11,834
+Because these are way too big right now
+因为现在这些太大了
+
+236
+00:11:11,840 --> 00:11:15,440
+And so we can use the starting scale here to also affect that
+所以我们可以用这里的起始缩放来影响它
+
+237
+00:11:15,440 --> 00:11:18,440
+So we drop that starting scale down pretty low
+把这个起始缩放降得相当低
+
+238
+00:11:18,440 --> 00:11:19,988
+And then maybe 0 5
+然后也许 0.5
+
+239
+00:11:19,988 --> 00:11:23,600
+And then have our jitter be let's say 0 5 as well
+然后让抖动设为，比如说，0.5
+
+240
+00:11:23,620 --> 00:11:25,654
+Or maybe something like 0 3
+或者也许 0.3 左右
+
+241
+00:11:25,654 --> 00:11:29,044
+That gives us a much more naturally heightened grass
+这样我们就能得到更加自然、更有层次的草地
+
+242
+00:11:29,060 --> 00:11:33,548
+Okay and it's not quite looking good here yet
+好，不过现在看起来还不太行
+
+243
+00:11:33,550 --> 00:11:36,059
+Because now it's kind of not looking super dense
+因为它现在看起来不是特别密
+
+244
+00:11:36,059 --> 00:11:38,182
+So we can just come back here to the count
+所以我们可以回到这里的数量（Count）参数
+
+245
+00:11:38,200 --> 00:11:45,008
+And increase the number of counts until we get a clump that looks better to us
+增加数量，直到得到我们觉得更好看的一簇
+
+246
+00:11:45,040 --> 00:11:46,597
+And this is just trial and error
+这完全是靠反复尝试
+
+247
+00:11:46,600 --> 00:11:50,472
+So you're gonna get different kinds of looks to the grass depending on
+所以草的外观会有所不同，取决于
+
+248
+00:11:50,520 --> 00:11:52,698
+How much jitter you add in the X and Y
+你在 X 和 Y 上添加了多少随机偏移
+
+249
+00:11:52,700 --> 00:11:54,228
+How much scale jitter you add
+你添加了多少缩放随机偏移
+
+250
+00:11:54,228 --> 00:11:58,052
+Just play around with these until you get a look that you like
+多试试这些参数，直到你得到喜欢的效果
+
+251
+00:11:58,060 --> 00:11:59,710
+I think this looks pretty good for now
+我觉得目前这样看起来挺不错
+
+252
+00:11:59,720 --> 00:12:03,640
+So if we go ahead and hit Accept that will make our first grass clump
+那我们继续，点击接受（Accept），就会生成我们的第一簇草
+
+253
+00:12:03,650 --> 00:12:08,774
+Now you can see that this clump here has been made from this single blade of grass
+现在你可以看到，这一簇是由这一根草叶生成的
+
+254
+00:12:08,780 --> 00:12:11,244
+But the single blade of grass is still there
+但那根单独的草叶还在那里
+
+255
+00:12:11,250 --> 00:12:13,665
+So if we wanted to go ahead and pull this to the side
+所以如果我们想把它挪到一边
+
+256
+00:12:13,670 --> 00:12:15,639
+And then go ahead and hit Paint again
+然后再点一次绘制（Paint）
+
+257
+00:12:15,640 --> 00:12:19,880
+Make a new one with some different settings here for the shape of the grass
+用一些不同的设置做一个新的，来调整草的形状
+
+258
+00:12:19,880 --> 00:12:21,343
+We can go ahead and do that very easily
+我们可以很轻松地做到
+
+259
+00:12:21,350 --> 00:12:24,230
+So you can make three different sized clumps if you want
+如果你想，可以做三种不同大小的簇
+
+260
+00:12:24,240 --> 00:12:26,016
+I'll just stick with one for now for simplicity
+为了简单起见，我现在就只用一个
+
+261
+00:12:26,020 --> 00:12:29,758
+But it's very easy to do that to experiment to get to try out different looks
+但这么做很容易，可以试验尝试不同的外观
+
+262
+00:12:29,760 --> 00:12:32,592
+One final thing I'll show you here is that I like this clumping
+最后我要展示的一点是，我喜欢这种成簇的效果
+
+263
+00:12:32,600 --> 00:12:34,896
+But I think that it will give it a more natural look
+但我觉得这样会更自然
+
+264
+00:12:34,900 --> 00:12:39,142
+If we have the grass on the outside of the clump be a little bit shorter
+如果我们让簇外圈的草稍微短一点
+
+265
+00:12:39,160 --> 00:12:41,900
+And the grass on the inside of the clump will be a little bit taller
+而簇内部的草稍微高一点
+
+266
+00:12:41,920 --> 00:12:44,152
+And we can achieve that by using a lattice
+我们可以用晶格（Lattice）来实现
+
+267
+00:12:44,160 --> 00:12:50,012
+A lattice is a way of modifying a geometry with a simpler lattice around it
+晶格是一种用周围更简单的晶格来修改几何体的方式
+
+268
+00:12:50,030 --> 00:12:54,115
+So it's kind of like a simpler geometry around the more complicated geometry
+就像在更复杂的几何体外面套一个更简单的几何体
+
+269
+00:12:54,130 --> 00:12:56,360
+And when we modify that simpler geometry
+当我们修改那个更简单的几何体时
+
+270
+00:12:56,360 --> 00:13:00,580
+it morphs the internal geometry in a way that feels a little more organic
+它会以更自然的方式让内部的几何体变形
+
+271
+00:13:00,600 --> 00:13:03,984
+So I can come over here to the Deform section
+那么我来到这边的变形（Deform）部分
+
+272
+00:13:04,000 --> 00:13:10,150
+I can't actually choose the Lattice which is right here because this is not technically a piece of geometry
+我其实没法选择就在这里的晶格，因为严格来说这还不是一个几何体
+
+273
+00:13:10,180 --> 00:13:11,880
+Then we come over here to the right side
+然后我们来到右边这里
+
+274
+00:13:11,880 --> 00:13:14,076
+We can see it's still a pattern
+可以看到它仍然是一个图案（Pattern）
+
+275
+00:13:14,078 --> 00:13:15,542
+It says Pattern 0 here
+这里写着 Pattern 0
+
+276
+00:13:15,560 --> 00:13:21,402
+If we look at the geometry that Unreal Engine makes in our Content Browser by default
+如果我们看看虚幻引擎默认在内容浏览器里生成的几何体
+
+277
+00:13:21,410 --> 00:13:24,466
+when we make a piece of geometry using the Modeling Toolkit
+当我们用建模工具包创建几何体时
+
+278
+00:13:24,470 --> 00:13:28,954
+You can find that under the Generated folder here in your Content Browser
+你可以在内容浏览器里的 Generated 文件夹下找到它
+
+279
+00:13:28,970 --> 00:13:30,454
+There should be your name
+那里应该有你的名字
+
+280
+00:13:30,454 --> 00:13:32,574
+I think it's based on your login
+我想是根据你的登录名来的
+
+281
+00:13:32,590 --> 00:13:34,229
+When you log in with your Epic Games account
+当你使用 Epic Games 账户登录后
+
+282
+00:13:34,240 --> 00:13:37,508
+So this will show your name which is all the meshes that you've generated
+这里会显示你的名字，以及你生成的所有网格体
+
+283
+00:13:37,520 --> 00:13:38,479
+So if you click on that
+所以如果你点击它
+
+284
+00:13:38,480 --> 00:13:40,970
+You can see I've done previous versions of the grass as well
+你可以看到，我还做过之前几个版本的草
+
+285
+00:13:40,980 --> 00:13:43,272
+So these are all of the meshes that I've made
+这些就是我制作的所有网格体
+
+286
+00:13:43,280 --> 00:13:46,016
+And I don't actually see this new clump here
+但我在这里其实没看到这个新的草丛
+
+287
+00:13:46,020 --> 00:13:47,238
+It doesn't show up here yet
+它还没有显示在这里
+
+288
+00:13:47,240 --> 00:13:53,105
+Then I come over here to the XForm section with my pattern selected
+然后我选中图案，来到这边的 XForm 区域
+
+289
+00:13:53,120 --> 00:13:55,082
+And I go ahead and hit Merge
+然后直接点击合并
+
+290
+00:13:55,090 --> 00:13:57,834
+When I hit Merge it's going to make a new object
+点击合并后，它会创建一个新对象
+
+291
+00:13:57,850 --> 00:14:00,496
+And we can come here to the Name and name it something
+然后可以在这里的“名称”栏中输入名字
+
+292
+00:14:00,510 --> 00:14:02,373
+So I'll just call it Grass Clump
+我就叫它 Grass Clump 吧
+
+293
+00:14:02,380 --> 00:14:08,268
+And when we go ahead and hit Accept it creates a piece of geometry from the grass
+点击接受后，它就会用这些草创建出一块几何体
+
+294
+00:14:08,290 --> 00:14:11,394
+And we can see here it's shown up in our Generated Meshes
+可以看到，它已经出现在我们的“生成的网格体”里
+
+295
+00:14:11,399 --> 00:14:12,215
+And this is important
+这一点很重要
+
+296
+00:14:12,220 --> 00:14:16,096
+So we can access it as a mesh for our PCG Graph later on
+因为之后我们可以在 PCG 图表中把它作为网格体使用
+
+297
+00:14:16,100 --> 00:14:18,070
+Okay so come back to the Content Browser
+好，现在我们回到内容浏览器
+
+298
+00:14:18,080 --> 00:14:22,100
+And I can come back here to my Deform section
+然后回到这边的 Deform 区域
+
+299
+00:14:22,100 --> 00:14:27,224
+And now with the grass clump selected I have the ability to choose a lattice
+现在选中这个草丛后，我就可以选择晶格
+
+300
+00:14:27,240 --> 00:14:30,975
+You can see it's switched in my content in my Outliner here
+你可以看到，我这边大纲视图里的内容已经切换了
+
+301
+00:14:30,980 --> 00:14:35,336
+From the pattern to the grass clump name that I used to combine it
+从图案切换成了我合并时所用的草丛名称
+
+302
+00:14:35,350 --> 00:14:36,990
+So this is an actual mesh now
+所以现在它是一个真正的网格体了
+
+303
+00:14:36,990 --> 00:14:39,538
+So I can go over here to the lattice and choose it
+因此我可以到这边的晶格选项中选择它
+
+304
+00:14:39,550 --> 00:14:42,332
+And you can see the lattice has been made around it
+你可以看到，它周围已经生成了晶格
+
+305
+00:14:42,340 --> 00:14:48,665
+And in the settings here I can go ahead and lower or increase the complexity of the lattice
+在这里的设置中，我可以降低或提高晶格的复杂度
+
+306
+00:14:48,680 --> 00:14:52,476
+And this is just to show how simple it is to use
+这只是为了展示它用起来有多简单
+
+307
+00:14:52,490 --> 00:14:54,009
+I'll use something like this
+我就用差不多这样的设置
+
+308
+00:14:54,010 --> 00:14:57,065
+And I'll go ahead and Shift select the points
+然后按住 Shift 选择这些点
+
+309
+00:14:57,070 --> 00:14:59,219
+The vertices at the top here
+也就是顶部的这些顶点
+
+310
+00:14:59,220 --> 00:15:01,236
+So I can drag up the center
+我可以把中心向上拖
+
+311
+00:15:01,240 --> 00:15:03,374
+And make the center a little bit taller
+让中心稍微高一点
+
+312
+00:15:03,380 --> 00:15:07,012
+And I will do the opposite with the vertices on the outside here
+而外侧的这些顶点，我会做相反的处理
+
+313
+00:15:07,020 --> 00:15:10,320
+I'll just push them down a little bit these vertices as well
+我也把这些顶点稍微往下压一点
+
+314
+00:15:10,320 --> 00:15:14,406
+And you can see it's created a much more rounded shape to the grass
+可以看到，这让草的形状变得更圆润了
+
+315
+00:15:14,420 --> 00:15:17,168
+Where the taller grass is in the center
+中心是较高的草
+
+316
+00:15:17,170 --> 00:15:19,645
+And the smaller grass is on the outside
+外侧是较矮的草
+
+317
+00:15:19,650 --> 00:15:22,362
+This gives a more natural field of grass
+这样能让整片草地看起来更自然
+
+318
+00:15:22,370 --> 00:15:28,250
+When you have a grass clump next to an area of ground that doesn't have grass
+当一簇草紧挨着没有草的地面时
+
+319
+00:15:28,250 --> 00:15:29,790
+If it's super tall
+如果它特别高
+
+320
+00:15:29,790 --> 00:15:32,115
+It really depends on the style that you're going for
+这其实取决于你想追求的风格
+
+321
+00:15:32,130 --> 00:15:37,548
+But often if it's super tall grass next to just flat it doesn't look that natural
+但通常来说，如果超高的草紧挨着平坦的地面，看起来就不太自然
+
+322
+00:15:37,560 --> 00:15:41,535
+Because the grass will naturally blend and get smaller
+因为草会自然地过渡，并逐渐变小
+
+323
+00:15:41,540 --> 00:15:44,050
+As it gets away from the larger grass
+随着它远离较高的草丛
+
+324
+00:15:44,050 --> 00:15:46,066
+More powerful grass areas
+更茂密的草地区域
+
+325
+00:15:46,070 --> 00:15:49,046
+And that'll slowly blend out into the ground
+然后慢慢过渡到地面
+
+326
+00:15:49,060 --> 00:15:52,360
+And they'll get smaller and less strong blades of grass
+草叶会变得更小、更细弱
+
+327
+00:15:52,380 --> 00:15:53,140
+They'll be smaller
+它们会更小
+
+328
+00:15:53,140 --> 00:15:55,230
+They'll be a little off on their own
+会稍微零散地独自生长
+
+329
+00:15:55,230 --> 00:15:57,260
+And so this kind of gives that feeling a little bit
+所以这多少能营造出那种感觉
+
+330
+00:15:57,270 --> 00:16:00,390
+When you have a grass clump next to a non grassy area
+当你的草丛紧挨着没有草的区域时
+
+331
+00:16:00,390 --> 00:16:03,658
+If you make your clumps have a little bit of this variation in height
+如果你让草丛有一点这种高度变化
+
+332
+00:16:03,660 --> 00:16:05,328
+It just helps it feel a little more natural
+就能让它感觉更自然一些
+
+333
+00:16:05,328 --> 00:16:06,162
+Hope that makes sense
+希望这说得通
+
+334
+00:16:06,170 --> 00:16:07,620
+So I'll go ahead and hit Accept here
+那么我就继续点击这里的接受
+
+335
+00:16:07,620 --> 00:16:09,320
+And this is a great grass clump
+这就是一个很棒的草丛
+
+336
+00:16:09,320 --> 00:16:14,756
+So we are ready now to jump into making a material for this grass
+现在我们就可以开始为这片草制作材质了
+
+337
+00:16:14,770 --> 00:16:16,746
+I'm gonna go ahead to the Modeling Tools here
+我先进入这里的建模工具
+
+338
+00:16:16,750 --> 00:16:18,606
+And come back to Selection Mode
+然后回到选择模式
+
+339
+00:16:18,620 --> 00:16:19,916
+I've made a Materials folder
+我已经创建了一个 Materials 文件夹
+
+340
+00:16:19,920 --> 00:16:21,438
+But go ahead and do that if you haven't
+如果你还没创建，就先去创建一个
+
+341
+00:16:21,440 --> 00:16:23,354
+I'm gonna open that Materials folder up
+我来打开那个 Materials 文件夹
+
+342
+00:16:23,360 --> 00:16:27,080
+And we're gonna right click in the empty space and make a material
+然后在空白处右键单击，创建一个材质
+
+343
+00:16:27,080 --> 00:16:30,736
+We will call it M GrassClump
+我们把它命名为 M GrassClump
+
+344
+00:16:30,740 --> 00:16:32,819
+We'll double click on that to open it
+双击它打开
+
+345
+00:16:32,820 --> 00:16:34,874
+Okay so this grass is gonna be super simple
+好了，这个草的材质会非常简单
+
+346
+00:16:34,880 --> 00:16:37,580
+And it's gonna be all based around a ramp
+而且完全围绕一个渐变来构建
+
+347
+00:16:37,580 --> 00:16:40,460
+And this is super useful for stylized grass
+这对风格化草来说非常实用
+
+348
+00:16:40,460 --> 00:16:42,992
+Because all that it is depends on the style
+因为它具体是什么样取决于风格
+
+349
+00:16:43,000 --> 00:16:45,674
+But often the stylized grass what it is is a ramp
+但风格化草通常就是一个渐变
+
+350
+00:16:45,680 --> 00:16:48,912
+It has a slightly darker or browner color at the bottom
+底部颜色稍微更深或更偏棕
+
+351
+00:16:48,940 --> 00:16:51,295
+And then it blends up to a lighter color at the top
+然后向上过渡到更浅的颜色
+
+352
+00:16:51,300 --> 00:16:53,976
+So what we'll do is create a linear ramp
+所以我们要做的是创建一个线性渐变
+
+353
+00:16:53,980 --> 00:16:58,635
+And we will use it as a mask to blend between two different colors
+然后把它用作遮罩，在两种不同颜色之间混合
+
+354
+00:16:58,640 --> 00:17:00,776
+We will also use that mask for wind
+我们还会把这个遮罩用于风的效果
+
+355
+00:17:00,780 --> 00:17:03,296
+So it's going to be a super efficient little material here
+所以这会是一个非常高效的小材质
+
+356
+00:17:03,320 --> 00:17:06,424
+All right Click in the empty space and create our ramp
+All right Click in the empty space and create our ramp
+好的，在空白处单击，创建我们的渐变
+
+357
+00:17:06,440 --> 00:17:09,135
+And the ramp is called a LinearGradient
+And the ramp is called a LinearGradient
+这个渐变叫做 LinearGradient
+
+358
+00:17:09,140 --> 00:17:10,836
+So I'll type in LinearGradient
+So I'll type in LinearGradient
+所以我输入 LinearGradient
+
+359
+00:17:10,840 --> 00:17:12,700
+Go ahead and choose that by default
+Go ahead and choose that by default
+直接选择默认的那个
+
+360
+00:17:12,700 --> 00:17:16,630
+This LinearGradient has a U gradient and a V gradient
+This LinearGradient has a U gradient and a V gradient
+这个 LinearGradient 包含 U 渐变和 V 渐变
+
+361
+00:17:16,640 --> 00:17:19,364
+So that's the up and down gradient direction
+So that's the up and down gradient direction
+所以这是上下方向的渐变
+
+362
+00:17:19,380 --> 00:17:21,260
+Or the side to side gradient direction
+Or the side to side gradient direction
+或者左右方向的渐变
+
+363
+00:17:21,260 --> 00:17:23,388
+We're actually going to be using the V gradient
+We're actually going to be using the V gradient
+我们实际上要使用的是V方向渐变
+
+364
+00:17:23,400 --> 00:17:25,680
+Which is up and down in UV space
+Which is up and down in UV space
+也就是UV空间中的上下方向
+
+365
+00:17:25,680 --> 00:17:27,253
+Which will make more sense in a minute
+Which will make more sense in a minute
+稍后就会更清楚了
+
+366
+00:17:27,260 --> 00:17:29,717
+But what I'm going to do is create a Lerp node
+But what I'm going to do is create a Lerp node
+但我要做的是创建一个Lerp节点
+
+367
+00:17:29,722 --> 00:17:32,182
+Which will be a blend between two colors
+Which will be a blend between two colors
+它会在两种颜色之间进行混合
+
+368
+00:17:32,200 --> 00:17:35,470
+So I'll type in Lerp also known as linear interpolation
+So I'll type in Lerp also known as linear interpolation
+所以我会输入Lerp，也就是线性插值
+
+369
+00:17:35,480 --> 00:17:37,904
+And we'll plug the alpha into the V gradient
+And we'll plug the alpha into the V gradient
+然后我们把alpha连到V方向渐变上
+
+370
+00:17:37,907 --> 00:17:39,315
+So it's going to be a mask
+So it's going to be a mask
+所以它会作为一个遮罩
+
+371
+00:17:39,330 --> 00:17:41,990
+And we can also see what this looks like on a plane
+And we can also see what this looks like on a plane
+我们也可以在一个平面上看看效果
+
+372
+00:17:42,020 --> 00:17:45,743
+By coming over here to the 3 D viewport in our material view here
+By coming over here to the 3 D viewport in our material view here
+通过来到这边的3D视口，在我们的材质视图里
+
+373
+00:17:45,760 --> 00:17:47,600
+And choosing the Plane option
+And choosing the Plane option
+然后选择Plane选项
+
+374
+00:17:47,600 --> 00:17:48,496
+Where we don't see anything
+Where we don't see anything
+现在我们还什么都看不到
+
+375
+00:17:48,500 --> 00:17:49,510
+Because we haven't plugged it in yet
+Because we haven't plugged it in yet
+因为我们还没把它连上
+
+376
+00:17:49,520 --> 00:17:51,080
+I'll plug this into the Base Color
+I'll plug this into the Base Color
+我把它连到Base Color上
+
+377
+00:17:51,080 --> 00:17:54,678
+And we can see we have a gradient from top to bottom
+And we can see we have a gradient from top to bottom
+我们可以看到从上到下的渐变
+
+378
+00:17:54,680 --> 00:17:56,420
+So this will be our mask
+So this will be our mask
+所以这将是我们的遮罩
+
+379
+00:17:56,430 --> 00:17:58,476
+So let's create two different colors
+So let's create two different colors
+那么让我们创建两种不同的颜色
+
+380
+00:17:58,480 --> 00:17:59,960
+Also hold down 3
+Also hold down 3
+同样按住3
+
+381
+00:17:59,960 --> 00:18:02,180
+And click in the empty space to create a color
+And click in the empty space to create a color
+在空白处点击创建一个颜色
+
+382
+00:18:02,180 --> 00:18:06,197
+And I will make this just a lighter green color
+And I will make this just a lighter green color
+我会把它调成稍微浅一点的绿色
+
+383
+00:18:06,200 --> 00:18:07,260
+Something like this
+Something like this
+差不多这样
+
+384
+00:18:07,260 --> 00:18:08,700
+We'll plug that into A
+We'll plug that into A
+我们把它连到A上
+
+385
+00:18:08,700 --> 00:18:10,636
+And we'll go ahead and duplicate that
+And we'll go ahead and duplicate that
+然后我们复制一下这个
+
+386
+00:18:10,640 --> 00:18:13,368
+And this one we will make something like this
+And this one we will make something like this
+这个我们会调成这样的颜色
+
+387
+00:18:13,370 --> 00:18:15,122
+It's just ever so slightly darker
+It's just ever so slightly darker
+只是稍微暗一点点
+
+388
+00:18:15,130 --> 00:18:16,390
+And we'll plug that into B
+And we'll plug that into B
+我们把它连到B上
+
+389
+00:18:16,390 --> 00:18:20,684
+And so you can see we have just a nice slight gradient from light to dark
+And so you can see we have just a nice slight gradient from light to dark
+可以看到我们有了一个很好的从亮到暗的轻微渐变
+
+390
+00:18:20,700 --> 00:18:23,070
+I'll go ahead and create parameters out of these two
+I'll go ahead and create parameters out of these two
+我会把这两个转换成参数
+
+391
+00:18:23,090 --> 00:18:24,746
+You can make a material instance of it later
+You can make a material instance of it later
+你之后可以创建材质实例
+
+392
+00:18:24,760 --> 00:18:26,725
+So I'll right click and convert it to a parameter
+So I'll right click and convert it to a parameter
+所以我右键点击并转换为参数
+
+393
+00:18:26,740 --> 00:18:31,590
+And I'll just call it Grass Color 01
+And I'll just call it Grass Color 01
+我就叫它Grass Color 01
+
+394
+00:18:31,599 --> 00:18:32,937
+Same for the other one
+Same for the other one
+另一个也一样
+
+395
+00:18:32,940 --> 00:18:38,044
+Convert it to a parameter and call it Grass Color 02
+Convert it to a parameter and call it Grass Color 02
+转换为参数并叫它Grass Color 02
+
+396
+00:18:38,050 --> 00:18:40,090
+Okay so let's go ahead and hit Save
+Okay so let's go ahead and hit Save
+好的，我们继续并点击保存
+
+397
+00:18:40,100 --> 00:18:42,070
+And we'll come back to our grass here
+And we'll come back to our grass here
+然后我们回到这里的草
+
+398
+00:18:42,070 --> 00:18:42,730
+What we want
+What we want
+我们想要的是
+
+399
+00:18:42,730 --> 00:18:45,250
+Since we're going to use this mesh in a PCG Graph
+Since we're going to use this mesh in a PCG Graph
+因为我们将在PCG Graph中使用这个网格体
+
+400
+00:18:45,250 --> 00:18:49,480
+We need to assign the material to the original mesh asset
+We need to assign the material to the original mesh asset
+我们需要把材质指定给原始的网格体资产
+
+401
+00:18:49,483 --> 00:18:51,694
+For this grass inside our Content Browser
+For this grass inside our Content Browser
+这株草就在内容浏览器里
+
+402
+00:18:51,700 --> 00:18:54,640
+Which you'll remember is under the Generated folder
+Which you'll remember is under the Generated folder
+你应该还记得，它在 Generated 文件夹下
+
+403
+00:18:54,640 --> 00:18:56,995
+So go ahead to the Generated folder under my name
+So go ahead to the Generated folder under my name
+所以请前往以我名字命名的 Generated 文件夹
+
+404
+00:18:57,010 --> 00:18:58,193
+And find my Grass Clump
+And find my Grass Clump
+找到我的 Grass Clump
+
+405
+00:18:58,200 --> 00:18:59,674
+And I'll double click on it to open it
+And I'll double click on it to open it
+我会双击它来打开
+
+406
+00:18:59,680 --> 00:19:03,334
+And this way we can add the actual material to the mesh
+And this way we can add the actual material to the mesh
+这样我们就能把实际的材质添加到网格体上
+
+407
+00:19:03,340 --> 00:19:08,371
+So we'll go ahead and type in M GrassClump
+So we'll go ahead and type in M GrassClump
+我们直接输入 M GrassClump
+
+408
+00:19:08,400 --> 00:19:10,470
+Let's go ahead and make an instance of it real quick
+Let's go ahead and make an instance of it real quick
+我们先快速为它创建一个实例
+
+409
+00:19:10,480 --> 00:19:12,460
+Instead of using the Master Material
+Instead of using the Master Material
+而不是使用主材质
+
+410
+00:19:12,460 --> 00:19:13,693
+Let's come here to the Materials
+Let's come here to the Materials
+我们来到 Materials 这里
+
+411
+00:19:13,700 --> 00:19:15,632
+Right click on it Create Material Instance
+Right click on it Create Material Instance
+右键点击它，创建材质实例
+
+412
+00:19:15,640 --> 00:19:17,290
+So we don't need to change that later
+So we don't need to change that later
+这样我们之后就不需要再改它了
+
+413
+00:19:17,300 --> 00:19:21,436
+So I'll call it MI GrassClump
+So I'll call it MI GrassClump
+我把它命名为 MI GrassClump
+
+414
+00:19:21,450 --> 00:19:23,310
+Come back to the Geometry
+Come back to the Geometry
+回到 Geometry
+
+415
+00:19:23,310 --> 00:19:28,266
+And type in GrassClump and choose the Material Instance
+And type in GrassClump and choose the Material Instance
+输入 GrassClump 并选择材质实例
+
+416
+00:19:28,280 --> 00:19:33,080
+And we can see we have our nice grass material working here
+And we can see we have our nice grass material working here
+可以看到，漂亮的草材质已经正常工作了
+
+417
+00:19:33,090 --> 00:19:39,272
+Something we want to double check before we continue is the UVs of this grass
+Something we want to double check before we continue is the UVs of this grass
+继续之前，我们要再确认一下这株草的 UV
+
+418
+00:19:39,280 --> 00:19:41,328
+Now when I select this geometry
+Now when I select this geometry
+现在，当我选中这个几何体
+
+419
+00:19:41,328 --> 00:19:46,401
+If we come back over to the Modeling Tools there is a UV section here
+If we come back over to the Modeling Tools there is a UV section here
+如果我们回到建模工具，这里有一个 UV 区域
+
+420
+00:19:46,422 --> 00:19:48,774
+If we click on that we can come to the UV Editor
+If we click on that we can come to the UV Editor
+点击它就能进入 UV 编辑器
+
+421
+00:19:48,780 --> 00:19:53,442
+If we click on that it will show our grass in the UV space here
+If we click on that it will show our grass in the UV space here
+点击后，它会在 UV 空间中显示我们的草
+
+422
+00:19:53,450 --> 00:19:56,430
+Our ramp is up and down in direction
+Our ramp is up and down in direction
+我们的渐变方向是上下方向
+
+423
+00:19:56,430 --> 00:20:02,326
+And so our grass geometry here is actually flipped or rotated 90 degrees on its side
+And so our grass geometry here is actually flipped or rotated 90 degrees on its side
+所以这里的草几何体实际上是翻转了，或者说侧向旋转了 90 度
+
+424
+00:20:02,330 --> 00:20:05,570
+You have the option of editing these UVs now
+You have the option of editing these UVs now
+你现在可以选择编辑这些 UV
+
+425
+00:20:05,580 --> 00:20:07,335
+Since they're all the same geometry
+Since they're all the same geometry
+因为它们都是相同的几何体
+
+426
+00:20:07,340 --> 00:20:08,987
+So it doesn't matter or you can
+So it doesn't matter or you can
+所以无所谓，或者你也可以
+
+427
+00:20:09,000 --> 00:20:11,249
+When you make that first original blade of grass
+When you make that first original blade of grass
+当你制作第一片原始草叶时
+
+428
+00:20:11,260 --> 00:20:14,167
+You can go ahead and create the UVs for that blade of grass
+You can go ahead and create the UVs for that blade of grass
+你可以直接为那片草叶创建 UV
+
+429
+00:20:14,180 --> 00:20:15,675
+That's probably a more efficient way to do it
+That's probably a more efficient way to do it
+这可能是更高效的做法
+
+430
+00:20:15,680 --> 00:20:18,468
+Either way it doesn't matter because they're all the same mesh here
+Either way it doesn't matter because they're all the same mesh here
+两种方式都无所谓，因为这里它们都是同一个网格体
+
+431
+00:20:18,480 --> 00:20:21,995
+So whether you do it then when you create your first blade of grass
+So whether you do it then when you create your first blade of grass
+所以无论你是在创建第一片草叶时做
+
+432
+00:20:22,020 --> 00:20:23,660
+Or now when you have your clump
+Or now when you have your clump
+还是现在有了这一丛草时做
+
+433
+00:20:23,660 --> 00:20:26,240
+Just go ahead and select that geometry
+Just go ahead and select that geometry
+只要选中那个几何体
+
+434
+00:20:26,240 --> 00:20:29,844
+We'll go ahead and make sure we drag over all of them not just one
+We'll go ahead and make sure we drag over all of them not just one
+要确保框选所有几何体，而不只是一个
+
+435
+00:20:29,860 --> 00:20:32,250
+And we can rotate it 90 degrees here
+And we can rotate it 90 degrees here
+然后我们可以在这里将它旋转 90 度
+
+436
+00:20:32,270 --> 00:20:34,862
+And put it here in the UV space
+And put it here in the UV space
+把它放到 UV 空间里的这个位置
+
+437
+00:20:34,870 --> 00:20:39,539
+And I'll actually squish it a little bit as well to match our actual grass geometry
+And I'll actually squish it a little bit as well to match our actual grass geometry
+我还会稍微压扁它，以匹配实际的草几何体
+
+438
+00:20:39,550 --> 00:20:42,622
+If we want to actually check what's the top of the grass
+If we want to actually check what's the top of the grass
+如果我们想确认哪里是草的顶部
+
+439
+00:20:42,630 --> 00:20:44,490
+And what's the bottom of the grass
+And what's the bottom of the grass
+以及哪里是草的底部
+
+440
+00:20:44,490 --> 00:20:46,164
+We can zoom in here to the grass
+We can zoom in here to the grass
+我们可以在这里放大草的视图
+
+441
+00:20:46,180 --> 00:20:48,457
+And hover over some of the faces
+And hover over some of the faces
+把鼠标悬停在部分面上
+
+442
+00:20:48,460 --> 00:20:50,800
+And check if they're showing up on the bottom
+And check if they're showing up on the bottom
+检查它们是否显示在底部
+
+443
+00:20:50,800 --> 00:20:53,296
+You can see this is the bottom of the grass here right here
+You can see this is the bottom of the grass here right here
+可以看到这里就是草的底部
+
+444
+00:20:53,300 --> 00:20:54,740
+And the top of the grass here
+And the top of the grass here
+这里是草的顶部
+
+445
+00:20:54,740 --> 00:20:56,594
+We can see it showing up as well
+We can see it showing up as well
+我们能看到它也会显示出来
+
+446
+00:20:56,600 --> 00:20:57,716
+Or we can come up here
+Or we can come up here
+或者我们可以移到上面这里
+
+447
+00:20:57,720 --> 00:21:00,250
+And go ahead and select those vertices
+And go ahead and select those vertices
+然后继续选中那些顶点
+
+448
+00:21:00,260 --> 00:21:02,482
+And we can see them reflected on the mesh
+And we can see them reflected on the mesh
+就能看到它们在网格上有所反映
+
+449
+00:21:02,490 --> 00:21:07,296
+So this UV Editor I'm not gonna go into super a lot of depth with it in this particular tutorial
+So this UV Editor I'm not gonna go into super a lot of depth with it in this particular tutorial
+所以这个UV编辑器，在本教程中我不会讲得太深入
+
+450
+00:21:07,320 --> 00:21:08,656
+But it's just important to know
+But it's just important to know
+但重要的是要知道
+
+451
+00:21:08,660 --> 00:21:13,196
+Because the ramp and also the grass wind which we're about to add
+Because the ramp and also the grass wind which we're about to add
+因为渐变节点以及我们即将添加的草地风动
+
+452
+00:21:13,206 --> 00:21:15,153
+It's gonna be based on this UV space
+It's gonna be based on this UV space
+都会基于这个UV空间
+
+453
+00:21:15,170 --> 00:21:18,146
+So it's important that you modify these UVs
+So it's important that you modify these UVs
+所以修改这些UV很重要
+
+454
+00:21:18,146 --> 00:21:21,866
+To make sure that the grass blade is sticking up and down
+To make sure that the grass blade is sticking up and down
+确保草叶的上下方向正确
+
+455
+00:21:21,880 --> 00:21:24,003
+Has the right side up the right side down
+Has the right side up the right side down
+该朝上的朝上，该朝下的朝下
+
+456
+00:21:24,005 --> 00:21:26,573
+Go ahead and hit Save on that
+Go ahead and hit Save on that
+继续点击保存
+
+457
+00:21:26,580 --> 00:21:29,700
+And go ahead and hit Save on the mesh asset
+And go ahead and hit Save on the mesh asset
+再继续保存网格资产
+
+458
+00:21:29,710 --> 00:21:31,950
+And come back to our material
+And come back to our material
+然后回到我们的材质
+
+459
+00:21:31,950 --> 00:21:34,710
+Our color is working on our grass
+Our color is working on our grass
+我们的颜色已经在草上生效了
+
+460
+00:21:34,720 --> 00:21:37,880
+Now we need to add in our grass wind
+Now we need to add in our grass wind
+现在我们需要加入草地风动效果
+
+461
+00:21:37,880 --> 00:21:41,331
+What we're going to add is called a Simple Grass Wind node
+What we're going to add is called a Simple Grass Wind node
+我们要添加的是一个叫Simple Grass Wind的节点
+
+462
+00:21:41,340 --> 00:21:42,670
+Which we can select here
+Which we can select here
+我们可以在这里选中它
+
+463
+00:21:42,670 --> 00:21:47,566
+And the Simple Grass Wind is going to plug into our same gradient
+And the Simple Grass Wind is going to plug into our same gradient
+然后Simple Grass Wind会接入我们同一个渐变
+
+464
+00:21:47,580 --> 00:21:53,305
+Because it's going to be a mask for which part of the grass should be waving in the wind
+Because it's going to be a mask for which part of the grass should be waving in the wind
+因为它将作为遮罩，决定草的哪一部分应该在风中摆动
+
+465
+00:21:53,330 --> 00:21:56,084
+Because we don't want the bottom of the grass to wave around
+Because we don't want the bottom of the grass to wave around
+因为我们不希望草的底部也跟着摆动
+
+466
+00:21:56,090 --> 00:21:59,582
+Because then it looks like it's floating on the surface of the ground
+Because then it looks like it's floating on the surface of the ground
+否则看起来就像漂浮在地面上
+
+467
+00:21:59,590 --> 00:22:01,795
+We just want the top of the grass
+We just want the top of the grass
+我们只想要草的顶部动
+
+468
+00:22:01,800 --> 00:22:04,356
+So we can use this ramp to tell the grass wind
+So we can use this ramp to tell the grass wind
+所以我们可以用这个渐变来告诉草地风动
+
+469
+00:22:04,360 --> 00:22:07,552
+Just make it stronger on the top of the grass
+Just make it stronger on the top of the grass
+让它在草的顶部更强
+
+470
+00:22:07,560 --> 00:22:09,780
+And leave the bottom of the grass and don't move it
+And leave the bottom of the grass and don't move it
+而草的底部保持不动
+
+471
+00:22:09,780 --> 00:22:11,950
+So we can use this ramp for both purposes
+So we can use this ramp for both purposes
+所以这个渐变可以同时用于这两个目的
+
+472
+00:22:11,950 --> 00:22:13,420
+However let's set it up
+However let's set it up
+不过我们先把它设置好
+
+473
+00:22:13,420 --> 00:22:16,280
+I'll show you there's something we need to do to the ramp in order to make it work
+I'll show you there's something we need to do to the ramp in order to make it work
+我会演示一下，为了让渐变正常工作，我们还需要对它做一些处理
+
+474
+00:22:16,300 --> 00:22:18,340
+But let's go ahead and set this up first
+But let's go ahead and set this up first
+但我们先继续把它设置好
+
+475
+00:22:18,340 --> 00:22:21,994
+We're going to plug the result into the World Position Offset here
+We're going to plug the result into the World Position Offset here
+我们要把结果接入这里的World Position Offset
+
+476
+00:22:22,000 --> 00:22:23,638
+You'll get an error by default
+You'll get an error by default
+默认情况下你会看到一个错误
+
+477
+00:22:23,640 --> 00:22:26,936
+And that's just because we need to plug in some generic values
+And that's just because we need to plug in some generic values
+这只是因为我们需要接入一些通用数值
+
+478
+00:22:26,936 --> 00:22:30,424
+Into the Grass Wind node in order for it to know what to do
+Into the Grass Wind node in order for it to know what to do
+到Grass Wind节点里，让它知道该怎么做
+
+479
+00:22:30,430 --> 00:22:34,084
+So I will go ahead and create a parameter a few parameters
+So I will go ahead and create a parameter a few parameters
+所以我会继续创建一个参数，几个参数
+
+480
+00:22:34,084 --> 00:22:37,644
+By holding down S which will create a float parameter automatically
+By holding down S which will create a float parameter automatically
+按住S键，就会自动创建一个浮点参数
+
+481
+00:22:37,660 --> 00:22:42,291
+And I will call this Grass Wind Intensity
+我把它命名为 Grass Wind Intensity
+
+482
+00:22:42,308 --> 00:22:45,088
+Plug that into Wind Intensity by default
+默认把它连到 Wind Intensity 上
+
+483
+00:22:45,090 --> 00:22:46,494
+Let's make it 0 2
+把它设为 0.2
+
+484
+00:22:46,500 --> 00:22:47,636
+Go ahead and do that again
+再来一次
+
+485
+00:22:47,640 --> 00:22:49,596
+Hold down S and click in the empty space
+按住 S 并在空白处点击
+
+486
+00:22:49,600 --> 00:22:53,450
+This one we will make Grass Wind Speed
+这个我们命名为 Grass Wind Speed
+
+487
+00:22:53,450 --> 00:22:55,802
+We'll plug that into Wind Speed
+把它连到 Wind Speed 上
+
+488
+00:22:55,810 --> 00:22:58,596
+Make that 0 8 by default
+默认设为 0.8
+
+489
+00:22:58,600 --> 00:23:00,393
+We'll just make a float by pressing 1
+按 1 创建一个浮点数
+
+490
+00:23:00,400 --> 00:23:04,880
+Hold down 1 and click and plug that into this additional World Position Offset
+按住 1 并点击，然后把它连到这个额外的 World Position Offset 上
+
+491
+00:23:04,910 --> 00:23:05,770
+Which is nothing
+也就是没有
+
+492
+00:23:05,770 --> 00:23:07,490
+No additional World Position Offset
+没有额外的 World Position Offset
+
+493
+00:23:07,500 --> 00:23:09,150
+So we'll just plug in a zero there
+所以我们在这里连一个 0
+
+494
+00:23:09,150 --> 00:23:11,319
+And that should remove the error
+这样应该就能消除错误
+
+495
+00:23:11,320 --> 00:23:11,780
+Okay
+好
+
+496
+00:23:11,780 --> 00:23:14,600
+So let's go ahead and hit Save and look at our grass
+So let's go ahead and hit Save and look at our grass
+
+497
+00:23:14,610 --> 00:23:16,482
+So this mesh here didn't get updated
+So this mesh here didn't get updated
+
+498
+00:23:16,490 --> 00:23:17,410
+So we'll go ahead and delete it
+So we'll go ahead and delete it
+
+499
+00:23:17,410 --> 00:23:19,588
+And come back to our generated folder here
+And come back to our generated folder here
+
+500
+00:23:19,590 --> 00:23:23,055
+And drag in our new updated grass mesh here
+And drag in our new updated grass mesh here
+
+501
+00:23:23,060 --> 00:23:24,518
+And you'll see something funny
+And you'll see something funny
+
+502
+00:23:24,520 --> 00:23:26,640
+Which is that it's affected by the wind
+Which is that it's affected by the wind
+
+503
+00:23:26,640 --> 00:23:30,056
+But it's unfortunately the wrong part of the grass
+But it's unfortunately the wrong part of the grass
+
+504
+00:23:30,060 --> 00:23:31,120
+It's the bottom
+It's the bottom
+
+505
+00:23:31,120 --> 00:23:32,536
+So we want it to flip
+So we want it to flip
+
+506
+00:23:32,540 --> 00:23:35,676
+And have the top of the grass be wiggling and not the bottom
+And have the top of the grass be wiggling and not the bottom
+
+507
+00:23:35,680 --> 00:23:38,470
+So let's come back to our material here
+So let's come back to our material here
+
+508
+00:23:38,470 --> 00:23:41,238
+And where we're using this gradient we just need to flip it
+And where we're using this gradient we just need to flip it
+
+509
+00:23:41,250 --> 00:23:43,662
+So we'll use what's called a OneMinus node
+So we'll use what's called a OneMinus node
+
+510
+00:23:43,670 --> 00:23:47,540
+So we'll type in OneMinus and plug that into the V gradient
+So we'll type in OneMinus and plug that into the V gradient
+
+511
+00:23:47,540 --> 00:23:50,452
+And then the other end into the Wind Height instead
+And then the other end into the Wind Height instead
+
+512
+00:23:50,460 --> 00:23:51,636
+I'll invert the Wind Weight here
+I'll invert the Wind Weight here
+
+513
+00:23:51,640 --> 00:23:53,710
+And that will flip it
+And that will flip it
+
+514
+00:23:53,710 --> 00:23:55,546
+So now what was black is white
+So now what was black is white
+
+515
+00:23:55,550 --> 00:23:56,586
+What was white is black
+What was white is black
+
+516
+00:23:56,589 --> 00:24:00,299
+And now that will give us the effect we are looking for
+And now that will give us the effect we are looking for
+
+517
+00:24:00,310 --> 00:24:04,150
+So now you can see the top of the grass is moving correctly with the wind
+So now you can see the top of the grass is moving correctly with the wind
+
+518
+00:24:04,160 --> 00:24:08,568
+And now we can go ahead and jump into our grass clump material instance
+And now we can go ahead and jump into our grass clump material instance
+
+519
+00:24:08,570 --> 00:24:12,888
+And we want to mess with probably the intensity and the speed here
+And we want to mess with probably the intensity and the speed here
+
+520
+00:24:12,900 --> 00:24:15,885
+So I will actually lower the intensity here to 0 1
+So I will actually lower the intensity here to 0 1
+
+521
+00:24:15,900 --> 00:24:18,969
+And the grass wind speed maybe 0 5
+And the grass wind speed maybe 0 5
+
+522
+00:24:18,980 --> 00:24:21,378
+That looks a little more natural to me
+That looks a little more natural to me
+
+523
+00:24:21,380 --> 00:24:24,602
+Okay so now we're ready to take that grass asset that we've made
+Okay so now we're ready to take that grass asset that we've made
+
+524
+00:24:24,610 --> 00:24:29,272
+And add it to a PCG Graph to scatter it organically across our landscape
+And add it to a PCG Graph to scatter it organically across our landscape
+
+525
+00:24:29,280 --> 00:24:32,608
+I will go ahead and make a new PCG Graph here
+I will go ahead and make a new PCG Graph here
+
+526
+00:24:32,620 --> 00:24:38,384
+So I'll right click in the Content Browser come to PCG and choose PCG Graph here
+So I'll right click in the Content Browser come to PCG and choose PCG Graph here
+
+527
+00:24:38,400 --> 00:24:43,511
+If you don't see PCG Graph or any PCG options inside Unreal Engine
+If you don't see PCG Graph or any PCG options inside Unreal Engine
+
+528
+00:24:43,520 --> 00:24:45,821
+it means you need to enable it as a plugin
+it means you need to enable it as a plugin
+
+529
+00:24:45,830 --> 00:24:51,226
+So you can come up here to the Edit dropdown come to Plugins and type in PCG
+So you can come up here to the Edit dropdown come to Plugins and type in PCG
+
+530
+00:24:51,240 --> 00:24:55,040
+And we want to enable this Procedural Content Generation Framework plugin
+And we want to enable this Procedural Content Generation Framework plugin
+
+531
+00:24:55,040 --> 00:24:58,208
+Go ahead and enable that and restart the engine if it prompts you
+Go ahead and enable that and restart the engine if it prompts you
+
+532
+00:24:58,220 --> 00:25:01,251
+I've made this new PCG Graph
+I've made this new PCG Graph
+
+533
+00:25:01,252 --> 00:25:04,716
+I will call it PCG GrassClump
+I will call it PCG GrassClump
+
+534
+00:25:04,740 --> 00:25:07,431
+And we'll drag it into our level
+And we'll drag it into our level
+
+535
+00:25:07,440 --> 00:25:12,016
+And expand it to be over the top of the whole landscape
+And expand it to be over the top of the whole landscape
+
+536
+00:25:12,040 --> 00:25:13,870
+I'll double click on that to open it
+I'll double click on that to open it
+
+537
+00:25:13,880 --> 00:25:16,328
+Let's right click in the empty space
+Let's right click in the empty space
+
+538
+00:25:16,360 --> 00:25:19,470
+And create a Get Landscape Data node
+And create a Get Landscape Data node
+
+539
+00:25:19,470 --> 00:25:21,090
+This is what we use to get the points
+This is what we use to get the points
+
+540
+00:25:21,090 --> 00:25:22,982
+That are scattered across our landscape
+That are scattered across our landscape
+
+541
+00:25:22,990 --> 00:25:24,540
+In order to start spawning grass
+In order to start spawning grass
+
+542
+00:25:24,540 --> 00:25:27,283
+We'll drag off of that to sample those points
+We'll drag off of that to sample those points
+
+543
+00:25:27,290 --> 00:25:29,126
+We'll create a Surface Sampler
+We'll create a Surface Sampler
+
+544
+00:25:29,130 --> 00:25:32,645
+Right after that let's go ahead and make a Static Mesh Spawner here
+Right after that let's go ahead and make a Static Mesh Spawner here
+
+545
+00:25:32,660 --> 00:25:33,775
+We'll plug that in
+We'll plug that in
+
+546
+00:25:33,780 --> 00:25:39,240
+And now we will add that grass clump mesh that we made under the Mesh Entries
+And now we will add that grass clump mesh that we made under the Mesh Entries
+
+547
+00:25:39,250 --> 00:25:40,735
+We'll go ahead and hit the plus button
+We'll go ahead and hit the plus button
+
+548
+00:25:40,740 --> 00:25:43,620
+We'll expand Index 0 and the descriptor
+We'll expand Index 0 and the descriptor
+
+549
+00:25:43,626 --> 00:25:46,290
+And we'll come to the Static Mesh entry here
+And we'll come to the Static Mesh entry here
+
+550
+00:25:46,310 --> 00:25:52,358
+And we'll go ahead and type in grass clump to bring up the grass clump asset that we made
+And we'll go ahead and type in grass clump to bring up the grass clump asset that we made
+
+551
+00:25:52,370 --> 00:25:53,805
+And here it is at the top
+And here it is at the top
+
+552
+00:25:53,810 --> 00:25:57,095
+So if we go ahead and hit Save and look at what that does
+So if we go ahead and hit Save and look at what that does
+
+553
+00:25:57,110 --> 00:26:02,870
+Gives us a nice evenly spaced sampling of grid points
+Gives us a nice evenly spaced sampling of grid points
+
+554
+00:26:02,880 --> 00:26:05,192
+Next let's add a little bit of randomness to these points
+Next let's add a little bit of randomness to these points
+
+555
+00:26:05,200 --> 00:26:08,944
+We don't want them all to be the same size and exactly the same rotation
+We don't want them all to be the same size and exactly the same rotation
+
+556
+00:26:08,960 --> 00:26:11,192
+So make a Transform Points node
+So make a Transform Points node
+
+557
+00:26:11,200 --> 00:26:14,020
+So right click to create a Transform Points node
+So right click to create a Transform Points node
+
+558
+00:26:14,040 --> 00:26:17,384
+Put that in between here and here in the Transform Points node
+Put that in between here and here in the Transform Points node
+
+559
+00:26:17,390 --> 00:26:22,790
+We will add a rotation max in the Z value in this third box here
+We will add a rotation max in the Z value in this third box here
+
+560
+00:26:22,800 --> 00:26:24,198
+Which goes X Y Z
+Which goes X Y Z
+
+561
+00:26:24,200 --> 00:26:24,880
+So this is Z
+So this is Z
+
+562
+00:26:24,880 --> 00:26:27,750
+So it'll be rotating around the Z up and down axis
+So it'll be rotating around the Z up and down axis
+
+563
+00:26:27,750 --> 00:26:29,480
+So we'll make it a minimum of zero
+So we'll make it a minimum of zero
+
+564
+00:26:29,490 --> 00:26:31,404
+And a maximum of 360
+And a maximum of 360
+
+565
+00:26:31,410 --> 00:26:33,702
+So it could be rotating in any direction
+So it could be rotating in any direction
+
+566
+00:26:33,702 --> 00:26:34,275
+That's good
+That's good
+
+567
+00:26:34,280 --> 00:26:40,380
+And now we'll add some random scale between let's say 0 5 and 1 5
+And now we'll add some random scale between let's say 0 5 and 1 5
+
+568
+00:26:40,400 --> 00:26:44,414
+So now we have some random scale and random rotation at this point
+So now we have some random scale and random rotation at this point
+
+569
+00:26:44,420 --> 00:26:47,667
+You might be thinking okay well this is starting to look pretty good
+You might be thinking okay well this is starting to look pretty good
+
+570
+00:26:47,680 --> 00:26:48,936
+But I need a lot more grass
+But I need a lot more grass
+
+571
+00:26:48,940 --> 00:26:50,268
+So I need a lot more density
+So I need a lot more density
+
+572
+00:26:50,270 --> 00:26:53,585
+So you might be tempted to come back here to the Surface Sampler
+So you might be tempted to come back here to the Surface Sampler
+
+573
+00:26:53,600 --> 00:26:56,330
+and start increasing the points per square meter
+and start increasing the points per square meter
+
+574
+00:26:56,340 --> 00:26:58,430
+But this is not really what we want to do
+But this is not really what we want to do
+
+575
+00:26:58,440 --> 00:27:02,537
+We want to actually keep the points per square meter at 0 1
+We want to actually keep the points per square meter at 0 1
+
+576
+00:27:02,560 --> 00:27:04,546
+and do a few other things instead that are going to be a lot more efficient
+and do a few other things instead that are going to be a lot more efficient
+
+577
+00:27:04,546 --> 00:27:05,896
+並做一些其他事情這樣會更有效率
+並做一些其他事情這樣會更有效率
+
+578
+00:27:05,942 --> 00:27:07,110
+and give us a more natural look
+and give us a more natural look
+
+579
+00:27:07,110 --> 00:27:10,190
+The first thing is to lower the Point Extents
+The first thing is to lower the Point Extents
+
+580
+00:27:10,200 --> 00:27:13,992
+This is important because it's telling Unreal Engine how big these pieces of grass are
+This is important because it's telling Unreal Engine how big these pieces of grass are
+
+581
+00:27:14,010 --> 00:27:15,400
+And right now it's way out of whack
+And right now it's way out of whack
+
+582
+00:27:15,410 --> 00:27:17,706
+It says it's 100 by 100 points
+It says it's 100 by 100 points
+
+583
+00:27:17,720 --> 00:27:20,834
+This is not going to really give us the type of points that we need
+This is not going to really give us the type of points that we need
+
+584
+00:27:20,860 --> 00:27:25,720
+If we go ahead and select our Surface Sampler and tap the D key
+If we go ahead and select our Surface Sampler and tap the D key
+
+585
+00:27:25,735 --> 00:27:27,343
+to show how big the points are
+to show how big the points are
+
+586
+00:27:27,343 --> 00:27:30,358
+you can see they're much bigger than our grass clumps here
+you can see they're much bigger than our grass clumps here
+
+587
+00:27:30,390 --> 00:27:32,106
+So I'm going to actually lower that down to 10
+So I'm going to actually lower that down to 10
+
+588
+00:27:32,110 --> 00:27:35,638
+Even though it's a little bit smaller than our grasses are themselves
+Even though it's a little bit smaller than our grasses are themselves
+
+589
+00:27:35,644 --> 00:27:36,624
+That's actually okay
+That's actually okay
+
+590
+00:27:36,640 --> 00:27:39,870
+Because I kind of want some of these grasses to overlap with each other
+Because I kind of want some of these grasses to overlap with each other
+
+591
+00:27:39,880 --> 00:27:45,651
+Having a slightly smaller bound to your points that are spawning grass meshes isn't always a bad thing
+Having a slightly smaller bound to your points that are spawning grass meshes isn't always a bad thing
+
+592
+00:27:45,660 --> 00:27:47,748
+Okay so now we have a smaller set of points
+Okay so now we have a smaller set of points
+
+593
+00:27:47,760 --> 00:27:49,119
+I'm going to stop debugging that
+I'm going to stop debugging that
+
+594
+00:27:49,120 --> 00:27:50,512
+Okay so next let's start adding some density to this grass
+Okay so next let's start adding some density to this grass
+
+595
+00:27:50,512 --> 00:27:52,252
+好的接下来让我们开始为这片草添加一些密度
+好的接下来让我们开始为这片草添加一些密度
+
+596
+00:27:52,280 --> 00:27:57,392
+And the way we want to add density is to mimic a type of thing that happens in nature
+And the way we want to add density is to mimic a type of thing that happens in nature
+
+597
+00:27:57,410 --> 00:28:01,020
+Let's say these are the first grasses that get planted in this field
+Let's say these are the first grasses that get planted in this field
+
+598
+00:28:01,020 --> 00:28:03,464
+There's maybe a single seed or a few seeds
+There's maybe a single seed or a few seeds
+
+599
+00:28:03,464 --> 00:28:06,136
+That land in this little area where this clump of grass is
+That land in this little area where this clump of grass is
+
+600
+00:28:06,140 --> 00:28:11,324
+Over time we'll just say seeds for lack of a better term slowly spread out from the grass
+Over time we'll just say seeds for lack of a better term slowly spread out from the grass
+
+601
+00:28:11,340 --> 00:28:12,912
+And you'll start to create these clumps
+And you'll start to create these clumps
+
+602
+00:28:12,919 --> 00:28:17,937
+And the clumps will be biggest and strongest in the center where the first grass was planted
+And the clumps will be biggest and strongest in the center where the first grass was planted
+
+603
+00:28:17,960 --> 00:28:23,084
+And then over time it will just start extending and extending out from that point
+And then over time it will just start extending and extending out from that point
+
+604
+00:28:23,100 --> 00:28:26,534
+This will give a lot more of a natural look to the grass clumping
+This will give a lot more of a natural look to the grass clumping
+
+605
+00:28:26,540 --> 00:28:30,720
+Instead of having it randomly spread in a noise pattern across the landscape
+Instead of having it randomly spread in a noise pattern across the landscape
+
+606
+00:28:30,740 --> 00:28:32,060
+And you'll see what I mean in a minute
+And you'll see what I mean in a minute
+
+607
+00:28:32,060 --> 00:28:34,293
+So now we have our first grass points
+So now we have our first grass points
+
+608
+00:28:34,300 --> 00:28:37,360
+I'm not actually going to get any more points from the Surface Sampler
+I'm not actually going to get any more points from the Surface Sampler
+
+609
+00:28:37,380 --> 00:28:42,924
+But I'm going to use the points from the Surface Sampler to spawn a Point Grid
+But I'm going to use the points from the Surface Sampler to spawn a Point Grid
+
+610
+00:28:42,940 --> 00:28:46,260
+And the Point Grid is going to simulate this thing that happens in nature
+And the Point Grid is going to simulate this thing that happens in nature
+
+611
+00:28:46,280 --> 00:28:50,351
+That the points are going to spread out from that starting point in that first grass
+That the points are going to spread out from that starting point in that first grass
+
+612
+00:28:50,400 --> 00:28:54,222
+So we'll right click and create a Point Grid
+So we'll right click and create a Point Grid
+
+613
+00:28:54,230 --> 00:28:59,606
+We want this Point Grid to be spawned at the location of these original points
+We want this Point Grid to be spawned at the location of these original points
+
+614
+00:28:59,630 --> 00:29:01,808
+We'll create a Copy Points node
+We'll create a Copy Points node
+
+615
+00:29:01,810 --> 00:29:07,810
+This Copy Points node will plug the source into the Point Grid and the target into the Surface Sampler
+This Copy Points node will plug the source into the Point Grid and the target into the Surface Sampler
+
+616
+00:29:07,820 --> 00:29:09,848
+Let's go ahead and debug what this looks like
+Let's go ahead and debug what this looks like
+
+617
+00:29:09,860 --> 00:29:11,939
+They're a little bit huge
+They're a little bit huge
+
+618
+00:29:11,944 --> 00:29:18,272
+But you can see there's a block of points that has been simulated around those starting grass points
+But you can see there's a block of points that has been simulated around those starting grass points
+
+619
+00:29:18,310 --> 00:29:22,964
+Let's go ahead and modify this Create Points Grid a little bit so that the points are smaller
+Let's go ahead and modify this Create Points Grid a little bit so that the points are smaller
+
+620
+00:29:22,980 --> 00:29:25,172
+We'll come to the Grid Extent
+We'll come to the Grid Extent
+
+621
+00:29:25,180 --> 00:29:27,745
+We'll lower it down to 250 250
+We'll lower it down to 250 250
+
+622
+00:29:27,760 --> 00:29:31,015
+We don't need it to have a grid in the Z direction
+We don't need it to have a grid in the Z direction
+
+623
+00:29:31,040 --> 00:29:33,560
+Just a flat spread of points
+Just a flat spread of points
+
+624
+00:29:33,562 --> 00:29:37,557
+So we'll go ahead and lower the Z Grid Extent down to 1
+So we'll go ahead and lower the Z Grid Extent down to 1
+
+625
+00:29:37,560 --> 00:29:39,980
+So you can see now there are some squares
+So you can see now there are some squares
+
+626
+00:29:39,980 --> 00:29:43,618
+which are really just a stacking of white points in this case
+which are really just a stacking of white points in this case
+
+627
+00:29:43,621 --> 00:29:46,052
+at or around our starting point for our grass
+at or around our starting point for our grass
+
+628
+00:29:46,059 --> 00:29:48,334
+Now we're going to create a few more points
+Now we're going to create a few more points
+
+629
+00:29:48,340 --> 00:29:53,020
+This works the same way that the Surface Sampler does in that the point extents
+This works the same way that the Surface Sampler does in that the point extents
+
+630
+00:29:53,020 --> 00:29:55,607
+If we have really high points per square meter
+If we have really high points per square meter
+
+631
+00:29:55,620 --> 00:29:59,400
+If the point extents are small it's going to spit out a ton more points
+If the point extents are small it's going to spit out a ton more points
+
+632
+00:29:59,410 --> 00:30:01,618
+So we'll just come over to this
+So we'll just come over to this
+
+633
+00:30:01,618 --> 00:30:06,511
+And lower our cell size which are the individual points in the grid down to 50
+And lower our cell size which are the individual points in the grid down to 50
+
+634
+00:30:06,530 --> 00:30:09,194
+So you can't really tell from the display here
+So you can't really tell from the display here
+
+635
+00:30:09,210 --> 00:30:14,634
+But this has increased the number of points in the grid by lowering the size of the points
+But this has increased the number of points in the grid by lowering the size of the points
+
+636
+00:30:14,660 --> 00:30:17,208
+And it'll just fill in more points in those gaps
+And it'll just fill in more points in those gaps
+
+637
+00:30:17,220 --> 00:30:18,925
+Okay so we have a good number of points
+Okay so we have a good number of points
+
+638
+00:30:18,930 --> 00:30:20,910
+And we have a good spread of the points
+And we have a good spread of the points
+
+639
+00:30:20,910 --> 00:30:23,046
+Now we need to actually start modifying them
+Now we need to actually start modifying them
+
+640
+00:30:23,050 --> 00:30:26,455
+So we can use them to spawn additional grass geometry
+So we can use them to spawn additional grass geometry
+
+641
+00:30:26,470 --> 00:30:30,058
+The first thing I'm going to do is shrink down the size of each of these points
+The first thing I'm going to do is shrink down the size of each of these points
+
+642
+00:30:30,058 --> 00:30:30,838
+A little bit more
+A little bit more
+
+643
+00:30:30,860 --> 00:30:31,892
+And I'm now going to do that
+And I'm now going to do that
+
+644
+00:30:31,900 --> 00:30:33,156
+And that creates a point grid
+And that creates a point grid
+
+645
+00:30:33,160 --> 00:30:37,192
+Because if I shrink the cell size down it's just going to keep creating more points
+Because if I shrink the cell size down it's just going to keep creating more points
+
+646
+00:30:37,210 --> 00:30:39,433
+What I don't want to do is create more points
+What I don't want to do is create more points
+
+647
+00:30:39,440 --> 00:30:42,347
+In this case if I do that it might crash my computer to be honest
+In this case if I do that it might crash my computer to be honest
+
+648
+00:30:42,360 --> 00:30:46,780
+What I want to do is take those original points that I've spawned
+What I want to do is take those original points that I've spawned
+
+649
+00:30:46,780 --> 00:30:50,922
+And lower the extents of them or shrink the extents of those points
+And lower the extents of them or shrink the extents of those points
+
+650
+00:30:50,940 --> 00:30:53,668
+And I can do that with a Bounds Modifier
+And I can do that with a Bounds Modifier
+
+651
+00:30:53,670 --> 00:30:59,834
+So I'll drag off of this Copy Points and create a Bounds Modifier for the Bounds Minimum
+So I'll drag off of this Copy Points and create a Bounds Modifier for the Bounds Minimum
+
+652
+00:30:59,840 --> 00:31:02,609
+We will go ahead and shrink that down to 0 5
+We will go ahead and shrink that down to 0 5
+
+653
+00:31:02,620 --> 00:31:04,312
+Let's go ahead and debug that
+Let's go ahead and debug that
+
+654
+00:31:04,320 --> 00:31:06,816
+Press D to stop debugging our Copy Points
+Press D to stop debugging our Copy Points
+
+655
+00:31:06,820 --> 00:31:10,388
+And go ahead and press D to debug our Bounds Modifier
+And go ahead and press D to debug our Bounds Modifier
+
+656
+00:31:10,400 --> 00:31:14,176
+And we can see I've shrunk the point size down quite a bit
+And we can see I've shrunk the point size down quite a bit
+
+657
+00:31:14,190 --> 00:31:18,432
+So now we can actually see the divisions between some of these grass points
+So now we can actually see the divisions between some of these grass points
+
+658
+00:31:18,440 --> 00:31:22,180
+Okay next let's add some randomness to their scale and rotation
+Okay next let's add some randomness to their scale and rotation
+
+659
+00:31:22,200 --> 00:31:24,240
+So we'll make another Transform Points here
+So we'll make another Transform Points here
+
+660
+00:31:24,240 --> 00:31:28,902
+We'll add that 360 rotation in the Rotation Max as well
+We'll add that 360 rotation in the Rotation Max as well
+
+661
+00:31:28,930 --> 00:31:32,248
+And we'll come over here to the Offset for the points
+And we'll come over here to the Offset for the points
+
+662
+00:31:32,250 --> 00:31:34,842
+And we want to spread them out a little bit
+And we want to spread them out a little bit
+
+663
+00:31:34,850 --> 00:31:38,532
+So they don't look like they're in such a grid pattern
+So they don't look like they're in such a grid pattern
+
+664
+00:31:38,535 --> 00:31:40,369
+So add 100 to the Max X
+So add 100 to the Max X
+
+665
+00:31:40,412 --> 00:31:42,626
+And 100 to the Max Y
+And 100 to the Max Y
+
+666
+00:31:42,640 --> 00:31:46,744
+Let's un debug our Bounds Modifier and debug our Transform Points
+Let's un debug our Bounds Modifier and debug our Transform Points
+
+667
+00:31:46,760 --> 00:31:52,710
+We can see we've added a lot of randomness to the spread of that original grid of points
+We can see we've added a lot of randomness to the spread of that original grid of points
+
+668
+00:31:52,730 --> 00:31:56,410
+Now they're rotating now they're expanding out from the center
+Now they're rotating now they're expanding out from the center
+
+669
+00:31:56,410 --> 00:31:57,238
+This is great
+This is great
+
+670
+00:31:57,238 --> 00:32:01,966
+Now the final thing we want to add in here is a node to modify the points by distance
+Now the final thing we want to add in here is a node to modify the points by distance
+
+671
+00:32:02,000 --> 00:32:06,230
+In order for us to simulate that these grasses are growing over time
+In order for us to simulate that these grasses are growing over time
+
+672
+00:32:06,230 --> 00:32:13,380
+And so the grasses that are farther away from that central origin clump of grass should be smaller
+And so the grasses that are farther away from that central origin clump of grass should be smaller
+
+673
+00:32:13,390 --> 00:32:15,190
+So they should gradually get smaller
+So they should gradually get smaller
+
+674
+00:32:15,190 --> 00:32:18,376
+Because they're younger in age as they get away from the central clump
+Because they're younger in age as they get away from the central clump
+
+675
+00:32:18,390 --> 00:32:22,394
+So what we're going to do is add a Distance node
+So what we're going to do is add a Distance node
+
+676
+00:32:22,410 --> 00:32:24,445
+So right click in the empty space
+So right click in the empty space
+
+677
+00:32:24,450 --> 00:32:25,830
+Make a Distance node
+Make a Distance node
+
+678
+00:32:25,830 --> 00:32:28,294
+Plug the Source into the Transform Points
+Plug the Source into the Transform Points
+
+679
+00:32:28,310 --> 00:32:30,310
+These points that we've got
+These points that we've got
+
+680
+00:32:30,313 --> 00:32:34,063
+I will plug the target into that original Surface Sampler node
+I will plug the target into that original Surface Sampler node
+
+681
+00:32:34,080 --> 00:32:35,637
+So it's taking that original point
+So it's taking that original point
+
+682
+00:32:35,640 --> 00:32:38,062
+And measuring the distance between that original point
+And measuring the distance between that original point
+
+683
+00:32:38,067 --> 00:32:41,518
+And these other points that we've added in that Distance node
+And these other points that we've added in that Distance node
+
+684
+00:32:41,527 --> 00:32:44,439
+We want to make sure that we check our Set Density
+We want to make sure that we check our Set Density
+
+685
+00:32:44,450 --> 00:32:46,386
+And we'll lower the Max Distance down to something like 200
+And we'll lower the Max Distance down to something like 200
+
+686
+00:32:46,390 --> 00:32:47,963
+Let's go ahead and debug what that looks like
+Let's go ahead and debug what that looks like
+
+687
+00:32:47,967 --> 00:32:49,540
+我們將最大距離降低到200 左右
+我們將最大距離降低到200 左右
+
+688
+00:32:49,540 --> 00:32:50,871
+讓我們繼續調試它的樣子
+讓我們繼續調試它的樣子
+
+689
+00:32:50,900 --> 00:32:52,655
+So we can see what it's given us
+So we can see what it's given us
+
+690
+00:32:52,660 --> 00:32:57,160
+And we can even increase and decrease this Maximum Distance to see what it's doing
+And we can even increase and decrease this Maximum Distance to see what it's doing
+
+691
+00:32:57,170 --> 00:33:03,922
+It's adding a gradient in color starting from the middle where that original grass clump started going out from there
+It's adding a gradient in color starting from the middle where that original grass clump started going out from there
+
+692
+00:33:03,940 --> 00:33:05,990
+So I'll keep it at 2 to 10 for now
+So I'll keep it at 2 to 10 for now
+
+693
+00:33:05,990 --> 00:33:07,015
+Something like that
+Something like that
+
+694
+00:33:07,020 --> 00:33:08,910
+So now we need to take that density data
+So now we need to take that density data
+
+695
+00:33:08,911 --> 00:33:12,313
+this black and white data and scale the points down based on it
+this black and white data and scale the points down based on it
+
+696
+00:33:12,330 --> 00:33:15,690
+We'll right click and create an Execute Blueprint node
+We'll right click and create an Execute Blueprint node
+
+697
+00:33:15,690 --> 00:33:16,320
+Plug that in
+Plug that in
+
+698
+00:33:16,330 --> 00:33:21,202
+And in that Execute Blueprint node we're going to access a Scale by Density function
+And in that Execute Blueprint node we're going to access a Scale by Density function
+
+699
+00:33:21,240 --> 00:33:24,950
+So we'll type in Scale and find Scale by Density
+So we'll type in Scale and find Scale by Density
+
+700
+00:33:24,950 --> 00:33:27,600
+Let's go ahead and debug that node
+Let's go ahead and debug that node
+
+701
+00:33:27,610 --> 00:33:31,812
+And you'll see nothing because we can see that we have our Scale Min and Scale Max
+And you'll see nothing because we can see that we have our Scale Min and Scale Max
+
+702
+00:33:31,820 --> 00:33:33,620
+They're zero and zero
+They're zero and zero
+
+703
+00:33:33,620 --> 00:33:34,994
+So we don't want that
+So we don't want that
+
+704
+00:33:34,994 --> 00:33:39,116
+We want them to be either 1 in Scale Min or 1 in Scale Max
+We want them to be either 1 in Scale Min or 1 in Scale Max
+
+705
+00:33:39,120 --> 00:33:40,890
+I'm not actually sure which is which
+I'm not actually sure which is which
+
+706
+00:33:40,890 --> 00:33:42,306
+I'll just try 1 in Scale Max
+I'll just try 1 in Scale Max
+
+707
+00:33:42,320 --> 00:33:48,898
+So it's using the black values as the zero in the Scale Min and the Scale Max
+So it's using the black values as the zero in the Scale Min and the Scale Max
+
+708
+00:33:48,910 --> 00:33:53,278
+It's adding one to its scale value for the white squares
+It's adding one to its scale value for the white squares
+
+709
+00:33:53,280 --> 00:33:55,017
+Okay so we actually want to flip that
+Okay so we actually want to flip that
+
+710
+00:33:55,017 --> 00:33:57,333
+So I'll come over here and make the Scale Min 1
+So I'll come over here and make the Scale Min 1
+
+711
+00:33:57,340 --> 00:34:00,634
+Instead of having it scale all the way down to 0 on the outside
+Instead of having it scale all the way down to 0 on the outside
+
+712
+00:34:00,640 --> 00:34:02,557
+I'll just scale it down to 0 5
+I'll just scale it down to 0 5
+
+713
+00:34:02,560 --> 00:34:07,268
+We still have grass in those outer areas but they're just at 0 5 scale
+We still have grass in those outer areas but they're just at 0 5 scale
+
+714
+00:34:07,280 --> 00:34:11,180
+All right that's looking really good and it has a nice natural feel to it
+All right that's looking really good and it has a nice natural feel to it
+
+715
+00:34:11,200 --> 00:34:15,616
+The last thing I'm gonna do here is use a projection node because these are grid points
+The last thing I'm gonna do here is use a projection node because these are grid points
+
+716
+00:34:15,640 --> 00:34:17,740
+It's a little hard to tell on this landscape
+It's a little hard to tell on this landscape
+
+717
+00:34:17,740 --> 00:34:22,642
+But they're like flat plates of points getting put down on the landscape
+But they're like flat plates of points getting put down on the landscape
+
+718
+00:34:22,670 --> 00:34:29,174
+So I want to project those points down so that they can fall more naturally into the crevices
+So I want to project those points down so that they can fall more naturally into the crevices
+
+719
+00:34:29,190 --> 00:34:31,948
+And the raised and lower areas of your landscape
+And the raised and lower areas of your landscape
+
+720
+00:34:31,950 --> 00:34:35,579
+If you have more of a mountainous region this will not quite look right
+If you have more of a mountainous region this will not quite look right
+
+721
+00:34:35,580 --> 00:34:41,274
+It'll just look like these plates of point clumps and they won't be matching the full topography
+It'll just look like these plates of point clumps and they won't be matching the full topography
+
+722
+00:34:41,300 --> 00:34:48,020
+So we're going to add a projection node to add that in
+So we're going to add a projection node to add that in
+
+723
+00:34:48,060 --> 00:34:51,900
+And we'll plug that into the Out from the Scale by Density
+And we'll plug that into the Out from the Scale by Density
+
+724
+00:34:51,900 --> 00:34:54,420
+And the Projection Target is our Landscape
+And the Projection Target is our Landscape
+
+725
+00:34:54,420 --> 00:34:57,812
+So we'll go ahead all the way here from our Landscape data
+So we'll go ahead all the way here from our Landscape data
+
+726
+00:34:57,820 --> 00:35:01,696
+And drag that over to our Projection Target here
+And drag that over to our Projection Target here
+
+727
+00:35:01,700 --> 00:35:05,559
+We do want it to in this case project positions and rotations
+We do want it to in this case project positions and rotations
+
+728
+00:35:05,560 --> 00:35:08,290
+Let's go ahead and see if our points look correct
+Let's go ahead and see if our points look correct
+
+729
+00:35:08,300 --> 00:35:08,638
+They do
+They do
+
+730
+00:35:08,638 --> 00:35:11,173
+Like I said it's a little hard to tell on this Landscape
+Like I said it's a little hard to tell on this Landscape
+
+731
+00:35:11,180 --> 00:35:15,260
+But they're actually matching the ups and downs of the Landscape
+But they're actually matching the ups and downs of the Landscape
+
+732
+00:35:15,260 --> 00:35:17,996
+A lot more now than they were before
+A lot more now than they were before
+
+733
+00:35:18,000 --> 00:35:18,459
+All right
+All right
+
+734
+00:35:18,460 --> 00:35:22,400
+So now we're ready to add our actual meshes into this point structure
+So now we're ready to add our actual meshes into this point structure
+
+735
+00:35:22,420 --> 00:35:23,656
+And see how it looks
+And see how it looks
+
+736
+00:35:23,660 --> 00:35:26,194
+So I'll go ahead and stop debugging these points
+So I'll go ahead and stop debugging these points
+
+737
+00:35:26,200 --> 00:35:29,583
+And we'll come and grab this Static Mesh Spawner that we have down here
+And we'll come and grab this Static Mesh Spawner that we have down here
+
+738
+00:35:29,590 --> 00:35:30,550
+I'll disconnect it
+I'll disconnect it
+
+739
+00:35:30,550 --> 00:35:35,254
+I'll bring it over to the end of the string of nodes we've just made and connected up
+I'll bring it over to the end of the string of nodes we've just made and connected up
+
+740
+00:35:35,260 --> 00:35:36,475
+And there we go
+And there we go
+
+741
+00:35:36,475 --> 00:35:40,363
+Now we have a much more natural and dense spread of grass
+Now we have a much more natural and dense spread of grass
+
+742
+00:35:40,370 --> 00:35:46,445
+And we're really only using the standard 0 1 points per square meter in our Surface Sampler here
+And we're really only using the standard 0 1 points per square meter in our Surface Sampler here
+
+743
+00:35:46,462 --> 00:35:48,622
+And we're getting all of this grass
+And we're getting all of this grass
+
+744
+00:35:48,650 --> 00:35:54,506
+And it's a lot more efficient than just blasting your whole landscape with a ton of points
+And it's a lot more efficient than just blasting your whole landscape with a ton of points
+
+745
+00:35:54,510 --> 00:35:57,518
+And we can even lower the density of our grass right now
+And we can even lower the density of our grass right now
+
+746
+00:35:57,520 --> 00:35:58,933
+We can come to our Surface Sampler
+We can come to our Surface Sampler
+
+747
+00:35:58,940 --> 00:36:01,688
+And actually just lower it down to 0 05 even
+And actually just lower it down to 0 05 even
+
+748
+00:36:01,698 --> 00:36:05,761
+And you'll still see quite a dense placement of grass
+And you'll still see quite a dense placement of grass
+
+749
+00:36:05,770 --> 00:36:10,108
+And you can see it has this really natural clumping that's going on
+And you can see it has this really natural clumping that's going on
+
+750
+00:36:10,120 --> 00:36:12,256
+We can add even a little bit more randomness
+We can add even a little bit more randomness
+
+751
+00:36:12,260 --> 00:36:16,004
+Now by coming in and adding another Transform node in between here
+Now by coming in and adding another Transform node in between here
+
+752
+00:36:16,020 --> 00:36:19,204
+and adding some random scale which we didn't add before
+and adding some random scale which we didn't add before
+
+753
+00:36:19,210 --> 00:36:21,410
+so maybe 0 5 by 1 2
+so maybe 0 5 by 1 2
+
+754
+00:36:21,410 --> 00:36:23,610
+Now it looks even more random
+Now it looks even more random
+
+755
+00:36:23,620 --> 00:36:25,540
+One side note is that as I was working on this
+One side note is that as I was working on this
+
+756
+00:36:25,540 --> 00:36:29,302
+I was noticing a few times when I was starting to simulate my grass
+I was noticing a few times when I was starting to simulate my grass
+
+757
+00:36:29,310 --> 00:36:31,470
+add the mesh grass to the end of it
+add the mesh grass to the end of it
+
+758
+00:36:31,477 --> 00:36:33,232
+that it didn't show up right away
+that it didn't show up right away
+
+759
+00:36:33,232 --> 00:36:37,434
+or it disappeared until I zoomed my camera around a few times in and out
+or it disappeared until I zoomed my camera around a few times in and out
+
+760
+00:36:37,480 --> 00:36:38,632
+And then it showed up
+And then it showed up
+
+761
+00:36:38,640 --> 00:36:39,200
+There you have it
+There you have it
+
+762
+00:36:39,200 --> 00:36:40,760
+I hope you found this video helpful
+I hope you found this video helpful
+
+763
+00:36:40,760 --> 00:36:44,486
+If you did shoot me a thumbs up or a comment to let me know
+If you did shoot me a thumbs up or a comment to let me know
+
+764
+00:36:44,490 --> 00:36:47,363
+And if there's anything you'd like me to cover in the future
+And if there's anything you'd like me to cover in the future
+
+765
+00:36:47,370 --> 00:36:55,462
+If you are really interested in this process of building stylized procedural environments with stuff you model inside the engine
+If you are really interested in this process of building stylized procedural environments with stuff you model inside the engine
+
+766
+00:36:55,480 --> 00:36:57,856
+These kinds of low poly stylized looks
+These kinds of low poly stylized looks
+
+767
+00:36:57,860 --> 00:37:03,410
+I have a procedural stylized art masterclass which you can find a link to below this video
+I have a procedural stylized art masterclass which you can find a link to below this video
+
+768
+00:37:03,440 --> 00:37:06,520
+Otherwise I will see you in the next one
+Otherwise I will see you in the next one

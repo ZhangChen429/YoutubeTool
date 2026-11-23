@@ -1,0 +1,4229 @@
+1
+00:00:07,020 --> 00:00:08,480
+Hey what's up youtube
+嘿，YouTube大家好
+
+2
+00:00:08,480 --> 00:00:11,000
+This is the signal video of this sweet paths series
+这是这个超棒的草地系列的第二期视频
+
+3
+00:00:11,000 --> 00:00:13,920
+where i explain how i created this radistic cooking rss
+在视频里，我会讲解我是如何制作出这种逼真草地的
+
+4
+00:00:13,920 --> 00:00:16,850
+Using vendor on an ranging in the fields video
+用到了我在第一期视频里讲解的顶点动画
+
+5
+00:00:16,850 --> 00:00:19,850
+I explain how i use niaggraph to build a tree win system
+我会讲解如何使用Niagara Graph搭建风力系统
+
+6
+00:00:19,850 --> 00:00:22,680
+And dynamically generate a tiling wind texture
+并动态生成可平铺的风力纹理
+
+7
+00:00:22,680 --> 00:00:25,410
+I also showed a very simple way to made grass
+我还展示了制作草地的一种非常简单的方法
+
+8
+00:00:25,410 --> 00:00:28,770
+Using the texture and achieves very curly projection trick
+利用该纹理并实现了一个非常酷的投影技巧
+
+9
+00:00:28,770 --> 00:00:32,090
+In today's video i'm going to dive much , much deeper
+在今天的视频里，我会深入得多
+
+10
+00:00:32,090 --> 00:00:35,260
+I'm going to showcase a whole bunch of very , very cool tricks
+我会展示一大堆非常非常酷的技巧
+
+11
+00:00:35,260 --> 00:00:38,980
+I used to create that natural on very fluffy looking animated grass
+用于制作那种自然又非常蓬松的动画草地
+
+12
+00:00:38,980 --> 00:00:40,340
+Now a couple of months ago
+几个月前
+
+13
+00:00:40,340 --> 00:00:42,980
+i released the video explaining a cptone of industry
+我发布过一期视频，讲解了业内一些
+
+14
+00:00:42,980 --> 00:00:45,360
+Great techniques when it comes to rendering grass
+渲染草地时非常出色的技术
+
+15
+00:00:45,360 --> 00:00:48,230
+Some of which i will be reducing in today's video
+其中一些我会在今天的视频里重新讲一遍
+
+16
+00:00:48,230 --> 00:00:51,980
+So you might want to give that video watch first if you haven't already
+所以如果还没看过，建议你先去看那期视频
+
+17
+00:00:51,980 --> 00:00:53,720
+All right , let's get started
+好，我们开始吧
+
+18
+00:01:00,360 --> 00:01:03,640
+Now i've had an idea that has been begging me for a while now
+有个想法已经在我脑子里萦绕很久了
+
+19
+00:01:03,640 --> 00:01:07,400
+You see these ghost of sushima texore was very inspiring to me
+《对马岛之魂》的纹理给了我很大启发
+
+20
+00:01:07,400 --> 00:01:09,730
+I like a lot what they did with a grass
+我非常喜欢他们处理草地的方式
+
+21
+00:01:09,730 --> 00:01:12,550
+Now i'd love to be more knowledgeable when it comes to ue
+我很想更深入地了解UE
+
+22
+00:01:12,550 --> 00:01:17,410
+And its rendering pipeline to be able to try similar things using geometry shadows on whatnot
+以及它的渲染管线，好让我能尝试用几何着色器、阴影之类的东西做出类似效果
+
+23
+00:01:17,410 --> 00:01:19,180
+But one who i'm not turn . i can't
+但可惜我还没达到那个程度，我做不到
+
+24
+00:01:19,180 --> 00:01:22,480
+But just still a lot you can do is a good old war position offset
+但就算只靠经典的世界位置偏移，也能做很多事
+
+25
+00:01:22,480 --> 00:01:24,930
+So i wanted to see how far i could go with it
+所以我想看看自己能把它玩到什么程度
+
+26
+00:01:24,930 --> 00:01:28,840
+Hence why is the grass mesh i'll be using in today's video looks like this
+这也是为什么我今天视频里要用的草地网格长这样
+
+27
+00:01:28,840 --> 00:01:31,500
+Now this will be the subject of a dedicated video
+这部分我会专门做一期视频来讲
+
+28
+00:01:31,500 --> 00:01:32,630
+So i'll be brief here
+所以这里我就简单带过
+
+29
+00:01:32,630 --> 00:01:34,620
+But yes it's quite busier looking
+不过没错，它看起来相当复杂
+
+30
+00:01:34,620 --> 00:01:36,940
+Not the typical rare smash you ten to use
+它不是你们通常使用的那种典型草网格
+
+31
+00:01:36,940 --> 00:01:38,560
+I have these flat cards right
+我有这些平面卡片，对吧
+
+32
+00:01:38,560 --> 00:01:40,910
+They are straight purpose the undeformed
+它们被特意保持成未变形的直立状态
+
+33
+00:01:40,910 --> 00:01:44,000
+And they are all orted to other positive ex axis
+而且全都朝向正X轴
+
+34
+00:01:44,000 --> 00:01:48,710
+I use the first uv map to will map my grass sixtures . nothing fancy
+我用第一套UV来映射草地纹理，没什么花哨的
+
+35
+00:01:48,710 --> 00:01:50,750
+I also use my data baker blender
+我还用了Blender里的Data Baker
+
+36
+00:01:50,750 --> 00:01:53,420
+I don't too beg these cards pivots in uv
+把每张卡片的枢轴点烘焙到UV里
+
+37
+00:01:53,420 --> 00:01:56,170
+It's quite a common technique and i made a video on the subject
+这是很常见的技术，我也做过相关视频
+
+38
+00:01:56,170 --> 00:01:57,530
+So feel free to check it out
+可以随意去看看
+
+39
+00:01:57,530 --> 00:02:01,190
+I also baked the normalized height in uvz in the vertical axis
+我还把归一化高度沿垂直轴烘焙到UV的Z通道
+
+40
+00:02:01,190 --> 00:02:05,440
+and random value pack card in the horizon thaxis very useful
+还有每张卡片在水平轴上的随机值，这非常有用
+
+41
+00:02:05,440 --> 00:02:07,560
+So that the mesh i exported to use it
+这就是我导出用来使用的网格
+
+42
+00:02:07,560 --> 00:02:12,310
+And the idea was to try and see if it was possible to build most of the grasmesh videos
+我的想法是试试看，能否做出草网格的大部分效果
+
+43
+00:02:12,310 --> 00:02:16,640
+bend orientation on all using nothing but word position of set tricks
+比如弯曲、朝向和法线，全都只靠世界位置偏移技巧
+
+44
+00:02:16,640 --> 00:02:19,970
+and do that in the hopes that i could reach a much more natural look
+希望这样能得到更自然的外观
+
+45
+00:02:19,970 --> 00:02:22,550
+by having a complete control of your these features
+通过完全控制这些特性
+
+46
+00:02:22,550 --> 00:02:24,130
+And they are randomization
+以及它们的随机化
+
+47
+00:02:24,130 --> 00:02:25,470
+So let's have a look
+那么来看看吧
+
+48
+00:02:29,480 --> 00:02:32,920
+As usual , my favorite world position of the trick of all times
+和往常一样，这是我最喜欢的经典世界位置偏移技巧
+
+49
+00:02:32,920 --> 00:02:37,390
+Is to reconstruct a world position from scratch and converted to offsets
+就是从零重建世界位置，再转换成偏移
+
+50
+00:02:37,390 --> 00:02:41,630
+So let's do that zero attracted by world position that corpses
+先这么做：把世界位置归零，这会把
+
+51
+00:02:41,630 --> 00:02:43,490
+all vertices to the world origin in
+所有顶点都塌缩到世界原点
+
+52
+00:02:43,490 --> 00:02:47,355
+Because all vertices are now at zero , zero zero as simple as that
+因为现在所有顶点都在 (0,0,0)，就这么简单
+
+53
+00:02:47,355 --> 00:02:50,200
+So let's add the vertices local position
+接着加上顶点的局部位置
+
+54
+00:02:50,200 --> 00:02:54,530
+Then subtract the bait pivots in local space to some jackets on zero in
+然后在局部空间里减去轴心，把物体归到零点
+
+55
+00:02:54,530 --> 00:02:57,380
+At that point , scale and rotation can be applied to
+这时就可以应用缩放和旋转，来
+
+56
+00:02:57,380 --> 00:03:00,530
+Well scale and rotate cards around their appeal points
+围绕轴心缩放和旋转草片
+
+57
+00:03:00,530 --> 00:03:03,810
+So i'm feels going to use the painstance fade amount node
+所以我会使用 PerInstanceFadeAmount（每实例淡出量）节点
+
+58
+00:03:03,810 --> 00:03:06,530
+this zero to one value is based on the instance
+这个 0 到 1 的值基于实例的
+
+59
+00:03:06,530 --> 00:03:11,580
+Starting and curdistant settings that's going to shrink calves at a distance and smooth out
+起始和剔除距离设置，它会在远处缩小草，并平滑
+
+60
+00:03:11,580 --> 00:03:14,700
+There was also wise very harsh instance distance going ning
+原本非常生硬的实例距离剔除
+
+61
+00:03:14,700 --> 00:03:17,180
+Next , let's apply the instance scale here
+接下来，我们在这里应用实例缩放
+
+62
+00:03:17,180 --> 00:03:19,840
+I'm going to assume instances are uniformly scale
+我假设实例是等比缩放的
+
+63
+00:03:19,840 --> 00:03:23,820
+And that the scale z component is used to control that uniform scale
+并假设 Z 轴缩放分量用来控制这个等比缩放
+
+64
+00:03:23,820 --> 00:03:25,570
+So let's create an a victor
+所以我们创建一个向量
+
+65
+00:03:25,570 --> 00:03:27,750
+Transform it from roctowards space
+把它从局部空间变换到世界空间
+
+66
+00:03:27,750 --> 00:03:32,452
+then gets that victor of length and set the instant scale along as the axis
+然后取这个向量的长度，作为实例沿 Z 轴的缩放
+
+67
+00:03:32,452 --> 00:03:36,800
+And maybe add an extra parameter to have furs of control over that scale
+也许再加一个额外参数，来进一步控制这个缩放
+
+68
+00:03:36,800 --> 00:03:38,250
+Could it's working
+酷，它生效了
+
+69
+00:03:38,250 --> 00:03:38,800
+Next
+接下来
+
+70
+00:03:38,800 --> 00:03:40,020
+Let's offset cards
+让我们偏移草片
+
+71
+00:03:40,020 --> 00:03:42,540
+so they recover their orinner world position
+让它们恢复原来的世界位置
+
+72
+00:03:42,540 --> 00:03:47,060
+That's just a matter of adding the big pivot comes from from locale to arms space
+只需加上从局部空间转换到世界空间的轴心
+
+73
+00:03:47,060 --> 00:03:52,250
+And here's the non neat trick instead of of setting cards using their pivots in words space
+这里有个更妙的技巧：与其用世界空间中的轴心来设置草片
+
+74
+00:03:52,250 --> 00:03:54,970
+I can use instance position in wardspace
+我可以使用世界空间中的实例位置
+
+75
+00:03:54,970 --> 00:03:58,160
+Cats are going to be some terms that single instance position
+草片会以那个单一的实例位置为中心
+
+76
+00:03:58,160 --> 00:03:59,340
+Not very interesting
+这没什么意思
+
+77
+00:03:59,340 --> 00:04:01,620
+But then i can run between these two positions
+但接下来我可以在两个位置之间插值
+
+78
+00:04:01,620 --> 00:04:04,500
+And control how much cards are spread about , right
+并控制草片分散的程度，对吧
+
+79
+00:04:04,500 --> 00:04:07,060
+Keep in mind that may mess with occasion curring
+请记住，这可能会干扰遮挡剔除
+
+80
+00:04:07,060 --> 00:04:09,460
+So you might want to increase the mesh bones a bit
+所以你可能需要把网格边界稍微调大一点
+
+81
+00:04:09,460 --> 00:04:12,340
+Depending on the amount of set applied on average
+这取决于平均施加的风量
+
+82
+00:04:12,340 --> 00:04:13,860
+Just to be on the safe side
+为了保险起见
+
+83
+00:04:13,860 --> 00:04:16,220
+Neat for now , let's set this to one
+现在先这样，我们把它设为1
+
+84
+00:04:16,220 --> 00:04:19,310
+So that's a base i can already somewhat walk with
+所以这个基础版本我已经能勉强用了
+
+85
+00:04:19,310 --> 00:04:24,240
+Cards are quictly located at the people with points scaled based on the instance z scale
+卡片会快速定位到枢轴点，顶点会根据实例的Z轴缩放来缩放
+
+86
+00:04:24,240 --> 00:04:27,520
+And they all reministrate regardless of the instance rotation
+而且无论实例怎么旋转，它们都保持原样
+
+87
+00:04:27,520 --> 00:04:28,527
+So that's great
+这很好
+
+88
+00:04:28,527 --> 00:04:33,370
+But obviously they all face the same direction and are pretty boring looking still
+但显然它们都朝向同一个方向，看起来还是很单调
+
+89
+00:04:33,370 --> 00:04:35,810
+So first i'd like to rotate cards
+所以首先我想旋转卡片
+
+90
+00:04:38,880 --> 00:04:41,180
+After playing rotations can be tricky
+施加旋转可能会很棘手
+
+91
+00:04:41,180 --> 00:04:44,610
+I'd like to rotate cars around the texas randomly i suppose
+我想让卡片绕Z轴随机旋转吧
+
+92
+00:04:44,610 --> 00:04:48,020
+But there is no possibly tid cars towards a certain direction
+但没办法让卡片朝某个特定方向倾斜
+
+93
+00:04:48,020 --> 00:04:52,230
+This i'd likely need to apply a rotation around the x and y access as well
+这可能需要我同时绕X轴和Y轴施加旋转
+
+94
+00:04:52,230 --> 00:04:55,520
+And rotations are be tricky to stack it's not impossible
+而且旋转叠加起来很棘手，但并非不可能
+
+95
+00:04:55,520 --> 00:04:58,640
+But sets a lot of trigger metric just to oion cards
+但仅仅为了给卡片定向就要用大量三角函数
+
+96
+00:04:58,640 --> 00:05:01,250
+Fortunately there is a better on simpler solution
+幸运的是，有一个更好也更简单的方案
+
+97
+00:05:01,250 --> 00:05:06,320
+I'm going to construct three axis and use a three by three matrix to rotate each count
+我将构造三个轴，并用一个3x3矩阵来旋转每张卡片
+
+98
+00:05:06,320 --> 00:05:09,770
+And this method is actually going to help me do crazy cool things
+而且这个方法实际上能帮我做出非常酷的效果
+
+99
+00:05:09,770 --> 00:05:11,600
+But let's start symbol for now
+但我们现在先从简单的开始
+
+100
+00:05:11,600 --> 00:05:14,900
+I'm going to sumes the z axis is still the z warn ais
+我先假设Z轴仍然是世界坐标的Z轴
+
+101
+00:05:14,900 --> 00:05:18,270
+Now i want to rotate cars randomly around that the axis
+现在我想让卡片绕那个轴随机旋转
+
+102
+00:05:18,270 --> 00:05:19,300
+How to do that
+怎么做呢
+
+103
+00:05:19,300 --> 00:05:24,740
+Well i just need to tell you that mesh that x axis of views isn't the world x axis anymore
+我只需要告诉网格，它的顶点X轴不再等于世界X轴
+
+104
+00:05:24,740 --> 00:05:29,800
+let's say that one and your way xx is now just the cross product between these two
+假设新的X轴现在就是这两个向量的叉积
+
+105
+00:05:29,800 --> 00:05:35,360
+And this previse three matrix multiplication with research in vertices matching that new gordinate system
+而之前那个3x3矩阵乘法会让每个顶点匹配这个新的坐标系
+
+106
+00:05:35,360 --> 00:05:36,737
+As simple as that
+就这么简单
+
+107
+00:05:36,737 --> 00:05:42,410
+No , i could mathematically generate random to the direction to create a unique x axis par card
+现在，我可以用数学方法生成随机2D方向，为每张卡片创建独特的X轴
+
+108
+00:05:42,410 --> 00:05:43,900
+But that comes at the cost
+但这有代价
+
+109
+00:05:43,900 --> 00:05:47,220
+a better solution could be to compute that taxis ahead of time
+更好的方案是提前计算好这个X轴
+
+110
+00:05:47,220 --> 00:05:50,220
+And that excurer could be used for this you visa as well
+而且这个X向量也可以用于这些UV
+
+111
+00:05:50,220 --> 00:05:54,050
+You could bake random to the direction pack card in new vies right
+你可以在新的UV里为每张卡片烘焙随机2D方向，对吧
+
+112
+00:05:54,050 --> 00:05:57,350
+But they used the asemethod i used vtex norm
+但用的是我之前处理顶点法线的同一种方法
+
+113
+00:05:57,350 --> 00:05:58,780
+I explain this in a minute
+我马上会解释
+
+114
+00:05:58,780 --> 00:06:01,980
+But i'm actually going to generate my own normal in world space
+但我实际上会在世界空间中生成自己的法线
+
+115
+00:06:01,980 --> 00:06:06,200
+So the normal stored in each vertex is kind of irrelevant this way
+所以这样每个顶点里存储的法线就有点无关紧要了
+
+116
+00:06:06,200 --> 00:06:10,502
+Not make use of that normal to store our random to the direction for free right
+现在我们可以利用那个法线，免费存储随机2D方向，对吧
+
+117
+00:06:10,502 --> 00:06:13,950
+To do this i updated my data baker blender addon
+为了做到这一点，我更新了我的数据烘焙Blender插件
+
+118
+00:06:13,950 --> 00:06:17,400
+It now can generate a random two d or three d direction
+它现在能生成随机2D或3D方向
+
+119
+00:06:17,400 --> 00:06:20,460
+And bake it in vertex collar or not as sweet
+并把它烘焙到顶点色或法线里，这很不错
+
+120
+00:06:22,420 --> 00:06:26,760
+As i note , i also try to do this using an action script angeometry scripting
+如我所说，我也尝试过用属性脚本和几何脚本实现
+
+121
+00:06:26,760 --> 00:06:28,480
+But i hate some kind of roadblock
+但我遇到了某种阻碍
+
+122
+00:06:28,480 --> 00:06:30,560
+But still i'm going to mention it very quick
+不过我还是会很快提一下
+
+123
+00:06:30,560 --> 00:06:31,740
+So let's have a look at it
+那我们就来看看
+
+124
+00:06:31,740 --> 00:06:36,820
+Action script first it's made to work with static measures against the selected assets
+先看 Actor 脚本，它是用来处理所选资产中的静态网格体的
+
+125
+00:06:36,820 --> 00:06:40,590
+Loops through each static mesh construct a dynamic mesh
+它会遍历每个静态网格体，构建一个动态网格体
+
+126
+00:06:40,590 --> 00:06:43,820
+Then for each rod is copies that l d
+然后对每个 LOD，复制该 LOD
+
+127
+00:06:43,820 --> 00:06:48,470
+Then i use the split mesh by components function so that essentially does zerp
+接着我使用按组件拆分网格体功能，这一步基本上就是拆分
+
+128
+00:06:48,470 --> 00:06:51,732
+Each card becomes a unique dynamic mesh , right
+每个草片都会变成独立的动态网格体，对吧
+
+129
+00:06:51,732 --> 00:06:55,360
+So then for each card i generate random two d direction
+然后为每个草片生成随机的二维方向
+
+130
+00:06:55,360 --> 00:06:58,115
+And stores the direction in the vertex norm
+并把该方向存入顶点法线
+
+131
+00:06:58,115 --> 00:07:01,860
+Next day open that card to at first and mtdynamic mesh
+接着把该草片追加到最终的动态网格体里
+
+132
+00:07:01,860 --> 00:07:05,250
+So that we construct address mesh card by card , right
+这样我们就逐个草片构建网格体，对吧
+
+133
+00:07:05,250 --> 00:07:09,260
+And once all cats are processed and merged into that single dynamic mesh
+等所有草片都处理完并合并到那个单一动态网格体后
+
+134
+00:07:09,260 --> 00:07:11,760
+I will pay the original static mesh set visit
+我会替换掉原来的静态网格体资产
+
+135
+00:07:11,760 --> 00:07:15,860
+And that eld index and wins and repeat for all lds
+然后设置该 LOD 索引，并对所有 LOD 重复这一过程
+
+136
+00:07:15,860 --> 00:07:19,440
+I also make sure to use this stream when generating at random direction
+我还确保生成随机方向时使用同一个随机流
+
+137
+00:07:19,440 --> 00:07:23,440
+So all lds generate the same random direction for a given grass cat
+这样所有 LOD 都会为同一个草片生成相同的随机方向
+
+138
+00:07:23,440 --> 00:07:24,490
+Super important
+这点非常重要
+
+139
+00:07:24,490 --> 00:07:26,920
+All right , let's have a look at it in actions then
+好，那我们来看看实际效果
+
+140
+00:07:26,920 --> 00:07:31,995
+So that the measure i'm starting with normers are all oriented the same way as expected
+我一开始用的这些网格体，法线都按预期朝同一方向
+
+141
+00:07:31,995 --> 00:07:35,300
+Right click and click in a red random to the normal
+右键点击，然后选择给法线添加随机方向
+
+142
+00:07:37,860 --> 00:07:42,480
+And what a see each gap tha unique to the direction in the vertex novels
+然后可以看到每个草片都有独立方向，存在顶点法线里
+
+143
+00:07:42,480 --> 00:07:46,100
+and then direction is consistent across all lds
+而且这个方向在所有 LOD 中保持一致
+
+144
+00:07:48,540 --> 00:07:52,920
+until it is not because a given eld may simply delete cards
+直到不再一致，因为某个 LOD 可能直接删掉了草片
+
+145
+00:07:52,920 --> 00:07:56,730
+so that array of components may not be consistent between lds
+所以不同 LOD 的组件数组可能不一致
+
+146
+00:07:56,730 --> 00:08:01,800
+And this there is no easy way to make sure the same normal is shell between cards of different elds
+这样一来，就很难确保不同 LOD 的草片之间共享同一个法线
+
+147
+00:08:01,800 --> 00:08:02,840
+Is that makes sense
+这样能理解吗
+
+148
+00:08:02,840 --> 00:08:06,550
+Plus because this approach navely splits components well
+而且，因为这种方法只是简单地拆分组件
+
+149
+00:08:06,550 --> 00:08:09,930
+A single grass card may be made of multiple measures right
+单个草片可能由多个网格体组成，对吧
+
+150
+00:08:09,930 --> 00:08:12,150
+And thus would need to have the same normal
+因此它们需要拥有相同的法线
+
+151
+00:08:12,150 --> 00:08:16,450
+And yet these measures won't because they will be treated as different components
+但这些网格体不会相同，因为它们会被当作不同组件处理
+
+152
+00:08:16,450 --> 00:08:19,100
+And i didn't find an easy way to automate this
+而且我没找到简单的方法来自动化这一点
+
+153
+00:08:19,100 --> 00:08:22,260
+You could manually paint poly groups and sped by polly groups
+你可以手动绘制多边形组，再按多边形组拆分
+
+154
+00:08:22,260 --> 00:08:24,680
+But that's not such a pleasant to user experience
+但这样的用户体验不太好
+
+155
+00:08:24,680 --> 00:08:27,000
+So in the end i did that in blender to make sure
+所以最后我在 Blender 里处理，以确保
+
+156
+00:08:27,000 --> 00:08:29,085
+I do this share the same letter
+让这些草片共享相同的法线
+
+157
+00:08:29,085 --> 00:08:32,900
+all right back to my world position of section and gangan knothat
+好，回到世界位置这部分，继续往下
+
+158
+00:08:32,900 --> 00:08:36,020
+the vet tex normal tells that from known to d direction packout
+顶点法线里存着从法线到二维方向的信息
+
+159
+00:08:36,020 --> 00:08:38,374
+I can use it as a new x x axis
+我可以把它当作新的 X 轴
+
+160
+00:08:38,374 --> 00:08:42,280
+And again the remaining y axis is simply a cross perfect between these two
+剩下的 Y 轴就是这两者的叉积
+
+161
+00:08:42,280 --> 00:08:45,040
+You need to oto garvectors les one last step
+你需要正交化向量，这是最后一步
+
+162
+00:08:45,040 --> 00:08:49,380
+Just make sure to turn on two sided here and ta randomly related calf
+只要确保在这里开启双面，以及随机旋转的卡片
+
+163
+00:08:49,380 --> 00:08:50,120
+neat
+不错
+
+164
+00:08:55,600 --> 00:09:00,410
+Now let's say i want to also oil cars according to the landscape
+现在假设我还想根据地形来对齐卡片
+
+165
+00:09:00,410 --> 00:09:02,440
+Assume this setting is set true
+假设这个设置被设为 true
+
+166
+00:09:02,440 --> 00:09:02,780
+True
+True
+
+167
+00:09:02,780 --> 00:09:06,340
+These instances should be rented to metrero escape normal , right
+这些实例应该朝向地形法线，对吧
+
+168
+00:09:06,340 --> 00:09:10,240
+So a given instance the z vector transform from locale to world space
+所以对于给定实例，Z 向量从局部空间变换到世界空间
+
+169
+00:09:10,240 --> 00:09:13,510
+Gives the miserums kept normal as the instance world position
+会得到实例世界位置处的地形法线
+
+170
+00:09:13,510 --> 00:09:17,610
+Just keep in mind that a vector transform applies both the rotation and scale
+记住，向量变换会同时应用旋转和缩放
+
+171
+00:09:17,610 --> 00:09:20,690
+So here i need to normalize it to get a unit vector
+所以这里我需要归一化它，得到单位向量
+
+172
+00:09:20,690 --> 00:09:23,070
+Unless that instance isn't scaled in z
+除非那个实例在 Z 轴没有缩放
+
+173
+00:09:23,070 --> 00:09:25,940
+But let's be on the safe side and normalize it anyway
+但保险起见，还是归一化一下
+
+174
+00:09:25,940 --> 00:09:29,230
+So let's use that unit vector as the new z axis
+所以把这个单位向量作为新的 Z 轴
+
+175
+00:09:29,230 --> 00:09:32,430
+However , at this point i need to use one more cross product
+不过，此时我还需要用一次叉积
+
+176
+00:09:32,430 --> 00:09:34,010
+The reason for this is simple
+原因很简单
+
+177
+00:09:34,010 --> 00:09:38,120
+I know have this launtera victure right on this flat to the direction
+我现在有这个地形向量，正好与这个方向垂直
+
+178
+00:09:38,120 --> 00:09:39,900
+So to build the remaining ais
+所以为了构建剩下的轴
+
+179
+00:09:39,900 --> 00:09:42,400
+A single cross product between these two vectors
+这两个向量之间的一次叉积
+
+180
+00:09:42,400 --> 00:09:44,170
+Give me this third vector
+就能得到第三个向量
+
+181
+00:09:44,170 --> 00:09:47,850
+And you can see that those three vectors are not authorbia
+你可以看到，这三个向量并不是正交的
+
+182
+00:09:47,850 --> 00:09:51,580
+So that three by three metrics isn't going to result in just irritation
+所以这个 3x3 矩阵不会只产生旋转
+
+183
+00:09:51,580 --> 00:09:54,555
+But is going to deform the mesh in an undesired way
+而是会以不期望的方式使网格变形
+
+184
+00:09:54,555 --> 00:09:58,880
+So i first need to do a cross product between these two that's the first ais
+所以我首先需要在这两个之间做叉积，这是第一个轴
+
+185
+00:09:58,880 --> 00:10:01,340
+Then do a simon cross product between that one
+然后对那个向量再做一次叉积
+
+186
+00:10:01,340 --> 00:10:03,720
+and the vector that's my sgon xis
+和我的 Z 轴向量之间
+
+187
+00:10:03,720 --> 00:10:06,950
+And the objector can be used as is as a cell exist
+而输出可以直接作为 Y 轴使用
+
+188
+00:10:06,950 --> 00:10:09,590
+Those three vectors are most of the winner . cool
+这三个向量现在都是正交的，酷
+
+189
+00:10:09,590 --> 00:10:11,680
+Feed them into that three by three matrix
+把它们输入那个 3x3 矩阵
+
+190
+00:10:11,680 --> 00:10:15,680
+Make sure to normalize cross products when using none of thogonal vector also
+另外，使用非正交向量时，确保对叉积进行归一化
+
+191
+00:10:15,680 --> 00:10:20,295
+And what up calths now do indeed magizon cape orientation great
+而现在这些向量确实匹配地形朝向，很好
+
+192
+00:10:20,295 --> 00:10:22,210
+i can then use it up and control
+然后我就可以用它来控制
+
+193
+00:10:22,210 --> 00:10:24,330
+If i want straight up personed cards
+如果我希望卡片完全竖直
+
+194
+00:10:24,330 --> 00:10:28,290
+And even exerate the effects zandcape has under sct orientation
+甚至可以夸大地形对物体朝向的影响
+
+195
+00:10:28,290 --> 00:10:29,370
+Very cool
+非常酷
+
+196
+00:10:32,340 --> 00:10:34,540
+Let's keep iterating on that a vector
+我们继续调整这个 Z 向量
+
+197
+00:10:34,540 --> 00:10:37,060
+Also , because this z vector is normalized
+另外，因为这个 Z 向量已归一化
+
+198
+00:10:37,060 --> 00:10:39,720
+And as long as it doesn't equals a vector here
+只要它不等于这里的这个向量
+
+199
+00:10:39,720 --> 00:10:43,140
+That three by three matrix is well defined and stable
+这个 3x3 矩阵就是定义良好且稳定的
+
+200
+00:10:43,140 --> 00:10:46,060
+So i can shift this z vector in x and y
+所以我可以让这个 Z 向量在 X 和 Y 方向上偏移
+
+201
+00:10:46,060 --> 00:10:48,940
+As much as i want to till cards more and more
+虽然我很想让草片倾斜得越来越明显
+
+202
+00:10:48,940 --> 00:10:51,360
+so i could very well use the texture of some kind
+所以我完全可以使用某种贴图
+
+203
+00:10:51,360 --> 00:10:53,440
+To shift that a victorian x and y
+让顶点在 X 和 Y 方向上偏移
+
+204
+00:10:53,440 --> 00:10:57,940
+Until clds in arbitrary directions and create clampse of grass
+让草片朝任意方向倾斜，并形成一簇簇草
+
+205
+00:11:01,800 --> 00:11:05,550
+Down . those creating clamps play a key role in the final look
+而创建这些草簇，对最终外观起着关键作用
+
+206
+00:11:05,550 --> 00:11:08,980
+So to create what i call a clamp map i try different things
+所以，为了制作我所说的草簇贴图，我尝试了各种方法
+
+207
+00:11:08,980 --> 00:11:12,010
+I first used blender to generate hiding height map
+我首先用 Blender 生成了一张高度图
+
+208
+00:11:12,010 --> 00:11:14,790
+Then beg the normal s to give the x and y direction
+然后烘焙法线，从中获取 X 和 Y 方向
+
+209
+00:11:14,790 --> 00:11:17,975
+But that was to use and the result wasn't too convincing
+但那样太费事，结果也不太有说服力
+
+210
+00:11:17,975 --> 00:11:21,770
+As then tried to artistically paint arbitrary directions
+接着我尝试用艺术化手绘的方式画出任意方向
+
+211
+00:11:21,770 --> 00:11:23,660
+Using critter and its neat walk mode
+用的是 Krita 和它好用的环绕模式
+
+212
+00:11:23,660 --> 00:11:26,080
+But i still didn't get the result i wanted
+但我仍然没有得到想要的结果
+
+213
+00:11:26,080 --> 00:11:28,130
+And it was still used to paint as well
+而且画起来仍然很费时
+
+214
+00:11:28,130 --> 00:11:32,500
+So next i try to build a dul in a new engine to generate that clip map
+所以接下来，我试着在虚幻引擎里做一个工具来生成那张草簇贴图
+
+215
+00:11:32,500 --> 00:11:34,500
+For me it's nothing too complicate it
+对我来说，这并不算太复杂
+
+216
+00:11:34,500 --> 00:11:36,540
+But terms out it worked really well
+但结果证明，它效果非常好
+
+217
+00:11:36,540 --> 00:11:39,417
+It's made with an editor utidity widget
+它是用编辑器实用工具控件做的
+
+218
+00:11:39,417 --> 00:11:42,410
+Here i have a bunch of single property view widgets
+这里我放了一堆单属性视图控件
+
+219
+00:11:42,410 --> 00:11:45,157
+just have to course set object and new self
+只需把 Object 设成 Self 就行了
+
+220
+00:11:45,157 --> 00:11:47,760
+And make some point of viber within this reprint
+并在这个蓝图里公开一些向量属性
+
+221
+00:11:47,760 --> 00:11:52,240
+And that's it ue creates a widget for you to twist that viber ne
+就这样，UE 会为你生成一个控件，方便你调整那个向量
+
+222
+00:11:52,240 --> 00:11:54,160
+I also made a simple button
+我还做了一个简单的按钮
+
+223
+00:11:54,160 --> 00:11:55,820
+Nothing fancy on click event
+点击事件没什么花哨的
+
+224
+00:11:55,820 --> 00:11:56,920
+I cord this function
+我调用了这个函数
+
+225
+00:11:56,920 --> 00:11:58,660
+Here i do a bunch of safety checks
+这里我做了一堆安全检查
+
+226
+00:11:58,660 --> 00:12:02,310
+Nothing important critical rudotarget get the set path
+没什么重要的，关键就是创建渲染目标、获取设置路径
+
+227
+00:12:02,310 --> 00:12:05,480
+Draw a bunch of stuffins that run not tg get turns and causes
+往渲染目标里画一堆东西，得到纹理和颜色
+
+228
+00:12:05,480 --> 00:12:07,970
+Create static texture function and verb
+调用 Create Static Texture 函数，然后保存
+
+229
+00:12:07,970 --> 00:12:12,570
+that tool generates texture and save it in the current as it bro directory
+这个工具会生成贴图，并保存到当前资产所在目录
+
+230
+00:12:13,890 --> 00:12:16,170
+So let's have a look at this draw crame function
+那么让我们来看一下这个 DrawFrame 函数
+
+231
+00:12:16,170 --> 00:12:16,750
+Really quick
+很快地过一下
+
+232
+00:12:16,750 --> 00:12:18,450
+It's nothing too complex here
+这里没什么太复杂的
+
+233
+00:12:18,450 --> 00:12:19,830
+I create around autget
+我创建了一个渲染目标
+
+234
+00:12:19,830 --> 00:12:21,690
+Then i create a dynamic instance of
+然后我创建了一个动态实例
+
+235
+00:12:21,690 --> 00:12:24,240
+What i called a brush mataile eisencode
+也就是我所说的笔刷材质实例
+
+236
+00:12:24,240 --> 00:12:28,160
+Begin rope to start drawing on the front or target on a loop a bit more efficiently
+调用 Begin Draw 开始在渲染目标上绘制，放进循环里会更高效一些
+
+237
+00:12:28,160 --> 00:12:29,440
+And using a full loop
+然后使用一个 for 循环
+
+238
+00:12:29,440 --> 00:12:32,670
+I draws that brush dozens or hundreds of times each time
+每次循环里，我会把笔刷画上几十甚至上百次
+
+239
+00:12:32,670 --> 00:12:36,077
+I varies of brush parmeters and wearing strong at
+每次都会改变笔刷参数，并随机调整强度
+
+240
+00:12:36,077 --> 00:12:38,900
+So it's like the tool of a single brush stroke
+所以它就像单次笔刷笔触的效果
+
+241
+00:12:38,900 --> 00:12:41,060
+Maybe here , then maybe there , there on
+也许在这里，然后也许在那里，再在那里继续
+
+242
+00:12:41,060 --> 00:12:43,410
+On and on using an additive process
+就这样一遍又一遍，使用叠加处理
+
+243
+00:12:43,410 --> 00:12:46,410
+But it doesn't draw just a simple spargent
+但它画出的并不是简单的泼溅
+
+244
+00:12:46,410 --> 00:12:47,250
+Well almost
+嗯，差不多吧
+
+245
+00:12:47,250 --> 00:12:48,120
+But not quite
+但也不完全是
+
+246
+00:12:48,120 --> 00:12:53,440
+I compute the two d position data between the brush position in uv space and uris
+我计算画笔位置在 UV 空间和 UV 坐标之间的二维位置数据
+
+247
+00:12:53,440 --> 00:12:57,770
+Then deltis and safely normalized to derive a radial direction
+然后对差值做安全归一化，得出径向方向
+
+248
+00:12:57,770 --> 00:13:02,020
+Uvars will be started with a noise node to create something a bit more , um
+UV 坐标会先经过一个噪声节点处理，来做出更……嗯……
+
+249
+00:13:02,020 --> 00:13:04,380
+Intricate some things that has a bit more flow to it
+更精细、带点流动感的东西
+
+250
+00:13:04,380 --> 00:13:08,480
+Right then the trial direction is masked using a billionase spare mask
+然后，径向方向会用一张球体遮罩来遮罩
+
+251
+00:13:08,480 --> 00:13:12,152
+And the reason for this billionaire mask is quite simple but important
+用这个球体遮罩的原因很简单，但也很重要
+
+252
+00:13:12,152 --> 00:13:12,630
+Again
+再说一次
+
+253
+00:13:12,630 --> 00:13:14,350
+I'm going to use this clip map
+我会使用这张草簇图
+
+254
+00:13:14,350 --> 00:13:17,830
+this to the noise texture to shift that z vector here
+用这张噪声纹理来偏移这里的 Z 向量
+
+255
+00:13:17,830 --> 00:13:19,880
+The one used to check cards , right
+也就是用来检查草片朝向的那个，对吧
+
+256
+00:13:19,880 --> 00:13:23,580
+So to create cramps i want to own on cs to all the single points
+所以为了创建草簇，我想给所有单个点加上一个偏移
+
+257
+00:13:23,580 --> 00:13:28,590
+And that's what's this vial direction is going to do is going to shift that the director to all other point
+而这个径向方向要做的，就是把这些点朝中心方向偏移
+
+258
+00:13:28,590 --> 00:13:30,980
+The thing is that may result in cats crossing
+问题是，这可能会导致草片相互交叉
+
+259
+00:13:30,980 --> 00:13:32,260
+It shows you all the center point
+结果所有草片都挤到中心点上
+
+260
+00:13:32,260 --> 00:13:34,240
+And that doesn't look too great
+那看起来就不太好了
+
+261
+00:13:34,240 --> 00:13:37,080
+Hence this being in our mask to fade in the effect
+所以要用这个遮罩让效果淡入
+
+262
+00:13:37,080 --> 00:13:39,440
+But resort to fade it out near the center point
+但在中心点附近要把它淡出
+
+263
+00:13:39,440 --> 00:13:41,150
+And prevents that from happening
+从而防止这种情况发生
+
+264
+00:13:41,150 --> 00:13:46,300
+And one more important thing that brush material is following a principa explained in the previous video
+还有一点很重要：这个画笔材质遵循了上一个视频里解释的一个原则
+
+265
+00:13:46,300 --> 00:13:49,630
+It's duplicated and offsets three times to make it tile
+它被复制并偏移三次，以实现平铺
+
+266
+00:13:49,630 --> 00:13:52,470
+And ensure that the cramp map itself those style
+并确保草簇图本身能够平铺
+
+267
+00:13:52,470 --> 00:13:55,660
+So that brush is drawn and randomized a few hundred times
+于是这个画笔会被随机绘制几百次
+
+268
+00:13:55,660 --> 00:13:59,440
+And i end up with that kind of very organic , noisy looking texture
+最后我就得到了那种非常自然、带噪点感的纹理
+
+269
+00:13:59,440 --> 00:14:01,870
+And it works surprisingly well to credit glimpse
+而它用来创建草簇的效果出奇地好
+
+270
+00:14:01,870 --> 00:14:04,530
+To add a bit of flow to the grass and whatnot
+为草地之类的东西增添一点流动感
+
+271
+00:14:04,530 --> 00:14:07,430
+Let's see how it can be applied to the grass shadow
+让我们看看如何把它应用到草地着色器上
+
+272
+00:14:07,430 --> 00:14:11,660
+I could use the absolute ward position to projects that texture and involves space , right
+我可以用绝对世界位置来把这张纹理投影到世界空间里，对吧
+
+273
+00:14:11,660 --> 00:14:13,580
+But that could deform the mesh quite
+但这可能会让网格变形得相当厉害
+
+274
+00:14:13,580 --> 00:14:17,790
+And presently because two vertices had two slightly different war positions
+而且正是因为两个顶点会有略微不同的世界位置
+
+275
+00:14:17,790 --> 00:14:21,550
+Good sample and they are also slightly different direction from that trump map
+它们采样到的草簇图方向也会略有不同
+
+276
+00:14:21,550 --> 00:14:26,120
+So i'd like to get a single quote unquote clamp sample pack out
+所以我希望能只得到一个统一的“草簇采样”结果
+
+277
+00:14:26,120 --> 00:14:27,170
+Well , easy enough
+嗯，很简单
+
+278
+00:14:27,170 --> 00:14:30,390
+use the baked pivots in wall space as texture coordinates
+用世界空间里烘焙好的枢轴点作为纹理坐标
+
+279
+00:14:30,390 --> 00:14:35,190
+And that's it then add this ex and y offset to the the vector before it's normalized
+就这样，然后在归一化之前把这个 X 和 Y 偏移加到向量上
+
+280
+00:14:35,190 --> 00:14:36,960
+And what a cool
+这多酷啊
+
+281
+00:14:36,960 --> 00:14:40,290
+But even better i can randomize it texture connetes
+但更棒的是，我可以随机化它的纹理坐标
+
+282
+00:14:40,290 --> 00:14:42,940
+And make it cmmap look a bit more cootic
+让草簇看起来更杂乱一些
+
+283
+00:14:42,940 --> 00:14:45,330
+And here again , there are so many ways to do this
+这里同样有很多种做法
+
+284
+00:14:45,330 --> 00:14:47,180
+Here i am simply going to upset
+在这里我只是要偏移
+
+285
+00:14:47,180 --> 00:14:50,740
+The worst paste extra coinates with that two g random direction
+用二维随机方向去偏移世界空间纹理坐标
+
+286
+00:14:50,740 --> 00:14:53,040
+Each counts those in the vertex norm
+并把它们加到顶点法线中
+
+287
+00:14:53,040 --> 00:14:54,740
+As simple as that you may use
+就这么简单。你也可以用
+
+288
+00:14:54,740 --> 00:14:57,710
+Also add the pivots in local space same but different
+在局部空间里加入枢轴，思路类似但效果不同
+
+289
+00:14:57,710 --> 00:15:00,740
+So zero of set and the cme texture is sampled as is
+所以偏移量为零时，同一张纹理就按原样采样
+
+290
+00:15:00,740 --> 00:15:03,010
+And especially coherent is that makes sense
+而且空间上是连贯的，如果这说得通的话
+
+291
+00:15:03,010 --> 00:15:06,000
+And the more offset added some more on under it looks basically
+偏移加得越多，看起来就越随机
+
+292
+00:15:06,000 --> 00:15:07,430
+And it's cheap to compute
+而且计算开销很低
+
+293
+00:15:07,430 --> 00:15:11,650
+Keep in mind that randomizing texture kids like that usually comes at a coast
+请记住，像这样随机化纹理坐标通常是有代价的
+
+294
+00:15:11,650 --> 00:15:14,370
+If i'm not mistaken , it's my understanding that
+如果我没记错的话，我的理解是
+
+295
+00:15:14,370 --> 00:15:18,400
+This is generally not a very friendly thing to do for your gpu cash
+这通常对 GPU 缓存不太友好
+
+296
+00:15:18,400 --> 00:15:19,680
+But well anyway
+不过，好吧，不管怎样
+
+297
+00:15:19,680 --> 00:15:20,860
+What are grass coms
+那草簇是什么呢？
+
+298
+00:15:20,860 --> 00:15:22,740
+It adds a bit of coast to the picture
+它会给画面增加一点开销
+
+299
+00:15:22,740 --> 00:15:24,115
+And i cannot like it
+而我没法不喜欢它
+
+300
+00:15:24,115 --> 00:15:27,060
+Speaking of glimpse it's one thing to influence the itute
+说到草簇，影响倾斜是一回事
+
+301
+00:15:27,060 --> 00:15:28,540
+But what about the position
+但位置呢？
+
+302
+00:15:28,540 --> 00:15:31,120
+Well , is that precisely what this story lois for
+而这正是这个节点的作用
+
+303
+00:15:31,120 --> 00:15:31,840
+Remember
+记住
+
+304
+00:15:31,840 --> 00:15:33,630
+So i can very well control that lap
+所以我完全可以控制那个偏移
+
+305
+00:15:33,630 --> 00:15:35,390
+With a noisy looking texture of some kind
+用某种看起来有噪声的纹理
+
+306
+00:15:35,390 --> 00:15:37,670
+And add even more romness to the picture
+给画面增加更多随机性
+
+307
+00:15:37,670 --> 00:15:39,690
+Now here's the effect is kind of limited
+不过这个效果有点受限
+
+308
+00:15:39,690 --> 00:15:42,720
+Because the crumb position is big , is decrease instance position
+因为草簇的位置基本上就是实例位置
+
+309
+00:15:42,720 --> 00:15:43,880
+In an idea world
+在理想情况下
+
+310
+00:15:43,880 --> 00:15:45,660
+It would be an arbitrary position
+它应该是一个任意位置
+
+311
+00:15:45,660 --> 00:15:48,300
+And this could be done using a two d distance field
+这可以用二维距离场来实现
+
+312
+00:15:48,300 --> 00:15:49,400
+something seem to try
+这是我想尝试的做法
+
+313
+00:15:53,380 --> 00:15:58,520
+At this point you might think this z vector could be used to take cts away from the wind
+这时你可能会想，这个 Z 向量可以用来削弱风的空间连贯性
+
+314
+00:15:58,520 --> 00:16:00,072
+And you're absolutely right
+你说得完全对
+
+315
+00:16:00,072 --> 00:16:04,480
+same exact principle i'm going to use the same setup to some prezin texture
+完全相同的原理。我会用同样的设置来采样一张 Perlin 纹理
+
+316
+00:16:04,480 --> 00:16:07,380
+And have the ability to breakthrough special correon a bit
+从而稍微打破空间相关性
+
+317
+00:16:07,380 --> 00:16:10,020
+And add some random ness to the wind animation
+并给风动画增加一些随机性
+
+318
+00:16:14,920 --> 00:16:17,200
+But i'm also going to do something cool
+但我还要做一件很酷的事
+
+319
+00:16:17,200 --> 00:16:19,920
+Remember our cars all face the same direction at first
+记得吗，我们的草一开始都朝向同一个方向
+
+320
+00:16:19,920 --> 00:16:22,660
+And i rotate them myself with this matrix here
+然后我用这里的这个矩阵来旋转它们
+
+321
+00:16:22,660 --> 00:16:26,230
+Just say simply just know the direction each car is facing
+简单来说，就是知道每张草片朝向哪个方向
+
+322
+00:16:26,230 --> 00:16:28,640
+Press the value sampled from the twin texture
+取从风纹理中采样得到的值
+
+323
+00:16:28,640 --> 00:16:30,160
+Isn't just a scara value
+它不只是一个标量值
+
+324
+00:16:30,160 --> 00:16:32,100
+It's not just how much wto apply
+不只是要施加多少风力
+
+325
+00:16:32,100 --> 00:16:34,690
+its the actual to the airflow the wind velocity
+而是实际的气流，也就是风速
+
+326
+00:16:34,690 --> 00:16:38,930
+so i can safely normalize that twin velocity and get the wind direction
+所以我可以安全地归一化这个风速，得到风向
+
+327
+00:16:38,930 --> 00:16:44,610
+And use that this product with the direction cards are facing to modulate how much wind to apply
+再用它与草片朝向做点积，来调节施加多少风力
+
+328
+00:16:44,610 --> 00:16:47,620
+And this might be stupvh figure aggrass bay
+这对单根草叶来说可能有点不合理
+
+329
+00:16:47,620 --> 00:16:49,450
+This quite a flat piece of geometry
+因为这是一块相当扁平的几何体
+
+330
+00:16:49,450 --> 00:16:51,680
+so i suppose it kind of acts as sale
+所以我想它有点像帆
+
+331
+00:16:51,680 --> 00:16:54,630
+And much less reacts to the wind when it's not facing it
+当它不朝向风时，受风的影响就小得多
+
+332
+00:16:54,630 --> 00:16:58,460
+As though realistically it's probably negligible in the grand scheme of things
+不过现实中，从大局来看这大概可以忽略不计
+
+333
+00:16:58,460 --> 00:17:01,370
+I'm not sure if that's even some things that can be observed
+我不确定这甚至是否能被观察到
+
+334
+00:17:01,370 --> 00:17:02,990
+Still , it's quite cheap to implement
+不过，实现起来成本很低
+
+335
+00:17:02,990 --> 00:17:05,910
+And it brings some extra randomness to the wind animation
+而且它给风的动画带来了一些额外的随机性
+
+336
+00:17:05,910 --> 00:17:08,230
+So why not it's fun to tricings
+所以为什么不呢，尝试一下挺有趣的
+
+337
+00:17:11,940 --> 00:17:15,540
+next i can use the tubon gradient type bec in uv
+接下来，我可以在 UV 中使用烘焙好的湍流渐变类型
+
+338
+00:17:17,030 --> 00:17:20,030
+And lap two filings that have set along the wa length
+并沿着草叶长度插值两个设定好的值
+
+339
+00:17:20,030 --> 00:17:21,870
+And create some kind of curvature
+并制造某种弯曲
+
+340
+00:17:29,840 --> 00:17:35,620
+Alternatively i can simply multiply each of these two offsets to create individual controls for the curvature
+或者，我可以简单地将这两个偏移量分别相乘，为弯曲创建独立的控制
+
+341
+00:17:35,620 --> 00:17:37,940
+For the cmp offsets and for the wind offset
+分别用于簇偏移和风偏移
+
+342
+00:17:37,940 --> 00:17:38,760
+why not
+为什么不呢
+
+343
+00:17:48,700 --> 00:17:50,200
+For that things are happening
+好了，事情正在推进
+
+344
+00:17:50,200 --> 00:17:51,820
+we are making good progress
+我们进展顺利
+
+345
+00:17:54,800 --> 00:17:57,180
+Now assuming there's no wind and no cmp
+现在假设没有风，也没有簇集效果
+
+346
+00:17:57,180 --> 00:18:00,180
+Ograss still looks quite unnaturally straight and rigid
+我们的草看起来仍然很不自然地笔直僵硬
+
+347
+00:18:00,180 --> 00:18:04,120
+I'd like to bends of cars and make them have a nice resting pose , right
+我想让草片弯曲，让它们有一个好看的静止姿态，对吧
+
+348
+00:18:04,120 --> 00:18:06,690
+And again , there are many solutions to loses
+再说一次，这个问题有很多解决方案
+
+349
+00:18:06,690 --> 00:18:08,600
+You could make a tradecover your maps
+你可以做一张纹理，或者直接烘焙到贴图里
+
+350
+00:18:08,600 --> 00:18:11,120
+Seem not to what epic did for the grass in fortnight
+类似 Epic 在《堡垒之夜》里为草做的那样
+
+351
+00:18:11,120 --> 00:18:14,790
+You could maybe bake more target in vertex colors or uv
+你也可以把更多数据烘焙到顶点色或 UV 中
+
+352
+00:18:14,790 --> 00:18:17,580
+Veri personally went with a mathematical approach
+我个人采用了数学方法
+
+353
+00:18:17,580 --> 00:18:19,400
+It uses a sign and a casn
+它使用了正弦和余弦
+
+354
+00:18:19,400 --> 00:18:21,720
+But it didn't measurably impact performance
+但它没有明显影响性能
+
+355
+00:18:21,720 --> 00:18:22,570
+So why not
+所以为什么不呢
+
+356
+00:18:22,570 --> 00:18:23,750
+One thing to keep in mind
+有一点要记住
+
+357
+00:18:23,750 --> 00:18:29,179
+And i really should do more researchers that subject shadows on gpu are complicated
+我真的应该在这方面做更多研究：GPU 上的阴影很复杂
+
+358
+00:18:29,179 --> 00:18:34,770
+Nothing scarcely ly meaning at times you may use the sign and not even pay its cost
+没有什么是一成不变的，也就是说，有时你可能用了正弦，却甚至不用承担它的开销
+
+359
+00:18:34,770 --> 00:18:37,180
+Occupancy may be low for any reason
+占用率可能因为任何原因而很低
+
+360
+00:18:37,180 --> 00:18:41,050
+The gpu may be waiting for a texture to be fetched from memory or something
+GPU 可能正在等待从内存中获取纹理之类的
+
+361
+00:18:41,050 --> 00:18:44,210
+And says have no singers to do but math for free
+也就是说，除了免费的数学运算之外，没有别的着色器可做
+
+362
+00:18:44,210 --> 00:18:46,790
+While waiting as long as it's not dependent on
+只要它不依赖于
+
+363
+00:18:46,790 --> 00:18:49,640
+What the gpu is waiting for in the field place , right
+GPU 一开始在等待什么，对吧
+
+364
+00:18:49,640 --> 00:18:50,730
+Don't quote me on that
+这话别全信我
+
+365
+00:18:50,730 --> 00:18:54,950
+The wine for sure or not , an expersion is differently out of this scope of today's video
+至于到底是不是这样，这个表达式肯定超出了今天视频的范围
+
+366
+00:18:54,950 --> 00:18:55,390
+Anyway
+总之
+
+367
+00:18:55,390 --> 00:18:57,370
+So back to my mathematical band
+回到我的数学弯曲
+
+368
+00:18:57,370 --> 00:19:01,020
+This ejac cody is pretty much i nical to the bend modifier
+这段精确代码几乎和弯曲修改器一模一样
+
+369
+00:19:01,020 --> 00:19:02,920
+I share on my twitter i while ago
+我之前在推特上分享过
+
+370
+00:19:02,920 --> 00:19:06,040
+it does just that it bends the measure around the x axis
+它做的就是让网格围绕 X 轴弯曲
+
+371
+00:19:06,040 --> 00:19:08,420
+And that's why the grass mesh is exported
+这就是为什么草地网格导出时
+
+372
+00:19:08,420 --> 00:19:11,322
+With scards all facing towards the x axis
+所有卡片都朝向 X 轴
+
+373
+00:19:11,322 --> 00:19:12,950
+Only one cares are bent
+只有一种卡片会被弯曲
+
+374
+00:19:12,950 --> 00:19:15,050
+Do we applies the rotation matrix
+然后我们应用旋转矩阵
+
+375
+00:19:20,640 --> 00:19:23,660
+Now this iteris your code not only bends the mesh
+现在这个迭代器代码不仅弯曲网格
+
+376
+00:19:23,660 --> 00:19:24,620
+But there is no output
+但它没有输出
+
+377
+00:19:24,620 --> 00:19:26,880
+The bend direction if that makes sense
+还有弯曲方向，如果这说得通的话
+
+378
+00:19:26,880 --> 00:19:28,630
+And that's my starting point
+这就是我的起点
+
+379
+00:19:28,630 --> 00:19:31,730
+To generate a world's based normal , but more that lion
+来生成基于世界的法线，不过这个之后再细说
+
+380
+00:19:31,730 --> 00:19:34,100
+Let's stick to the world position of setfono
+我们还是先专注于世界位置偏移
+
+381
+00:19:34,100 --> 00:19:38,460
+So this band amount is driven by some noise mixture to create some viation
+这个弯曲量由一些噪声混合驱动，以产生一些变化
+
+382
+00:19:38,460 --> 00:19:38,940
+right
+对吧
+
+383
+00:19:44,520 --> 00:19:48,840
+I also use the winds x and y magnitude to decrease ban amount
+我还用风的 X 和 Y 分量大小来减少弯曲量
+
+384
+00:19:48,840 --> 00:19:50,880
+And that creates a super interesting effect
+这会产生非常有趣的效果
+
+385
+00:19:50,880 --> 00:19:54,480
+I think grass is naturally curved when standing still
+我认为草在静止时自然会弯曲
+
+386
+00:19:54,480 --> 00:19:57,020
+But these traitors is stronger . the wind falls
+但风越大，它就越直
+
+387
+00:20:01,360 --> 00:20:05,600
+Press the more wind the lessons that also offset participate in your role
+因为风越大，初始偏移参与的比例就越小
+
+388
+00:20:05,600 --> 00:20:08,190
+Z vector computation proportionary right
+Z 向量的计算是成比例的，对吧
+
+389
+00:20:08,190 --> 00:20:09,990
+Because of the normalization here
+因为这里的归一化
+
+390
+00:20:09,990 --> 00:20:14,180
+So the grass may be initially tilted to point towards a certain direction
+所以草可能最初倾斜指向某个方向
+
+391
+00:20:14,180 --> 00:20:16,470
+Because of the runscape or a cramp effect
+因为地形或钳制效果
+
+392
+00:20:16,470 --> 00:20:20,390
+But it will reon itself to face the wind as stronger as the wind rows
+但它会重新调整自己，风越大就越朝向风
+
+393
+00:20:20,390 --> 00:20:21,520
+Very cool
+非常酷
+
+394
+00:20:21,520 --> 00:20:23,190
+All right , we are getting there
+好了，我们快完成了
+
+395
+00:20:28,180 --> 00:20:30,620
+Super important thing when it comes to grass
+说到草，有一件超级重要的事
+
+396
+00:20:30,620 --> 00:20:33,340
+Is what i call the passive grass dcity
+就是我所说的被动草地密度
+
+397
+00:20:33,340 --> 00:20:35,560
+Relying on cat is good for performance
+依赖卡片对性能有好处
+
+398
+00:20:35,560 --> 00:20:37,785
+But it obviously comes with a dside
+但这显然有缺点
+
+399
+00:20:37,785 --> 00:20:43,680
+Cards are visible until they are not just costing vertex processing for no pixel coverage
+卡片在不可见之前一直存在，只是白白消耗顶点处理，却没有像素覆盖
+
+400
+00:20:45,090 --> 00:20:49,210
+Using build buds or camera facing cars obviously serve this issue
+使用公告板或面向摄像机的卡片显然能解决这个问题
+
+401
+00:20:49,210 --> 00:20:53,110
+Pixel coverage is maximized regardless of the view direction , right
+无论从哪个视角看，像素覆盖率都能最大化，对吧？
+
+402
+00:20:53,110 --> 00:20:55,320
+But it's quite an old school technique
+但这是相当老派的技术
+
+403
+00:20:55,320 --> 00:20:58,960
+And bill balls can be quite apparent and odd looking
+而且广告牌效果会非常明显，看起来也很怪
+
+404
+00:20:58,960 --> 00:21:01,980
+Well , let's try to make the most of this technique anyway
+好吧，那我们就尽量把这项技术发挥到极致
+
+405
+00:21:01,980 --> 00:21:04,080
+What would be the ideal solution here
+这里理想的解决方案会是什么
+
+406
+00:21:04,080 --> 00:21:08,820
+And one for each grass cad to remain curved and bent and randomly rotated
+每片草叶卡都要保持弯曲、倾斜并随机旋转
+
+407
+00:21:08,820 --> 00:21:11,450
+And i'd want to maximize pixel coverage
+而我想最大化像素覆盖率
+
+408
+00:21:11,450 --> 00:21:15,090
+Meaning make each triangle face the camera as much as possible
+意思是让每个三角形尽可能朝向相机
+
+409
+00:21:15,090 --> 00:21:17,050
+All right , let's start simple
+好，我们先从简单的开始
+
+410
+00:21:17,050 --> 00:21:19,810
+Let's get rid of the tradition metrics and the band
+我们先把传统矩阵和弯曲去掉
+
+411
+00:21:19,810 --> 00:21:21,470
+Actually i said node as well follow
+其实，我说过节点也要跟着处理
+
+412
+00:21:21,470 --> 00:21:25,080
+And let's use the matrix to rotate discards throughout the camera
+然后我们用矩阵把草叶卡旋转到朝向相机
+
+413
+00:21:25,080 --> 00:21:25,720
+Easy enough
+很简单
+
+414
+00:21:25,720 --> 00:21:28,500
+Let's transform as ivector from view to world space
+我们把一个向量从视图空间转换到世界空间
+
+415
+00:21:28,500 --> 00:21:31,270
+And derive next voy coinate system from it
+并据此推导出新的坐标系
+
+416
+00:21:31,270 --> 00:21:34,150
+Okay , so build ball effect is quite apparent indeed
+好，所以广告牌效果确实相当明显
+
+417
+00:21:34,150 --> 00:21:37,010
+Let's first to get rid of the most jaring part of it
+我们先去掉其中最刺眼的部分
+
+418
+00:21:37,010 --> 00:21:37,850
+So tilt
+也就是倾斜
+
+419
+00:21:39,520 --> 00:21:41,780
+So let's get rid of the z component here
+我们把这里的 Z 分量去掉
+
+420
+00:21:41,780 --> 00:21:44,240
+And normalize the resulting to the vector
+然后对得到的向量进行归一化
+
+421
+00:21:44,240 --> 00:21:46,640
+however , that truly vector can now be nerve
+不过，这个真正的向量现在可能会接近零
+
+422
+00:21:46,640 --> 00:21:49,169
+When looking straight up pour down see it's
+当垂直向上或向下看时，你看，它就会
+
+423
+00:21:49,169 --> 00:21:54,110
+so the direction to use instead is a wide victor converted from view to warm space
+所以改用从视图空间转换到世界空间的 Y 向量作为方向
+
+424
+00:21:56,320 --> 00:22:00,020
+So do that if the square length is close enough to zero , use that
+那么如果平方长度足够接近零，就用它
+
+425
+00:22:00,020 --> 00:22:01,440
+why vector iinstead
+改用 Y 向量
+
+426
+00:22:02,970 --> 00:22:05,990
+Cool the bill board effect is not only two dimensioners
+酷，广告牌效果现在只是二维的了
+
+427
+00:22:05,990 --> 00:22:07,290
+that looks a bit better
+这样看起来好一些
+
+428
+00:22:08,410 --> 00:22:10,310
+Then i apply is beneffect
+然后我应用这个弯曲效果
+
+429
+00:22:10,310 --> 00:22:15,050
+See that's kind of cool the mesh kind of roars on itself to face the camera
+看，这还挺酷的，网格会绕着自身旋转来面向相机
+
+430
+00:22:17,050 --> 00:22:18,810
+No , the why those of grass cats
+现在，草叶卡越宽
+
+431
+00:22:18,810 --> 00:22:21,720
+The more round and unappeating this effect is going to look
+这个效果看起来就会越圆、越不美观
+
+432
+00:22:21,720 --> 00:22:23,410
+But here i have quite thin cats
+但这里我的草叶卡相当细
+
+433
+00:22:23,410 --> 00:22:25,832
+For the most part . atch . so it's . okay
+大部分情况下……嗯，所以还算可以
+
+434
+00:22:25,832 --> 00:22:29,160
+Hold on , let's press pose for a second view
+等等，我们先暂停一下
+
+435
+00:22:29,160 --> 00:22:32,760
+Space means the point of view of whatever wonder of geometry
+这里指的是几何体渲染时所采用的视角
+
+436
+00:22:32,760 --> 00:22:36,380
+That's during the shadow pass that's from the lights pov
+在阴影通道中，这是从光源视角看的
+
+437
+00:22:36,380 --> 00:22:39,790
+And this way cars face the light during the shuttle path
+这样草叶卡在阴影通道中就会面向光源
+
+438
+00:22:39,790 --> 00:22:41,800
+And the camera during the main path
+而在主通道中面向相机
+
+439
+00:22:41,800 --> 00:22:43,630
+Not ideal , but to be honest
+不算理想，但说实话
+
+440
+00:22:43,630 --> 00:22:46,790
+It's not even that noticeable with plenty of grass around
+周围草足够多时，其实根本不太看得出来
+
+441
+00:22:47,910 --> 00:22:51,290
+You may still want to consider using camera space instead
+你可能还是想考虑改用摄像机空间
+
+442
+00:22:51,290 --> 00:22:56,740
+That then shares the vector transform is made from the cameras pov even during the shallow path
+这样就能确保即使在阴影通道中，向量变换也是从摄像机视角进行的
+
+443
+00:22:56,740 --> 00:22:58,310
+There is no right on there here
+这里没有绝对的对错
+
+444
+00:22:58,310 --> 00:23:01,130
+Both of the pros and cons for this specific effect
+对于这个特定效果，两种方案各有优缺点
+
+445
+00:23:01,130 --> 00:23:02,590
+Gotta pick your poison
+只能两害相权取其轻
+
+446
+00:23:02,590 --> 00:23:06,960
+On one hand you have a different bits table shadow when using a view transform
+一方面，使用视图变换时，你会得到不同但稳定的阴影
+
+447
+00:23:06,960 --> 00:23:08,840
+On the other hand , you have a consistent
+另一方面，你会得到一致的
+
+448
+00:23:08,840 --> 00:23:11,780
+But unstable shadow when using a camera transform
+但在使用摄像机变换时不稳定的阴影
+
+449
+00:23:11,780 --> 00:23:12,830
+By unstable
+所谓不稳定
+
+450
+00:23:12,830 --> 00:23:17,730
+I mean shadows kind of disappear when calves are patrnout to the lights direction
+是指当卡片与光照方向平行时，阴影会有些消失
+
+451
+00:23:17,730 --> 00:23:20,310
+And cats flicker ambit at that point as well
+而且到那时卡片也会有点闪烁
+
+452
+00:23:20,310 --> 00:23:24,320
+Again , that's only something that can be really noticed with endjcds
+再说一次，只有单独看卡片时才真的能注意到
+
+453
+00:23:24,320 --> 00:23:27,490
+And not that much of an issue with tons of grass blades around
+如果周围有大量草叶，其实问题没那么严重
+
+454
+00:23:27,490 --> 00:23:29,780
+So i wouldn't worry about it too much
+所以我不会太担心
+
+455
+00:23:29,780 --> 00:23:31,060
+You can as zoo of course
+当然，你也可以
+
+456
+00:23:31,060 --> 00:23:35,870
+Use the shadow pass switch to have further control over what's happening during the shadow pass
+使用 Shadow Pass Switch 节点来进一步控制阴影通道期间发生的情况
+
+457
+00:23:35,870 --> 00:23:40,060
+Maybe you disabled the camera facemilogic on tony or something up to you
+也许你会在上面禁用摄像机朝向逻辑之类的，随你决定
+
+458
+00:23:40,060 --> 00:23:43,420
+But enough about shadows knows that cats phase of camera
+不过阴影就聊到这里，现在卡片已经朝向摄像机了
+
+459
+00:23:43,420 --> 00:23:45,120
+Let's rotate them once more
+我们把它们再旋转一次
+
+460
+00:23:45,120 --> 00:23:47,610
+Um , i'm kind of back to square one
+呃，我有点回到原点了
+
+461
+00:23:47,610 --> 00:23:50,370
+Kads are obviously no longer facing camera
+现在卡片显然不再朝向摄像机了
+
+462
+00:23:50,370 --> 00:23:53,407
+Because they are made to do so before they are rotated
+因为它们在被旋转之前就已经被设为朝向摄像机
+
+463
+00:23:53,407 --> 00:23:55,560
+however , it needs to be done that way
+不过，必须得这么做
+
+464
+00:23:55,560 --> 00:24:01,980
+Because the camera facing logic needs to be applied before it's beneffect as you get something that looks really desire
+因为摄像机朝向逻辑必须在弯曲效果之前应用，否则结果会看起来很不理想
+
+465
+00:24:04,000 --> 00:24:07,880
+And that then logic needs to be applied on xaxis allign measures
+而那套逻辑需要应用在沿 X 轴对齐的网格体上
+
+466
+00:24:07,880 --> 00:24:09,750
+So before cds are rotated
+所以要在卡片旋转之前
+
+467
+00:24:09,750 --> 00:24:14,750
+So this season paper applied in the correct order with brags of camera facing logic
+所以这一步必须和摄像机朝向逻辑一起，按正确顺序应用
+
+468
+00:24:14,750 --> 00:24:16,090
+Hm , quite a puzzle
+嗯，真是个难题
+
+469
+00:24:16,090 --> 00:24:17,612
+So what's the solution
+那解决方案是什么
+
+470
+00:24:17,612 --> 00:24:22,540
+Well again , the issue is that kala made to look at the camera before they are rotated
+问题在于，卡片在被旋转之前就被设为看向摄像机了
+
+471
+00:24:22,540 --> 00:24:24,240
+So what if i could
+那如果我能
+
+472
+00:24:24,240 --> 00:24:28,500
+and take that rotation into account when computing the camera facing matrix
+在计算摄像机朝向矩阵时把那个旋转考虑进去呢
+
+473
+00:24:28,500 --> 00:24:30,990
+Instead of using the actual to leave u vector
+与其使用实际的视图向量
+
+474
+00:24:30,990 --> 00:24:32,770
+I'm going to use that same vector
+我会使用同一个向量
+
+475
+00:24:32,770 --> 00:24:36,360
+But rotated by the inverse of that ecoin cd rotation
+但用每张卡片旋转的逆变换来旋转它
+
+476
+00:24:36,360 --> 00:24:38,950
+So that once the carotation is applied
+这样一来，一旦应用了卡片旋转
+
+477
+00:24:38,950 --> 00:24:42,020
+That view vector is indeed the actual view vector
+那个视图向量就确实是实际的视图向量了
+
+478
+00:24:42,020 --> 00:24:43,490
+That sounds complicated
+这听起来很复杂
+
+479
+00:24:43,490 --> 00:24:46,590
+But it's not if i rotate those cards with a matrix
+但如果我用矩阵来旋转这些卡片，就不复杂了
+
+480
+00:24:46,590 --> 00:24:49,930
+Let's unrotate the view vector with an inverse matrix
+让我们用逆矩阵把视图向量反向旋转回来
+
+481
+00:24:49,930 --> 00:24:51,870
+And because i walk into this space here
+因为我们会进入这个空间
+
+482
+00:24:51,870 --> 00:24:54,040
+It can be simplified to juice
+它可以简化为
+
+483
+00:24:54,040 --> 00:24:57,050
+So i'm going to and rotate the new vector with a cat for a while
+所以我会用相机旋转这个新向量一会儿
+
+484
+00:24:57,050 --> 00:24:59,170
+Victor used here and that's it
+这里使用的就是那个向量，仅此而已
+
+485
+00:25:00,270 --> 00:25:02,810
+Voa this maximizes pixel coverage
+这样能最大化像素覆盖率
+
+486
+00:25:02,810 --> 00:25:06,180
+Why is still allowing cars to be randomly bent and rotated
+同时仍然允许草被随机弯曲和旋转
+
+487
+00:25:06,180 --> 00:25:08,360
+Now you might think this looks too weird
+现在你可能会觉得这看起来太奇怪了
+
+488
+00:25:08,360 --> 00:25:09,860
+And indeed it does a bit
+确实有一点
+
+489
+00:25:09,860 --> 00:25:13,630
+But that's only really because we are looking at a single grass mesh here
+但这真的只是因为我们在这里看的是单个草网格
+
+490
+00:25:13,630 --> 00:25:15,320
+And so it becomes quite apparent
+所以问题会变得非常明显
+
+491
+00:25:15,320 --> 00:25:18,510
+But in context the effect is pretty much invisible
+但在实际场景中，这个效果几乎看不出来
+
+492
+00:25:18,510 --> 00:25:23,057
+Yet it plays a huge role in increasing the passive creston city
+然而它在提升感知密度方面起着巨大作用
+
+493
+00:25:23,057 --> 00:25:25,440
+This is without the camera facing effect
+这是没有相机朝向效果时
+
+494
+00:25:25,440 --> 00:25:31,020
+And this is with without with quite a visible difference in residensity
+这是有该效果时，密度差异相当明显
+
+495
+00:25:31,020 --> 00:25:34,900
+But some bad account and it's not that expensive to compute need
+但好处不少，而且计算开销也没那么高
+
+496
+00:25:34,900 --> 00:25:38,470
+And that's pretty much it for the war position of se comfort
+世界位置偏移差不多就讲到这里
+
+497
+00:25:38,470 --> 00:25:41,270
+The scale bend position , clamping and orientation
+缩放、弯曲位置、钳制和朝向
+
+498
+00:25:41,270 --> 00:25:44,060
+Camping with textures to randomize these features
+结合纹理来随机化这些特征
+
+499
+00:25:44,060 --> 00:25:47,140
+And you can get some things that looks quite natural
+你就能得到看起来相当自然的效果
+
+500
+00:25:47,140 --> 00:25:48,330
+Speaking of scale
+说到缩放
+
+501
+00:25:48,330 --> 00:25:51,850
+Let's add one last thing to this warm position of cellogic
+让我们给这个世界位置偏移逻辑再加最后一项
+
+502
+00:25:55,480 --> 00:25:58,120
+My stylized grass shadow your majors of runtime
+我的风格化草地着色器用到了运行时虚拟纹理
+
+503
+00:25:58,120 --> 00:26:00,380
+Joshua textures to do plenty of code things
+虚拟纹理可以用来做很多很酷的事
+
+504
+00:26:00,380 --> 00:26:03,150
+For instance they were used to magine on skip co
+例如，它们曾被用来做遮罩处理
+
+505
+00:26:03,150 --> 00:26:07,020
+but for realistic grass i don't feel like that's an absolute necesssage
+但对于写实草地，我觉得那并不是绝对必要的
+
+506
+00:26:07,020 --> 00:26:10,080
+And though it's common practice in chopperese to at least
+虽然在做草地着色器时，至少
+
+507
+00:26:10,080 --> 00:26:13,540
+Give a bit of tint to the grass based on the unscape coral again
+根据地形颜色给草地一点色调，这是常见做法
+
+508
+00:26:13,540 --> 00:26:14,440
+It's up to you
+这取决于你
+
+509
+00:26:14,440 --> 00:26:18,150
+I also use the rain time vator texture to do a landscape projection
+我也用运行时虚拟纹理来做地形投影
+
+510
+00:26:18,150 --> 00:26:20,270
+And the same trick could be used here as well
+同样的技巧也可以用在这里
+
+511
+00:26:20,270 --> 00:26:26,190
+But i decided i can st it doesn't contributes that much visually and avities do come at teus
+但我决定不用，因为它对视觉贡献不大，而且虚拟纹理确实有成本
+
+512
+00:26:26,190 --> 00:26:28,560
+Plus the shadows that makes use of avts
+再加上使用虚拟纹理的着色器
+
+513
+00:26:28,560 --> 00:26:32,180
+Is usually a bit more troublesome to migrate towards our projects
+迁移到其他项目时通常会更麻烦一些
+
+514
+00:26:32,180 --> 00:26:34,000
+It was definitely and issue for people
+这对很多人来说确实是个问题
+
+515
+00:26:34,000 --> 00:26:36,460
+Who try to reuse my style grass shadow
+他们想复用我的风格化草地着色器
+
+516
+00:26:36,460 --> 00:26:39,480
+So this time i decided to not use envities
+所以这次我决定不使用虚拟纹理
+
+517
+00:26:39,480 --> 00:26:42,230
+But that made me miss one very cool trick
+但这也让我少了一个很酷的技巧
+
+518
+00:26:42,230 --> 00:26:44,210
+if you remember as the grass layer
+如果你还记得草地层
+
+519
+00:26:44,210 --> 00:26:45,290
+I painted on tru
+我绘制在地形上的
+
+520
+00:26:45,290 --> 00:26:50,540
+escape was also embedded into a naar vity to create some kind of mask and smoothly shring cats
+地形也被嵌入到运行时虚拟纹理中，用来创建某种遮罩并平滑地收缩草地
+
+521
+00:26:50,540 --> 00:26:52,100
+bleeding on two of your layers
+在两个图层之间进行混合
+
+522
+00:26:52,100 --> 00:26:53,340
+They are not one not
+它们并不是同一个节点
+
+523
+00:26:53,340 --> 00:26:54,820
+And to create a smooth ion
+而要做出平滑的过渡
+
+524
+00:26:54,820 --> 00:26:56,980
+maybe more that you are looking transition
+也许比你想要的过渡还要多
+
+525
+00:26:56,980 --> 00:27:00,820
+And i kind of wanted to do that still for my releastic grass shader
+而我还有点想为我的写实草地着色器实现这一点
+
+526
+00:27:00,820 --> 00:27:03,900
+I like a lot once this technique adds to the overall look
+我很喜欢这项技术为整体外观带来的效果
+
+527
+00:27:03,900 --> 00:27:06,150
+But how to do that without lvt
+但如何在没有 LVT 的情况下做到呢
+
+528
+00:27:06,150 --> 00:27:08,920
+Well a good old texture will do just fine
+嗯，一张经典好用的纹理就完全够用了
+
+529
+00:27:08,920 --> 00:27:13,250
+This method isn't scalbal and isn't likely to work for all our reen world , right
+这种方法不可扩展，也不大可能适用于所有真实世界场景，对吧
+
+530
+00:27:13,250 --> 00:27:16,360
+But for most use cases it's still available option
+但对大多数用例来说，它仍是一个可行选项
+
+531
+00:27:16,360 --> 00:27:18,980
+So i built a true similar to my sin capture
+所以我做了一个类似场景捕获的工具
+
+532
+00:27:18,980 --> 00:27:21,310
+True i released on my patient but simpl
+这个工具我已经在 Patreon 上发布，不过它很简单
+
+533
+00:27:21,310 --> 00:27:24,400
+Basically it lets you select an on scape and a mattire
+基本上，它可以让你选择一个景观和一个材质
+
+534
+00:27:24,400 --> 00:27:26,120
+And that matatire is meant to it
+而这个材质就是用来……
+
+535
+00:27:26,120 --> 00:27:28,350
+Put the painted layer you want to capture
+放入你想要捕获的绘制图层
+
+536
+00:27:28,350 --> 00:27:33,160
+Click that burden and water that's my landscape grass layer baked into a texture
+点击那个按钮，瞧，我的景观草地图层就烘焙进一张纹理里了
+
+537
+00:27:33,160 --> 00:27:35,880
+It can then be projecting in wards space in the graph
+然后它可以在图表中投影到世界空间
+
+538
+00:27:35,880 --> 00:27:37,890
+Shadow using that of set and size
+使用那个偏移量和尺寸进行投影
+
+539
+00:27:37,890 --> 00:27:41,790
+Surprising and obviously that can be used to drive the cloud scale
+而且显然，这还可以用来驱动草丛团簇的尺度
+
+540
+00:27:41,790 --> 00:27:44,450
+and smoothly shing grass bleeding on the door layer
+并在底层上平滑地混合草地
+
+541
+00:27:44,450 --> 00:27:51,350
+And do other cuthings that's without and that's with without with cool
+还能做其他很酷的事。这是没有的效果，这是有的效果，很酷吧
+
+542
+00:27:55,220 --> 00:28:00,020
+Normal . oh boy , buker up it's one thing to compute and offset for vertices
+法线。哦天哪，系好安全带吧：为顶点计算偏移是一回事
+
+543
+00:28:00,020 --> 00:28:03,307
+But fixing normals is usually even more complicated
+但修正法线通常要复杂得多
+
+544
+00:28:03,307 --> 00:28:07,180
+The more of such an anges you do , the more complex it usually is
+你做的这类改动越多，通常就会越复杂
+
+545
+00:28:07,180 --> 00:28:09,690
+And at one point i find it easier to address
+而到了某个阶段，我发现更容易的做法是
+
+546
+00:28:09,690 --> 00:28:14,090
+Rebuild the word space normal from scratch results and fixing up an existing one
+从头重建世界空间法线，而不是修补现有的法线
+
+547
+00:28:14,090 --> 00:28:17,400
+Press . remember i encoded a random direction in normous
+记住，我在法线里编码了一个随机方向
+
+548
+00:28:17,400 --> 00:28:19,730
+So i kind of shot myself in the food here
+所以我在这里有点搬起石头砸自己的脚
+
+549
+00:28:19,730 --> 00:28:23,950
+I definitely have better oracc rebuilding a wardspace nomer from the ground up
+从头重建世界空间法线，我肯定更顺手
+
+550
+00:28:23,950 --> 00:28:26,350
+But what kind of words based normal though
+但到底要哪种世界空间法线呢
+
+551
+00:28:26,350 --> 00:28:28,510
+Because i feel like they are whose cools of salts
+因为我觉得它们有几种很酷的用法
+
+552
+00:28:28,510 --> 00:28:29,680
+If i may say so
+如果我可以这么说的话
+
+553
+00:28:29,680 --> 00:28:36,860
+first , stylized renderings the common methodist to have opoad normals to unify the wake cards and the underlying ground on lit
+首先，风格化渲染的常见方法是使用朝上的法线，让草片和下方地面在光照下统一起来
+
+554
+00:28:36,860 --> 00:28:41,900
+And have some things that looks a bit easier on the eye from restick from during the way to go
+并且让某些东西从远处看更顺眼一些，这才是可行之道
+
+555
+00:28:41,900 --> 00:28:46,290
+At least on paper is to walk with a default vtex normers if that makes sense
+至少理论上，是使用默认的顶点法线，如果这说得通的话
+
+556
+00:28:46,290 --> 00:28:49,050
+And then rely on a shadow to make a light blitz
+然后依靠阴影来制造轻微的光照效果
+
+557
+00:28:49,050 --> 00:28:54,590
+Rose of geometry and proven back faces from being incorrectly lit and looking too dark in ue
+排除几何体，并防止背面被错误照亮而在 UE 里显得太暗
+
+558
+00:28:54,590 --> 00:28:56,030
+You may do this in many ways
+你可以用很多方法做到这一点
+
+559
+00:28:56,030 --> 00:28:59,090
+You could create your own solution , use subsurface scattering
+你可以创建自己的方案，使用次表面散射
+
+560
+00:28:59,090 --> 00:29:02,980
+Our best use it to sided for your sharing model press is that shadow
+或者最好的做法是为你的着色模型使用双面，也许还配合那个阴影
+
+561
+00:29:02,980 --> 00:29:07,880
+I believe , automatically set some viables for women to properly work with two sided cars
+我相信它会自动设置一些变量，让材质能正确处理双面面片
+
+562
+00:29:07,880 --> 00:29:11,290
+But i'm not entirely shown that something i read a long time ago
+但我不完全确定，这是我很久以前看到的说法
+
+563
+00:29:11,290 --> 00:29:11,780
+Anyway
+总之
+
+564
+00:29:11,780 --> 00:29:15,060
+Um , there is nothing preventing you from both tweaking numbers
+嗯，没有什么能阻止你一边调整数值
+
+565
+00:29:15,060 --> 00:29:17,680
+And using some kind of sips of face scattering , right
+一边使用某种面片散射方式，对吧
+
+566
+00:29:17,680 --> 00:29:20,480
+And to be honest , i don't think there is one right answer
+而且说实话，我不认为有唯一正确的答案
+
+567
+00:29:20,480 --> 00:29:21,980
+Even from really steep grass
+即使是长在很陡坡上的草
+
+568
+00:29:21,980 --> 00:29:24,240
+Both methods of the pros and comes
+两种方法各有利弊
+
+569
+00:29:24,240 --> 00:29:26,570
+Fortunately i'll be able to choose between one
+幸运的是，你可以在两者之间选一个
+
+570
+00:29:26,570 --> 00:29:29,170
+Or those are easily and see which one works best
+或者轻松测试一下，看看哪个效果最好
+
+571
+00:29:29,170 --> 00:29:30,927
+All right , let's give it to you
+好，那我们开始吧
+
+572
+00:29:30,927 --> 00:29:32,020
+First things first
+首先
+
+573
+00:29:32,020 --> 00:29:33,735
+This is a bit too much to work with
+这个处理起来有点太复杂了
+
+574
+00:29:33,735 --> 00:29:36,280
+so i'm going to create a mergency protests in
+所以我要创建一个临时测试场景
+
+575
+00:29:36,280 --> 00:29:37,930
+I'm going to use a single mesh
+我会使用一个单独的网格体
+
+576
+00:29:37,930 --> 00:29:41,780
+With just four cars and four directions encoded enormous
+只放四张面片，并把四个方向编码进法线里
+
+577
+00:29:41,780 --> 00:29:44,720
+Then i'm going to disabled the camera facing logic
+然后我会禁用朝向摄像机的逻辑
+
+578
+00:29:44,720 --> 00:29:49,160
+Make sure the matter uses wall space numbers and disable to decide it here
+确保材质使用世界空间法线，并在这里禁用相关选项
+
+579
+00:29:49,160 --> 00:29:53,000
+Just to make sure faces are correkly oriented before i go any further
+只是为了在继续之前确认面片朝向正确
+
+580
+00:29:53,000 --> 00:29:54,600
+And turns out they are not
+结果发现它们并不正确
+
+581
+00:29:54,600 --> 00:29:57,660
+So i must have messed up this three by three metrics . opy
+所以我一定是把这个 3×3 矩阵搞错了。复制
+
+582
+00:29:57,660 --> 00:29:59,660
+Let's fed this excess and that one
+我们把这条轴和那条轴翻转一下
+
+583
+00:29:59,660 --> 00:30:04,490
+But it as though that likely means i need to fill the tried vector here as well
+但这似乎意味着我也需要翻转这里的切线向量
+
+584
+00:30:04,490 --> 00:30:06,142
+So let's check
+那我们检查一下
+
+585
+00:30:06,142 --> 00:30:08,720
+Yep , cals are rotating the wrong way now
+对，面片现在旋转方向反了
+
+586
+00:30:08,720 --> 00:30:09,880
+So let's do that
+那我们就这样做
+
+587
+00:30:13,300 --> 00:30:15,340
+okay fixed sorry about that
+好了，修好了，抱歉
+
+588
+00:30:18,480 --> 00:30:21,480
+Next i'm going to switch to the world normal buffer on
+接下来我会切换到世界法线缓冲区
+
+589
+00:30:21,480 --> 00:30:23,070
+Let's set the sphere while i'm married
+顺便把球体也设置一下
+
+590
+00:30:23,070 --> 00:30:25,080
+Just have ever reference to walk with
+只是有个参考可用
+
+591
+00:30:25,080 --> 00:30:25,420
+Okay
+好
+
+592
+00:30:25,420 --> 00:30:29,815
+I'm first going to get the bent a vector of this node output
+我首先会获取这个节点输出的副切线向量
+
+593
+00:30:29,815 --> 00:30:33,740
+This node works on xaxis aligned measures if you remember
+这个节点只对沿 X 轴对齐的网格体生效，如果你还记得的话
+
+594
+00:30:33,740 --> 00:30:35,560
+So the normal is a three d vector
+所以法线是一个三维向量
+
+595
+00:30:35,560 --> 00:30:37,360
+But lies on a truly plane , right
+但它位于一个二维平面上，对吧
+
+596
+00:30:37,360 --> 00:30:39,880
+you're choosing between an npd and a four word
+你是在“向上”和“向前”之间做选择
+
+597
+00:30:39,880 --> 00:30:42,600
+Normal is just a matter of squizzing components
+法线无非就是对分量进行压扁处理
+
+598
+00:30:42,600 --> 00:30:45,320
+I'm gonna take the absolute value for sig components
+我会对 Z 分量取绝对值
+
+599
+00:30:45,320 --> 00:30:47,600
+So i had a burg on this fixed it
+我这里有个 bug，已经修好了
+
+600
+00:30:47,600 --> 00:30:49,760
+And at this point i'm too tired to equi
+而到这个阶段，我已经累得不想再争了
+
+601
+00:30:49,760 --> 00:30:51,400
+So that's the poon victor
+所以那就是弯曲向量
+
+602
+00:30:51,400 --> 00:30:53,357
+And that the four on victor
+而那个是前方向量
+
+603
+00:30:53,357 --> 00:30:56,090
+Who let's use a luck to select one or user
+现在让我们用 Lerp 来选择其中一个
+
+604
+00:30:56,090 --> 00:30:58,720
+And let's plug that in the matter normal pin
+然后把它连到材质法线引脚上
+
+605
+00:30:58,720 --> 00:31:05,280
+Oh an error that's just because this local position here is only available for vertices , not pixels basically
+哦，报错了，这只是因为这里的局部位置基本上只对顶点可用，对像素不可用
+
+606
+00:31:05,280 --> 00:31:07,560
+So the pixel shader complaints about it
+所以像素着色器会对此报错
+
+607
+00:31:07,560 --> 00:31:10,510
+Just have to use a vertex in interpolor to fix the issue
+只需要用顶点插值器来解决这个问题
+
+608
+00:31:10,510 --> 00:31:11,890
+Which is a good thing actually
+实际上这是件好事
+
+609
+00:31:11,890 --> 00:31:15,350
+Because i differently wouldn't want to compute this pair pixel
+因为我肯定不想逐像素计算这个
+
+610
+00:31:15,350 --> 00:31:15,850
+Okay
+好
+
+611
+00:31:15,850 --> 00:31:18,450
+so walking with xxy salign cards at first
+所以一开始处理 X/Y 对齐的卡片时
+
+612
+00:31:18,450 --> 00:31:22,430
+Means the normal should face a positive xxxx at first and that's correct
+意味着法线一开始应该朝向正 X 方向，这是正确的
+
+613
+00:31:22,430 --> 00:31:28,860
+And as the c's curve normcredily shift towards the z direction as expected using an appol normal
+而随着曲线，法线会逐渐向 Z 方向偏移，使用朝上的法线时符合预期
+
+614
+00:31:28,860 --> 00:31:31,240
+Same thing except that we start here on the sphere
+同样的情况，只是我们从球面上的这里开始
+
+615
+00:31:31,240 --> 00:31:32,600
+And end up around there
+最后到那附近
+
+616
+00:31:32,600 --> 00:31:34,890
+Same arc with different starting point
+同样的弧线，起始点不同
+
+617
+00:31:34,890 --> 00:31:36,450
+So that works great
+所以效果很好
+
+618
+00:31:36,450 --> 00:31:41,020
+Next i need to rotate those normaas the exact same way and rotate cs right
+接下来我需要用完全相同的方式旋转那些法线，并向右旋转卡片
+
+619
+00:31:41,020 --> 00:31:44,020
+So do the very centrons from matrix and then
+所以对矩阵做同样的变换，然后
+
+620
+00:31:46,140 --> 00:31:49,360
+This car is correct and laps toward the z vector
+这张卡片是对的，并朝 Z 向量倾斜
+
+621
+00:31:49,360 --> 00:31:50,340
+This one is good
+这个没问题
+
+622
+00:31:50,340 --> 00:31:53,052
+That one is as well and that one two
+那个也是，还有那个也是
+
+623
+00:31:53,052 --> 00:31:55,770
+Now let's add some fake wind to till calves
+现在让我们给倾斜的卡片加一些假风
+
+624
+00:31:55,770 --> 00:31:57,930
+And make sure it's behaving as expected
+并确保它的表现符合预期
+
+625
+00:32:00,920 --> 00:32:05,850
+And that seems to walk normas shift towards the right direction crate
+看起来可行，法线朝正确方向偏移了，很好
+
+626
+00:32:05,850 --> 00:32:09,645
+Now let's see what happens if i choose a full while normal
+现在看看如果我选择一个纯白法线会发生什么
+
+627
+00:32:09,645 --> 00:32:11,300
+That cat seems good
+那张卡片看起来不错
+
+628
+00:32:11,300 --> 00:32:14,620
+Normans start here and end up on here with a child
+法线从这里开始，最后到这里，有一个偏移
+
+629
+00:32:14,620 --> 00:32:16,030
+So the shift is correct
+所以偏移是正确的
+
+630
+00:32:16,030 --> 00:32:18,200
+However , that one doesn't seem to walk
+然而，那个似乎不起作用
+
+631
+00:32:18,200 --> 00:32:19,860
+And the reason is simple
+原因很简单
+
+632
+00:32:19,860 --> 00:32:22,360
+That normally is aligned with the tilt axis
+那个法线与倾斜轴对齐了
+
+633
+00:32:22,360 --> 00:32:25,990
+So that matrix results in the visible changes burm
+所以那个矩阵不会产生可见变化
+
+634
+00:32:25,990 --> 00:32:27,700
+And this was a huge puzzle
+这曾是个大难题
+
+635
+00:32:27,700 --> 00:32:30,850
+I spent way too much time trying to find reconsolution
+我花了太多时间试图找到解决办法
+
+636
+00:32:30,850 --> 00:32:33,920
+i ended up finding a walk around a huge cheat
+最后我找到了一种变通办法，算是个大作弊
+
+637
+00:32:33,920 --> 00:32:35,590
+If i'm being honest , but it works
+说实话，但它确实有效
+
+638
+00:32:35,590 --> 00:32:39,190
+I'm going to lap the war normal towards the kids to the directions
+我打算把世界法线朝 Z 方向插值
+
+639
+00:32:39,190 --> 00:32:41,160
+The greater the chat is that makes sense
+偏移越大，这就说得通了
+
+640
+00:32:41,160 --> 00:32:45,400
+And that's going to ensure the wind and cm features have an effect on the normals
+这样就能确保风和簇功能对法线产生影响
+
+641
+00:32:45,400 --> 00:32:47,700
+And that's still lighting regardless of what normal
+而且无论选什么法线，光照都依然有效
+
+642
+00:32:47,700 --> 00:32:49,980
+I choose a word of four while normal
+无论我选的是世界向上方向还是世界法线
+
+643
+00:32:49,980 --> 00:32:52,800
+And that regarless of the cats for while axias
+而且不管切线或世界轴怎么变
+
+644
+00:32:52,800 --> 00:32:54,160
+Well quite a mouthful
+这可真够拗口的
+
+645
+00:32:54,160 --> 00:32:56,990
+And i'm not even done there's one more tricky part
+我还没讲完呢，还有一个棘手的地方
+
+646
+00:32:56,990 --> 00:32:58,400
+Adding a normal map
+添加法线贴图
+
+647
+00:32:58,400 --> 00:33:00,860
+Normal maps are usually intention space
+法线贴图通常位于切线空间
+
+648
+00:33:00,860 --> 00:33:02,900
+So relative to a tod office
+也就是相对于切线空间
+
+649
+00:33:02,900 --> 00:33:05,550
+And so we're playing attention based normal map
+所以我们要应用基于切线的法线贴图
+
+650
+00:33:05,550 --> 00:33:08,840
+When you have nothing but award based normal can be tricky
+当你只有基于世界的法线时，事情可能会很棘手
+
+651
+00:33:08,840 --> 00:33:12,940
+Usually i use a transform vector to go from one's space to the user
+通常我会用 Transform Vector 从一个空间转换到另一个空间
+
+652
+00:33:12,940 --> 00:33:15,420
+But sometimes it doesn't go according to plan
+但有时候它并不会按计划进行
+
+653
+00:33:15,420 --> 00:33:17,360
+The reason for this is i think
+我觉得原因在于
+
+654
+00:33:17,360 --> 00:33:20,880
+Because tangents are computed based on new reason vertex normals
+因为切线是根据新的顶点法线计算出来的
+
+655
+00:33:20,880 --> 00:33:23,840
+And so missing with normals can break tengini
+所以乱动法线可能会破坏切线
+
+656
+00:33:23,840 --> 00:33:28,820
+Suppose it's something of the experience with my word or full tool as well when tweaking normal
+我猜我的世界或植被工具在调整法线时也遇到过类似情况
+
+657
+00:33:28,820 --> 00:33:33,610
+So here i might have shot myself in the foot by doing shady stuff with vertex normals
+所以在这里，我可能因为对顶点法线做了一些见不得人的操作而搬起石头砸了自己的脚
+
+658
+00:33:33,610 --> 00:33:35,180
+But nothing to worry about
+但不用担心
+
+659
+00:33:35,180 --> 00:33:36,880
+Let's think about it fast england
+我们快速想一下
+
+660
+00:33:36,880 --> 00:33:39,420
+That normal map is baked intelgent space
+那张法线贴图是烘焙到切线空间的
+
+661
+00:33:39,420 --> 00:33:41,760
+Meaning relative to this planese your face
+意思是相对于这个平面的表面
+
+662
+00:33:41,760 --> 00:33:44,160
+And so use z xis points that way
+所以它的 Z 轴指向那边
+
+663
+00:33:44,160 --> 00:33:46,899
+X axis that way and y axis that way
+X 轴指向那边，Y 轴指向那边
+
+664
+00:33:46,899 --> 00:33:51,600
+well it's just a matter of swizing vectors to reorience that ex wise system
+其实只需要交换向量，重新调整这个坐标轴系统
+
+665
+00:33:51,600 --> 00:33:53,680
+And then rotating the results in normal
+然后旋转得到的法线
+
+666
+00:33:53,680 --> 00:33:57,530
+According to my reconstructed world normal meaning i'm going to say
+根据我重建的世界法线，也就是说我要说
+
+667
+00:33:57,530 --> 00:34:01,660
+Hey tanges based now my map that the excess of yours is no that one
+嘿，基于切线的法线贴图，你的 X 轴现在是那一个
+
+668
+00:34:01,660 --> 00:34:05,200
+Your y axis is one obtained using a cross product like so
+你的 Y 轴则是像这样通过叉积得到的那个
+
+669
+00:34:05,200 --> 00:34:08,370
+And your xxx is is the result of this song cross product
+你的 X 轴则是这个叉积的结果
+
+670
+00:34:08,370 --> 00:34:12,310
+Now this could be done a bit more carefully with safe normalization and so on
+这个可以做得更细致一些，比如使用安全归一化等等
+
+671
+00:34:12,310 --> 00:34:15,890
+But oh well , i better tle tested it and haven't noticed any issues
+不过算了，我测试过了，也没发现任何问题
+
+672
+00:34:15,890 --> 00:34:17,490
+And at this point i'm too lazy
+而且到了这一步，我也太懒了
+
+673
+00:34:17,490 --> 00:34:20,500
+And voila , i successfully remapped this tension
+瞧，我成功重新映射了这个切线
+
+674
+00:34:20,500 --> 00:34:24,830
+space normal towards space according to the cb orientation bend
+将切线空间法线转换到世界空间，依据的是朝向、弯曲
+
+675
+00:34:24,830 --> 00:34:27,650
+And the tilt inner rated from the wind and clump effect
+以及由风和成簇效果产生的倾斜
+
+676
+00:34:27,650 --> 00:34:30,390
+On top of having extrartistic controls
+此外还有额外的美术控制
+
+677
+00:34:30,390 --> 00:34:32,770
+Do i want a pod of four or normals
+我想要世界法线还是切线法线？
+
+678
+00:34:32,770 --> 00:34:35,880
+One looks better and broad daylight there was there a bit better at
+一个在白天看起来更好，另一个在夜晚稍好一些
+
+679
+00:34:35,880 --> 00:34:37,540
+and rise and said it well
+而且效果也还不错
+
+680
+00:34:37,540 --> 00:34:38,950
+Can't have both as pose
+我想，不能两者兼得
+
+681
+00:34:38,950 --> 00:34:42,470
+Although why not of all let's mainly use the forward normal
+不过，为什么不呢？首先，我们主要使用前向法线
+
+682
+00:34:42,470 --> 00:34:47,930
+but slightly shifted to oz to get best of both worlds of quite a puzzle
+但稍微向 +Z 偏移，以取得两全其美的效果；这还真有点棘手
+
+683
+00:34:47,930 --> 00:34:50,880
+That normal reconstruction are most gods best of me
+这种法线重建对我来说基本够用了
+
+684
+00:34:50,880 --> 00:34:53,260
+But i'm glad i got it walking moving on
+不过我很高兴把它跑通了。继续
+
+685
+00:34:56,460 --> 00:34:57,900
+Regarding a pad
+关于 LOD
+
+686
+00:34:57,900 --> 00:35:01,960
+First they use these are the rodies to have a smooth er transition between the rodies
+首先，它们用这些 LOD，让不同 LOD 之间的过渡更平滑
+
+687
+00:35:01,960 --> 00:35:03,780
+Because they have to be carefully managed
+因为必须仔细管理它们
+
+688
+00:35:03,780 --> 00:35:05,970
+Here you to the coastlvia extrader
+这里是因为过度绘制成本很高
+
+689
+00:35:05,970 --> 00:35:08,800
+Traccount must be drastically reduced at the distance
+所以在远处，三角形数量必须大幅减少
+
+690
+00:35:08,800 --> 00:35:13,340
+And desired errods are great to make the rever of detailed transition a bit less apparent
+而合适的 LOD 能很好地让细节过渡的痕迹不那么明显
+
+691
+00:35:13,340 --> 00:35:17,180
+These are the ladies come at tesonic tracles though something to be aware of
+不过这些 LOD 也有代价，这一点需要注意
+
+692
+00:35:17,180 --> 00:35:19,810
+Next , i use dessert mask opacity
+接下来，我使用距离遮罩不透明度
+
+693
+00:35:19,810 --> 00:35:21,890
+Quite uncommon for grass i suppose
+对草来说，这应该挺少见的
+
+694
+00:35:21,890 --> 00:35:26,580
+But i feel lags that helped me get move your edges and achieve that fluffy look there's
+但我觉得它帮我让边缘更柔和，做出了那种蓬松的效果，不过
+
+695
+00:35:26,580 --> 00:35:30,280
+one thing to keep in mind up that's my aggressiacity texture
+有一点要注意，就是我的 aggressiveness 纹理
+
+696
+00:35:30,280 --> 00:35:33,680
+And meat maps are going to turn that into a mesh of grave values
+而 Mipmap 会把它变成一片灰度值
+
+697
+00:35:33,680 --> 00:35:34,980
+Especially in my case
+尤其是在我的情况下
+
+698
+00:35:34,980 --> 00:35:37,350
+I was probably too aggressive with packing
+我打包得可能太激进了
+
+699
+00:35:37,350 --> 00:35:40,630
+So at a distance calabs are going to be somewhat transparent
+所以在远处，草叶会显得有些透明
+
+700
+00:35:40,630 --> 00:35:43,390
+Because of the dessert mask topastic kicking in
+因为距离遮罩的不透明度开始生效了
+
+701
+00:35:44,460 --> 00:35:45,880
+There are two solutions
+有两种解决办法
+
+702
+00:35:45,880 --> 00:35:47,560
+Provably more , but i know too
+可能还有更多，但我只知道两个
+
+703
+00:35:47,560 --> 00:35:50,220
+First , you can toy with these options to tweak home
+第一，你可以摆弄这些选项来微调
+
+704
+00:35:50,220 --> 00:35:52,400
+Meat maps are generated that may help
+生成 Mipmap 的方式可能会有帮助
+
+705
+00:35:52,400 --> 00:35:54,340
+And though ue has this option
+虽然 UE 有这个选项
+
+706
+00:35:54,340 --> 00:35:56,780
+I'm not sure what it does and does the food exactly
+我不确定它具体做什么、到底有什么用
+
+707
+00:35:56,780 --> 00:36:00,550
+But it seems to ensure certain values are maintained across the mip chain
+但它似乎能确保某些值在整个 Mip 链中保持不变
+
+708
+00:36:00,550 --> 00:36:02,690
+See , there are quite a difference in brightness
+你看，亮度上差别挺大的
+
+709
+00:36:02,690 --> 00:36:07,280
+And that helps to prevent mips from reaching the dissert opacity threshold value
+这有助于防止 Mip 达到距离不透明度阈值
+
+710
+00:36:07,280 --> 00:36:10,170
+Second solution , you can manually twik meat maps
+第二种办法是手动调整 Mipmap
+
+711
+00:36:10,170 --> 00:36:11,990
+Photoshop and even gm parlows
+用 Photoshop，甚至 GIMP 也可以
+
+712
+00:36:11,990 --> 00:36:14,360
+You to do this has a method with gimp
+用 GIMP 做这件事有一个方法
+
+713
+00:36:14,360 --> 00:36:17,870
+Just have to have a first layer or named lag , so replicate it
+只需要有一个基础层或命名图层，然后复制它
+
+714
+00:36:17,870 --> 00:36:20,970
+Reduce its size by half and name it mipmap one
+把它的尺寸缩小一半，并命名为 mipmap 1
+
+715
+00:36:23,180 --> 00:36:28,010
+Wins and repeat until you reach a size of one pixel by one pixel and nada mip chain
+然后重复，直到尺寸变成 1×1 像素，这样就得到完整的 Mip 链
+
+716
+00:36:28,010 --> 00:36:31,930
+Then export to dds with the following options imported in ue
+然后用以下选项导出为 DDS，并导入 UE
+
+717
+00:36:31,930 --> 00:36:35,230
+Select leave existing maps in the texture asset and what up
+在纹理资源中选择“保留现有 Mip”，然后就好了
+
+718
+00:36:35,230 --> 00:36:37,470
+you can manually customize each mp
+你就可以手动自定义每个 Mip
+
+719
+00:36:37,470 --> 00:36:40,160
+so maybe unsure that these are opacity threshold
+所以也许要确保这些是不透明度阈值
+
+720
+00:36:40,160 --> 00:36:44,710
+Deand rich in certain mips and done that custom mip pok flow
+并在某些 Mip 中调整它们，这样就完成了自定义 Mip 的流程
+
+721
+00:36:44,710 --> 00:36:46,950
+Cannot also be used to do plenty of course things
+Mip 也可以用来实现很多很酷的效果
+
+722
+00:36:46,950 --> 00:36:48,130
+You could for instance
+比如，你可以
+
+723
+00:36:48,130 --> 00:36:52,090
+Embed some kind of failing or fade out based on distance in mips
+在 mip 中加入某种基于距离的淡化或淡出效果
+
+724
+00:36:52,090 --> 00:36:54,070
+Say mid zero is totally black
+比如让 mip 0 完全变黑
+
+725
+00:36:54,070 --> 00:36:57,310
+Why not see i didn't add any logic to the shadow
+注意，我并没有给着色器添加任何逻辑
+
+726
+00:36:57,310 --> 00:36:59,290
+yet i build some kind of automated
+但我做出了某种自动化的
+
+727
+00:36:59,290 --> 00:37:03,860
+Failing effect that's just the mid zo on the jz of the past ge doing that effect
+淡出效果，其实只是贴图上的 mip 0 在起作用
+
+728
+00:37:03,860 --> 00:37:04,580
+Nothing else
+仅此而已
+
+729
+00:37:04,580 --> 00:37:05,310
+Quite cool
+挺酷的
+
+730
+00:37:05,310 --> 00:37:09,110
+italis also commonly used to reduce purr highlights in the distance
+Mip 也常用来减少远处的镜面高光
+
+731
+00:37:09,110 --> 00:37:12,360
+so you could cheat a bit and reduce the value of your speaker armap
+所以你可以稍微取巧，降低高光贴图的值
+
+732
+00:37:12,360 --> 00:37:15,270
+And increase the value of your roughness map at a distance
+并在远处提高粗糙度贴图的值
+
+733
+00:37:15,270 --> 00:37:17,140
+Plenty of cool tricks to do with ismips
+用 mip 能玩出很多很酷的花样
+
+734
+00:37:17,140 --> 00:37:18,820
+Especially in vfx and take out
+尤其是在 VFX 和技术美术中
+
+735
+00:37:18,820 --> 00:37:20,960
+You can emextra data in meps and more
+你可以在 mip 中嵌入额外数据，等等
+
+736
+00:37:20,960 --> 00:37:24,040
+Epic did something like this for their wind system on fortnight
+Epic 在《堡垒之夜》的风系统里就做过类似的事
+
+737
+00:37:24,040 --> 00:37:25,420
+Super cool
+超级酷
+
+738
+00:37:25,420 --> 00:37:30,935
+One more passage trick , you can use the shadow pass which snowed to do bizarre things
+还有一个很妙的技巧：你可以利用阴影通道来做一些奇怪的事情
+
+739
+00:37:30,935 --> 00:37:33,280
+For instance , you could say hey kw
+比如说，你可以让草
+
+740
+00:37:33,280 --> 00:37:36,730
+The entirely transparent when run out in the shadow path
+在阴影通道里渲染时完全透明
+
+741
+00:37:36,730 --> 00:37:41,960
+Oh hey , calves are completely opaque that's going to increase the shadow coverage quite a bit
+或者反过来，让草完全不透明，这会大幅增加阴影覆盖范围
+
+742
+00:37:41,960 --> 00:37:44,555
+And makes the grass lookicker and more dens
+并让草看起来更厚、更密
+
+743
+00:37:44,555 --> 00:37:49,965
+But it is now quite apparounds that shadows are casted from the geometry and the geometry alone
+但现在很明显，阴影完全是由几何体投射出来的，仅此而已
+
+744
+00:37:49,965 --> 00:37:51,920
+So you could choose to do this still
+所以你仍然可以选择这样做
+
+745
+00:37:51,920 --> 00:37:53,100
+But in the distance
+但在远处
+
+746
+00:37:53,100 --> 00:37:58,510
+Maybe user switch that is enabled on the mature instance used on distant lds
+也许可以用一个开关，在远景 LOD 使用的材质实例上启用它
+
+747
+00:37:58,510 --> 00:38:01,560
+That may help to create a denograss in the distance
+这或许能帮助在远处营造出更茂密的草
+
+748
+00:38:01,560 --> 00:38:03,630
+And that's wizled and that's with
+这就是配合 LOD 的做法
+
+749
+00:38:03,630 --> 00:38:07,990
+Keep in mind that no may make zero d transition a bit more noticeable
+请记住，这可能会让 LOD 过渡稍微更明显一些
+
+750
+00:38:07,990 --> 00:38:09,840
+Next trick attack close range
+下一个技巧针对近距离
+
+751
+00:38:09,840 --> 00:38:11,900
+You could say do the opposite
+你可以反其道而行之
+
+752
+00:38:11,900 --> 00:38:15,030
+You could use dessert jump part aa to fake light
+你可以用 DitherTemporalAA 来伪造光线
+
+753
+00:38:15,030 --> 00:38:18,010
+Bleeding through the grass and casting a weaker shadow
+让它透过草叶，并投射出更弱的阴影
+
+754
+00:38:18,010 --> 00:38:20,400
+Super simple yet very effective
+非常简单，却非常有效
+
+755
+00:38:20,400 --> 00:38:22,620
+I was made a way of the trick on twitter
+我是在 Twitter 上得知这个技巧的
+
+756
+00:38:22,620 --> 00:38:23,920
+So shut up to you guys
+所以感谢各位
+
+757
+00:38:23,920 --> 00:38:25,032
+Super cool
+超级酷
+
+758
+00:38:25,032 --> 00:38:26,130
+That shadow pass
+那个阴影通道
+
+759
+00:38:26,130 --> 00:38:28,050
+Which node could also be used in the war
+这个节点也可以用在世界位置偏移（WPO）里
+
+760
+00:38:28,050 --> 00:38:31,350
+Position of psychologic to do crazy things like say
+来做一些疯狂的事情，比如
+
+761
+00:38:31,350 --> 00:38:35,580
+The burgeograss counts size drings of shadow pass to increase shadow courage
+草地预算还要计入阴影通道的绘制调用，以增加阴影覆盖范围
+
+762
+00:38:35,580 --> 00:38:37,260
+And not sure why you would do this
+我不太确定你为什么要这么做
+
+763
+00:38:37,260 --> 00:38:39,460
+But there are plenty of course things to try
+不过当然，有很多方法可以尝试
+
+764
+00:38:42,680 --> 00:38:46,870
+To get a dension of grass when you need quite a lot of grass bds
+为了在需要大量草叶时获得足够的密度
+
+765
+00:38:46,870 --> 00:38:50,810
+But it s unlikely you can afford one single grass gard or mesh pair
+但不太可能为每一片草叶都单独用一张草卡或一个网格
+
+766
+00:38:50,810 --> 00:38:54,800
+grass bade that's probably too much good to find some kind of in between
+每片草叶都用网格开销可能太大，所以得找某种折中方案
+
+767
+00:38:54,800 --> 00:38:57,930
+And half catherismos and a few brass blades and them , right
+让一张草卡里包含几片草叶，对吧
+
+768
+00:38:57,930 --> 00:39:01,180
+That tends to look quite flatten all school though
+不过这样看起来往往会很扁平
+
+769
+00:39:01,180 --> 00:39:03,280
+But adding some pixel depth of that
+但给它加一些像素深度偏移
+
+770
+00:39:03,280 --> 00:39:06,482
+May help to get rid of that boring fat cow look
+或许能帮助摆脱那种无聊的扁平卡片感
+
+771
+00:39:06,482 --> 00:39:10,230
+Here i simply run the other random value paragrah bate
+这里我只是为每片草叶再生成一个随机值
+
+772
+00:39:10,230 --> 00:39:14,750
+And i simply use that texture to push pixelaway in camera space
+然后用那张纹理在相机空间里把像素推远
+
+773
+00:39:14,750 --> 00:39:15,650
+Super simple
+非常简单
+
+774
+00:39:15,650 --> 00:39:19,882
+but it creates the illusion of sutton grass blades being further away from the camera
+但它能制造出某些草叶离相机更远的错觉
+
+775
+00:39:19,882 --> 00:39:21,920
+in the middle of deps to the grass scouts
+让它们位于草卡深度的中间位置
+
+776
+00:39:23,050 --> 00:39:29,342
+Now again , that texture is going to turn into a mush of gray values at a distance with me maps , right
+再说一次，到了远处，经过 mipmap 后这张纹理会变成一团模糊的灰度值，对吧
+
+777
+00:39:29,342 --> 00:39:33,960
+And because pixel depth of such creates surf shadowing artifacts with dynamic lighting
+而且因为像素深度偏移会在动态光照下产生自阴影伪影
+
+778
+00:39:33,960 --> 00:39:38,320
+It's probably best to ensure that at a distance that there is value from the texture
+所以最好确保在远处时，纹理中的值
+
+779
+00:39:38,320 --> 00:39:40,350
+Isn't averged to a constant value
+不会被平均成一个固定值
+
+780
+00:39:40,350 --> 00:39:41,860
+It's not that big of video
+这没什么大不了的
+
+781
+00:39:41,860 --> 00:39:46,610
+But here personally i gradually feather on the depth by fixing mips manually
+但在这里，我个人通过手动修改 mip 来逐渐弱化深度
+
+782
+00:39:46,610 --> 00:39:49,520
+Arguably that's not going to make a noticeable difference
+可以说这不会带来明显的差别
+
+783
+00:39:49,520 --> 00:39:53,020
+Especially considering shadow maps have limited range anyway
+尤其是考虑到阴影贴图本身范围就有限
+
+784
+00:39:53,020 --> 00:39:55,170
+But i thought it was worth mentioning
+但我觉得还是值得一提
+
+785
+00:39:55,170 --> 00:39:59,270
+I'm not sure how it behaves with virtual shadow map zoo . something to check
+我不确定它在虚拟阴影贴图下表现如何，这点值得检查
+
+786
+00:40:02,400 --> 00:40:05,020
+The rest of the shadow is super straight for while
+着色器的其余部分非常直接明了
+
+787
+00:40:05,020 --> 00:40:06,690
+So i'm going to breathe through it
+所以我会快速过一遍
+
+788
+00:40:06,690 --> 00:40:08,890
+First base screw nothing fancy
+首先是基础色，没什么花哨的
+
+789
+00:40:08,890 --> 00:40:11,590
+i'm just using a simple texture roughnessence
+我只是用了一张简单的纹理来做粗糙度
+
+790
+00:40:11,590 --> 00:40:13,790
+Because i just using two textures as well
+因为我同样只用了两张纹理
+
+791
+00:40:13,790 --> 00:40:17,700
+Open steam mask already explained one position of sesame
+不透明度遮罩已经解释过了，用的是同一个位置
+
+792
+00:40:17,700 --> 00:40:19,630
+And normal and pixel depth of seas
+以及法线和像素深度偏移
+
+793
+00:40:19,630 --> 00:40:24,650
+Well here i configure the two sided foliage shader so it needs a subsurface screw
+这里我配置了双面植被着色器，所以它需要次表面散射
+
+794
+00:40:24,650 --> 00:40:26,670
+I'm just really using the base ko already
+我其实只是用了基础色
+
+795
+00:40:26,670 --> 00:40:28,260
+But you could use a texture
+但你也可以用一张纹理
+
+796
+00:40:28,260 --> 00:40:30,270
+And the matter and opacity controls
+以及遮罩和不透明度控制
+
+797
+00:40:30,270 --> 00:40:34,500
+The transmission amount zero is fully translucent and that's it
+透射量为零就是完全不透明，就这样
+
+798
+00:40:34,500 --> 00:40:38,070
+So the pixel shadow is actually quite simple and cheap
+所以像素着色器其实非常简单，开销也低
+
+799
+00:40:38,070 --> 00:40:42,020
+The vertex shader however there's quite a lot going on this
+但顶点着色器里就有很多内容了
+
+800
+00:40:42,020 --> 00:40:42,520
+Yes
+是的
+
+801
+00:40:42,520 --> 00:40:44,955
+This grass definitely has a coast
+这片草确实是有代价的
+
+802
+00:40:44,955 --> 00:40:50,560
+So it's really important to keep the vatex count under control and be quite aggressive with lds
+所以把顶点数量控制住非常重要，而且要对LOD相当激进
+
+803
+00:40:50,560 --> 00:40:53,875
+And prevent as much quite overdraw as possible
+并尽可能减少四边形过度绘制
+
+804
+00:40:53,875 --> 00:40:57,580
+stealing with a large amount of instances in a somewhat long view distance
+在视距稍长、实例数量又很大的情况下
+
+805
+00:40:57,580 --> 00:41:00,040
+Paafarenremains quite decent i say
+我觉得性能仍然相当不错
+
+806
+00:41:00,040 --> 00:41:01,820
+Please note time not using the night
+请注意，我并没有使用Nanite
+
+807
+00:41:01,820 --> 00:41:03,420
+No veatrial shadow maps here
+这里没有虚拟阴影贴图
+
+808
+00:41:03,420 --> 00:41:04,440
+They both are great
+两者都很好
+
+809
+00:41:04,440 --> 00:41:07,550
+But they come with downsides and not yet comfortable weeps
+但它们也有缺点，而且我还没完全习惯
+
+810
+00:41:07,550 --> 00:41:09,880
+Namely i don't cope well with wall position
+也就是我处理不好世界位置偏移
+
+811
+00:41:09,880 --> 00:41:12,370
+Upsets are always gotten much better recently
+Nanite最近也进步了很多
+
+812
+00:41:12,370 --> 00:41:15,590
+And considering the id behind this whole project was to see
+而考虑到整个项目背后的想法就是看看
+
+813
+00:41:15,590 --> 00:41:18,070
+How far i could go with the world position offsets
+我能在世界位置偏移上走多远
+
+814
+00:41:18,070 --> 00:41:21,220
+I chose to stick with what i know and what i'm familiar with
+我选择坚持自己了解和熟悉的东西
+
+815
+00:41:21,220 --> 00:41:25,280
+And shadow maps and on the night measures are still rocks solied anyway
+而且阴影贴图和非Nanite网格依然非常稳定
+
+816
+00:41:25,280 --> 00:41:28,400
+And i feel like i sort of achieved my initial goal
+我觉得我算是实现了最初的目标
+
+817
+00:41:28,400 --> 00:41:32,610
+I feel like i managed to recreate most features presented in this techtok
+我觉得我成功复现了这个技术分享中展示的大部分功能
+
+818
+00:41:32,610 --> 00:41:35,090
+But at what cost and is it worth it
+但代价是什么，又是否值得呢？
+
+819
+00:41:35,090 --> 00:41:37,460
+I personally feel like it's a bit much
+我个人觉得有点过头了
+
+820
+00:41:37,460 --> 00:41:39,720
+especially is a normal reconstruction part
+尤其是在法线重建部分
+
+821
+00:41:39,720 --> 00:41:42,040
+Where it's leaning a bit too much on the hacky
+以我自己的口味来说，它有点过于依赖取巧的
+
+822
+00:41:42,040 --> 00:41:44,540
+Sketches side of things for my own taste
+拼凑式做法了
+
+823
+00:41:44,540 --> 00:41:46,510
+But i'll let you be the judge of that
+但这还是交给你们来判断吧
+
+824
+00:41:46,510 --> 00:41:50,050
+It was a fn thing to try on a very good exercise anyway
+不管怎样，尝试它很有趣，也是一次很好的练习
+
+825
+00:41:50,050 --> 00:41:51,970
+Well that's pretty much it
+好了，差不多就是这样
+
+826
+00:41:51,970 --> 00:41:54,620
+As promised , the third video is coming up soonish
+正如承诺的那样，第三个视频很快就会推出
+
+827
+00:41:54,620 --> 00:41:58,300
+I cover my walkrow for creating foliage assets in blender
+我会介绍我在Blender中创建植被资源的流程
+
+828
+00:41:58,300 --> 00:42:02,690
+And i'm actually walking in a blender iteto hope we facilated this process
+而且我实际上是在Blender里操作，希望能让这个过程更方便
+
+829
+00:42:02,690 --> 00:42:04,570
+I like you mention a few other things
+我还会提到一些其他内容
+
+830
+00:42:04,570 --> 00:42:06,670
+It should be quite an interesting video
+应该会是个挺有趣的视频
+
+831
+00:42:06,670 --> 00:42:12,440
+In the meantime , if you want to get your hands on this project files are available as the just three world on my patron
+同时，如果你想拿到它，项目文件已作为我Patreon上的3美元档奖励提供
+
+832
+00:42:12,440 --> 00:42:16,240
+i also released the run cape plor capture tool and clamp map tool
+我也发布了运行时捕获工具和Clamp Map工具
+
+833
+00:42:16,240 --> 00:42:17,470
+I mentioned during the view
+就是我在视频里提到的那些
+
+834
+00:42:17,470 --> 00:42:19,580
+As your one rewards that's it
+作为1美元档奖励。就这些
+
+835
+00:42:19,580 --> 00:42:23,100
+I hope you found the video useful on ertaining or both
+希望你觉得这个视频有用、有趣，或者两者兼有
+
+836
+00:42:23,100 --> 00:42:25,000
+And if you did , feel free to leave a like
+如果觉得不错，欢迎点个赞
+
+837
+00:42:25,000 --> 00:42:27,500
+And consider subscribing to my youtube channel
+也考虑订阅我的YouTube频道
+
+838
+00:42:27,500 --> 00:42:29,810
+We're slowly growing . so thanks to you all
+我们正在慢慢成长，谢谢大家
+
+839
+00:42:29,810 --> 00:42:33,040
+Thanks so much for the incredible support on my patron as well
+也非常感谢大家在我Patreon上的大力支持
+
+840
+00:42:33,040 --> 00:42:36,550
+I just wouldn't be able to do these projects and videos without you
+没有你们，我根本无法完成这些项目和视频
+
+841
+00:42:36,550 --> 00:42:38,200
+So mad props to you all
+所以真的要给你们疯狂点赞
+
+842
+00:42:38,200 --> 00:42:41,040
+You are definitely noticed and much appreciated
+你们的支持我都看在眼里，也非常感激
+
+843
+00:42:41,040 --> 00:42:42,880
+All right , thanks so much for watching
+好了，非常感谢大家的观看
+
+844
+00:42:42,880 --> 00:42:44,380
+I'll see you in the next video
+我们下个视频再见
+
+845
+00:42:44,380 --> 00:42:45,490
+Take care of yourself
+照顾好自己
+
+846
+00:42:45,490 --> 00:42:46,340
+Bye bye
+拜拜

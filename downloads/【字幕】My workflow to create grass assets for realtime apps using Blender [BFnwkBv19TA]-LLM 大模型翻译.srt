@@ -1,0 +1,3329 @@
+1
+00:00:07,180 --> 00:00:09,800
+Hey what's up youtube a wild back
+嘿，YouTube 大家好，前阵子
+
+2
+00:00:09,800 --> 00:00:14,735
+I started a series on creating realistic grass in a new engine
+我开始做一个系列，讲如何在全新引擎里创建写实草地
+
+3
+00:00:14,735 --> 00:00:18,240
+In part one i explained how i created an efficient
+第一部分我讲解了如何创建一个高效的
+
+4
+00:00:18,240 --> 00:00:21,580
+Win system using niagara with controllable strength
+风系统，用 Niagara 实现，可控制强度
+
+5
+00:00:21,580 --> 00:00:24,087
+Direction , turbulance and guests
+方向、湍流和阵风
+
+6
+00:00:24,087 --> 00:00:25,710
+It's quite a solid system
+这是个相当可靠的系统
+
+7
+00:00:25,710 --> 00:00:29,167
+And tuesday i'm still very happy with it
+而且直到今天，我仍然对它非常满意
+
+8
+00:00:29,167 --> 00:00:30,460
+In part two
+第二部分
+
+9
+00:00:30,460 --> 00:00:32,380
+i did my best to explain
+我尽力讲解了
+
+10
+00:00:32,380 --> 00:00:34,460
+How i built a very complex grass
+我如何构建一个非常复杂的草地
+
+11
+00:00:34,460 --> 00:00:39,700
+Shado with features like an uncommon beatboard technique to maximize pixel coverage
+着色器，它具备一些特性，比如用不常见的 billboard 技术来最大化像素覆盖率
+
+12
+00:00:39,700 --> 00:00:45,140
+Programmable bend scale clmp wind animation and accurate normans
+可编程的弯曲缩放、Clamp 风动画以及精确法线
+
+13
+00:00:45,140 --> 00:00:47,890
+The vertex shadow is the ambit expensive
+顶点着色器是开销最大的部分
+
+14
+00:00:47,890 --> 00:00:51,560
+But this technique is definitely shiable if you know what you're doing
+但如果你懂行，这项技术绝对可行
+
+15
+00:00:51,560 --> 00:00:55,240
+And if you're quite aggressive with vertex count and elds
+如果你在顶点数量和 LOD 上足够激进
+
+16
+00:00:55,240 --> 00:00:58,740
+My goal at the time was not to build a realistic grass
+我当时的目标并不是做一个写实的草地
+
+17
+00:00:58,740 --> 00:01:01,040
+Shadow that could run on mobile anyway
+着色器，还要求它能在移动端运行
+
+18
+00:01:01,040 --> 00:01:02,640
+Quite the contrary actually
+恰恰相反
+
+19
+00:01:02,640 --> 00:01:04,260
+I was trying to see how far
+我只是想看看
+
+20
+00:01:04,260 --> 00:01:05,860
+I could push the shell
+我能把这个着色器推到什么程度
+
+21
+00:01:05,860 --> 00:01:09,292
+without worrying too much about performance for once
+这次先不太担心性能
+
+22
+00:01:09,292 --> 00:01:11,890
+Now , as promised here's part three
+现在，如约而至，这是第三部分
+
+23
+00:01:11,890 --> 00:01:16,457
+Well , i'll discuss my workflow for creating footage assets using blender w
+我会讨论我用 Blender 创建植被资产的工作流
+
+24
+00:01:16,457 --> 00:01:20,560
+I already did a video on creating stylized trees using blender
+我之前已经做过一期用 Blender 创建风格化树木的视频
+
+25
+00:01:20,560 --> 00:01:23,650
+So make sure to check it out now
+所以记得去看一下
+
+26
+00:01:23,650 --> 00:01:29,430
+Today's video was severely delayed because creating footage for real time applications in blender
+今天的视频严重延期，因为在 Blender 里为实时应用创建植被
+
+27
+00:01:29,430 --> 00:01:31,350
+Isn't a streamlined process
+并不是一个顺畅的流程
+
+28
+00:01:31,350 --> 00:01:33,030
+It's not overly complex
+它并不是特别复杂
+
+29
+00:01:33,030 --> 00:01:35,710
+But the task is so specific that , well
+但任务太具体了，嗯
+
+30
+00:01:35,710 --> 00:01:40,445
+Blender is not tailored for that precise use case right
+Blender 并不是为这种精确用例量身定制的，对吧
+
+31
+00:01:40,445 --> 00:01:43,570
+There are quite a few buttons to press to get there
+要达到目标，得按不少按钮
+
+32
+00:01:43,570 --> 00:01:44,820
+let's put it that way
+就这么说吧
+
+33
+00:01:44,820 --> 00:01:48,280
+And at one point i thought it'd be a good idea to create an adon
+有一度我觉得做个插件会是个好主意
+
+34
+00:01:48,280 --> 00:01:51,130
+That would make my life much , much easier
+那会让我的生活轻松得多
+
+35
+00:01:51,130 --> 00:01:54,450
+But then things got a bit more complicated and unsplated
+但后来事情变得有点复杂，也变得不太受控
+
+36
+00:01:54,450 --> 00:01:56,750
+And had those of projects to finish as well
+而且我还有一堆项目要完成
+
+37
+00:01:56,750 --> 00:02:00,530
+Hence the delay anyway knows that i'm almost done with it
+总之这就是延期的原因，我现在快把它做完了
+
+38
+00:02:00,530 --> 00:02:04,550
+Time to finally speak about creating fooliage assets in blender
+终于该聊聊在 Blender 里创建植被资产了
+
+39
+00:02:04,550 --> 00:02:05,890
+So in this video
+所以在这期视频里
+
+40
+00:02:05,890 --> 00:02:11,020
+I'll show my standby step process to create this grass asset without using any adult
+我会展示我创建这个草地资产的分步流程，完全不使用任何插件
+
+41
+00:02:11,020 --> 00:02:12,990
+And in a fourth and final part
+在第四个也是最后一部分
+
+42
+00:02:12,990 --> 00:02:15,830
+I'll show what my blender adam aims to provide
+我会展示我的 Blender 插件旨在提供什么
+
+43
+00:02:15,830 --> 00:02:17,410
+How to use it tends on
+以及它具体怎么用
+
+44
+00:02:17,410 --> 00:02:18,720
+I'm quite happy with it
+我对它相当满意
+
+45
+00:02:18,720 --> 00:02:20,860
+So stay tuned for the upcoming video
+所以请关注接下来的视频
+
+46
+00:02:20,860 --> 00:02:22,380
+Anyway , in enough from blink
+总之，开场就到这里
+
+47
+00:02:22,380 --> 00:02:24,080
+Let's jump right into it
+我们直接开始吧
+
+48
+00:02:31,380 --> 00:02:34,100
+First stuff i'm going to delete everything
+首先，我要删除所有内容
+
+49
+00:02:37,200 --> 00:02:39,340
+Then i'm going to create a camera
+然后我要创建一个摄像机
+
+50
+00:02:39,340 --> 00:02:43,800
+Shift a camera press alt error to reset its rotation
+Shift+A 添加摄像机，按 Alt+R 重置其旋转
+
+51
+00:02:43,800 --> 00:02:45,840
+And let's offset it in z
+然后我们在 Z 轴上偏移它
+
+52
+00:02:50,560 --> 00:02:53,600
+cool ！ now let's check what the camera se
+很好！现在我们来看看摄像机能看到什么
+
+53
+00:02:57,240 --> 00:03:02,070
+Okay , so next i'm going to send this cameras type to orthographic
+好，接下来我要把这个摄像机的类型设为“正交”
+
+54
+00:03:02,070 --> 00:03:05,560
+I may also change the width whatever not important
+我可能也会改一下宽度，无所谓，这不重要
+
+55
+00:03:06,780 --> 00:03:10,000
+What's important however is render resolution
+但重要的是渲染分辨率
+
+56
+00:03:10,000 --> 00:03:13,322
+So let's use ten twenty four and five twelve
+那就用 1024 × 512
+
+57
+00:03:13,322 --> 00:03:17,270
+Next let's change the same color management . very important
+接下来我们改一下场景的色彩管理。这很重要
+
+58
+00:03:17,270 --> 00:03:20,497
+The view transform needs to be set to rule
+视图变换需要设为“Raw”
+
+59
+00:03:20,497 --> 00:03:23,550
+And in film i'm going to enable transparent
+然后在“胶片”设置里，我会启用透明
+
+60
+00:03:23,550 --> 00:03:27,200
+you may as also reduce the filter size to sharpen your renders
+你也可以减小过滤尺寸，让渲染结果更锐利
+
+61
+00:03:27,200 --> 00:03:30,540
+A little bit at the coast of some areasing up to you
+代价是会出现一些锯齿，看你自己
+
+62
+00:03:30,540 --> 00:03:32,230
+One point five is fine
+1.5 就行
+
+63
+00:03:32,230 --> 00:03:35,510
+Next i'm going to send the background color to pure black
+接下来我要把背景色设为纯黑
+
+64
+00:03:35,510 --> 00:03:38,670
+Quite important to get rid of any ambient lighting
+这很重要，可以去掉任何环境光
+
+65
+00:03:38,670 --> 00:03:40,770
+And that should be it for the cup up
+设置部分应该就这些了
+
+66
+00:03:40,770 --> 00:03:43,330
+So that's the convast i'm going to work with
+这就是我接下来要使用的画布
+
+67
+00:03:43,330 --> 00:03:43,810
+Okay
+好
+
+68
+00:03:43,810 --> 00:03:47,262
+The ratio is driven by the random resolution
+比例由渲染分辨率决定
+
+69
+00:03:47,262 --> 00:03:51,080
+And the overall resides by the cameras autographic width
+整体尺寸由摄像机的正交宽度决定
+
+70
+00:03:53,160 --> 00:03:54,920
+To better your visualize this
+为了更好地看清这一点
+
+71
+00:03:54,920 --> 00:03:56,640
+i'm going to create a plane
+我要创建一个平面
+
+72
+00:03:58,620 --> 00:04:01,360
+And scale it to match the orthographic with
+并缩放它，使其与正交宽度匹配
+
+73
+00:04:01,360 --> 00:04:05,940
+And render aspect ratio display as we are frame
+以及渲染宽高比，并显示为线框
+
+74
+00:04:10,120 --> 00:04:13,320
+If two to rename it to say confess
+我会把它重命名为“Canvas”
+
+75
+00:04:14,390 --> 00:04:18,190
+and then prevent the object from being selected and rendered
+然后让这个对象无法被选中，也不参与渲染
+
+76
+00:04:21,360 --> 00:04:26,990
+I manager going to turn off the greed and axis in the viewport personnel preferences
+我还会在视口叠加层中关闭网格和坐标轴
+
+77
+00:04:26,990 --> 00:04:30,800
+next i'm going to rename this correction to say scene
+接下来我会把这个集合重命名为“Scene”
+
+78
+00:04:32,270 --> 00:04:35,785
+And create a new one named say hi polly
+并新建一个，命名为“High Poly”
+
+79
+00:04:35,785 --> 00:04:40,090
+So my goal and the point is to model the high poly foliage assets
+所以我的目标就是制作高精度植被资产的模型
+
+80
+00:04:40,090 --> 00:04:42,490
+And lays them flat on that canvas
+再把它们平铺在那块画布上
+
+81
+00:04:49,000 --> 00:04:50,520
+For the sake of this video
+为了方便这个视频
+
+82
+00:04:50,520 --> 00:04:52,400
+I'll stick to simple things
+我会保持简单
+
+83
+00:04:52,400 --> 00:04:55,420
+I'm going to create a plane press tab
+我将创建一个平面，按Tab键
+
+84
+00:04:55,420 --> 00:04:59,300
+Turn to edit mode and press x and x to scale
+进入编辑模式，按X和X来缩放
+
+85
+00:04:59,300 --> 00:05:00,620
+Turning the x axis
+调整X轴
+
+86
+00:05:02,900 --> 00:05:05,800
+Then control r to a live vertical edge loop here
+然后按Ctrl+R在这里添加一条垂直的循环边
+
+87
+00:05:05,800 --> 00:05:10,367
+And i'm right away going to set it be well weight to one point o
+我马上把它设置为权重值1.0
+
+88
+00:05:10,367 --> 00:05:15,675
+Then control r again to a multiple hoion that edge loops using the scroll whe
+然后再次按Ctrl+R，用滚轮添加多条循环边
+
+89
+00:05:15,675 --> 00:05:18,470
+Next i'm going to enable proportional editing
+接下来我要启用比例编辑
+
+90
+00:05:18,470 --> 00:05:22,180
+and change the fall of selecting the tough vertices
+并更改衰减方式，选择顶部顶点
+
+91
+00:05:22,180 --> 00:05:25,830
+And using the score will to change the proportional editing rages
+使用滚轮来改变比例编辑的范围
+
+92
+00:05:25,830 --> 00:05:30,472
+I'm going to press s , s and x again to create some kind of pointy end
+我将再次按S、S和X来创建某种尖锐的末端
+
+93
+00:05:30,472 --> 00:05:31,830
+This is a bit dirl
+这有点单调
+
+94
+00:05:31,830 --> 00:05:34,802
+So feel free to be a little bit more creative than this
+所以请随意比这更有创意一些
+
+95
+00:05:34,802 --> 00:05:38,932
+Then i'm going to scale these edges along the x axis as well
+然后我也要沿X轴缩放这些边
+
+96
+00:05:38,932 --> 00:05:41,410
+And then why not pull these two vertices
+然后为什么不拖动这两个顶点呢
+
+97
+00:05:41,410 --> 00:05:46,532
+Abort a little bit by double tapping the g keand moving the most apod
+通过双击G键并移动鼠标稍微调整一下
+
+98
+00:05:46,532 --> 00:05:48,920
+Same with this done wild this time
+这次对这边也做同样处理
+
+99
+00:05:50,760 --> 00:05:53,940
+Next back into object mode using the tab key
+接下来使用Tab键回到物体模式
+
+100
+00:05:53,940 --> 00:05:55,800
+I'm going to add a bear modifier
+我要添加一个倒角修改器
+
+101
+00:05:55,800 --> 00:05:58,160
+And set its limit method to wait
+并将其限制方法设置为角度
+
+102
+00:06:03,040 --> 00:06:05,840
+we use the amount and add one more segment
+使用数量并增加一个分段
+
+103
+00:06:09,400 --> 00:06:12,280
+Then i'm going to add a subdivision modifier
+然后我要添加一个细分修改器
+
+104
+00:06:12,280 --> 00:06:15,000
+Let's use two subdivisions in the viewport
+在视图中使用两个细分级别
+
+105
+00:06:15,000 --> 00:06:16,807
+And three in the render
+渲染时使用三个
+
+106
+00:06:16,807 --> 00:06:21,490
+Okay , that bel modifier doesn't serve much ppose . so yet
+好吧，这个倒角修改器目前没什么太大用处
+
+107
+00:06:21,490 --> 00:06:23,990
+So using tab turn to edit mode
+所以用Tab键进入编辑模式
+
+108
+00:06:23,990 --> 00:06:30,135
+Again , i'm going to select this edge loop by holding alt shift and left clicking on that edge
+再次，我将按住Alt+Shift并左键点击那条边来选择这个循环边
+
+109
+00:06:30,135 --> 00:06:32,870
+Press control i to inverge the selection
+按Ctrl+I反选
+
+110
+00:06:32,870 --> 00:06:35,315
+And h to hide vertices
+按H隐藏顶点
+
+111
+00:06:35,315 --> 00:06:37,730
+Next using proportional adt
+接下来使用比例编辑
+
+112
+00:06:37,730 --> 00:06:42,970
+Again i'm going to select and pull that vertex app by pressing g and then z
+再次，我将选中并向上拉那个顶点，按G然后按Z
+
+113
+00:06:48,360 --> 00:06:50,680
+I'll age to unhide verses
+我将取消隐藏顶点
+
+114
+00:06:50,680 --> 00:06:51,900
+All right
+好的
+
+115
+00:06:51,900 --> 00:06:54,440
+This end here is a bit too sharp to me
+这个末端对我来说有点太尖了
+
+116
+00:06:54,440 --> 00:06:56,520
+So i'm going to select these two vertices
+所以我要选择这两个顶点
+
+117
+00:06:56,520 --> 00:07:00,150
+Press shift s and select curser to select it
+按Shift+S并选择光标到选中项
+
+118
+00:07:00,150 --> 00:07:02,850
+Then i may use the curser as a pivot point
+然后我可以用光标作为枢轴点
+
+119
+00:07:02,850 --> 00:07:06,020
+So that i may reduce the thickness a bit around that area
+这样我就可以在那个区域周围稍微减小厚度
+
+120
+00:07:06,020 --> 00:07:10,120
+Still using the proportional editing and tapping s s followed by z
+仍然使用比例编辑，按S、S然后按Z
+
+121
+00:07:10,120 --> 00:07:13,140
+let's change the fall off to something portiz
+我们把衰减改成更尖一点的方式
+
+122
+00:07:15,500 --> 00:07:16,860
+Hip like so
+把尖端做成这样
+
+123
+00:07:20,380 --> 00:07:23,100
+It's still a little bit too sharp overall
+整体还是有点太锐利了
+
+124
+00:07:23,100 --> 00:07:25,900
+So it may scale the object along the z axis
+接下来我会沿 Z 轴缩放这个物体
+
+125
+00:07:25,900 --> 00:07:28,445
+Still using the cursor or the prevot point
+仍然使用游标或枢轴点
+
+126
+00:07:28,445 --> 00:07:33,160
+Okay , apply this scale using control a reset the pivot mode
+好的，按 Ctrl+A 应用缩放，再重置枢轴模式
+
+127
+00:07:33,160 --> 00:07:36,860
+And then i'm going to twist the objects pivot point like so
+然后我会像这样绕着物体的枢轴点扭转
+
+128
+00:07:45,020 --> 00:07:47,690
+Finally right click shade smooth
+最后右键选择平滑着色
+
+129
+00:07:47,690 --> 00:07:52,660
+Oh i might actually add a little bit of thickness using a solidify modifier
+哦，我其实可以用实体化修改器加一点厚度
+
+130
+00:07:55,340 --> 00:07:57,900
+drag it up above the steps of face modifier
+把它拖到表面细分修改器上方
+
+131
+00:07:59,260 --> 00:08:00,940
+trick a thickness sitting
+调整一下厚度设置
+
+132
+00:08:04,020 --> 00:08:07,380
+and well that's my grass blade base model
+好了，这就是我的草叶基础模型
+
+133
+00:08:14,000 --> 00:08:17,520
+first i'm going to assign a new material to that object
+首先，我要给这个物体指定一个新材质
+
+134
+00:08:19,240 --> 00:08:24,680
+now because the plane i originally started with is by default unwrapped like
+因为我一开始用的平面默认已经展开 UV 了
+
+135
+00:08:24,680 --> 00:08:27,510
+So the grass blade model i ended up with
+所以我最终得到的草叶模型
+
+136
+00:08:27,510 --> 00:08:29,360
+should have a similar uv map
+应该有类似的 UV 贴图
+
+137
+00:08:29,360 --> 00:08:32,990
+Just with a few more edge loops using the slide operator
+只是用滑动操作多加了几个边循环
+
+138
+00:08:32,990 --> 00:08:35,690
+Or to move the top and bottobiases on the mesh
+或者说，我移动了网格顶部和底部的基点
+
+139
+00:08:35,690 --> 00:08:40,372
+Should also have modified their position on the uv map but no biggi
+这也改变了它们在 UV 贴图上的位置，但没关系
+
+140
+00:08:40,372 --> 00:08:44,340
+So to texture is grass blade and trades pvr passes
+所以要给这片草叶贴图并生成 PBR 通道
+
+141
+00:08:44,340 --> 00:08:48,500
+Well i could paint some grass blade texture using this uv map
+我可以用这张 UV 贴图绘制一些草叶纹理
+
+142
+00:08:48,500 --> 00:08:51,940
+Say an albedo texture roughly texture and so on
+比如反照率纹理、粗糙度纹理等等
+
+143
+00:08:51,940 --> 00:08:55,240
+I'm however are going to stick with a much simpler method
+不过我会采用一种简单得多的方法
+
+144
+00:08:55,240 --> 00:08:58,830
+And use gradients to create an output the pbr passes
+并使用渐变来生成和输出 PBR 通道
+
+145
+00:08:58,830 --> 00:09:02,500
+And i'm going to use this uv map for that purpose
+我会用这张 UV 贴图来实现
+
+146
+00:09:02,500 --> 00:09:06,420
+but first i'm going to create a couple of shadow ao vs
+但首先我要创建几个阴影和 AO 的 AOV
+
+147
+00:09:07,860 --> 00:09:08,940
+albedo
+反照率
+
+148
+00:09:10,100 --> 00:09:11,100
+Roughness
+粗糙度
+
+149
+00:09:12,140 --> 00:09:16,540
+picular opacity is that one can be of type value
+不透明度这一项可以设为数值类型
+
+150
+00:09:17,680 --> 00:09:21,000
+um norman random
+法线、随机
+
+151
+00:09:22,280 --> 00:09:25,420
+Height and transmission
+高度和透射
+
+152
+00:09:25,420 --> 00:09:26,570
+Why not
+为什么不呢
+
+153
+00:09:26,570 --> 00:09:29,170
+Next in the compositing workspace
+接下来，在合成工作区
+
+154
+00:09:29,170 --> 00:09:31,370
+I'm going to enable use nodes
+我会启用“使用节点”
+
+155
+00:09:31,370 --> 00:09:34,310
+And i get to see or shadow lvi created
+然后我就能看到创建好的阴影 AOV
+
+156
+00:09:34,310 --> 00:09:36,850
+Lied in the radio layers node
+它连接在渲染层节点中
+
+157
+00:09:38,340 --> 00:09:40,860
+I'm going to create a file output node
+我要创建一个文件输出节点
+
+158
+00:09:40,860 --> 00:09:44,380
+And add and rename inputs to match these passes
+并添加输入、重命名，使它们匹配这些通道
+
+159
+00:09:58,820 --> 00:10:02,295
+Next i'm going to specify the desire to output path
+接下来我会指定所需的输出路径
+
+160
+00:10:02,295 --> 00:10:05,740
+png is bind rgba a bits
+PNG、RGBA、8 位
+
+161
+00:10:05,740 --> 00:10:09,747
+And disabled compression on tire lif for faster of safetime
+并关闭了文件压缩，以加快保存速度
+
+162
+00:10:09,747 --> 00:10:12,390
+Well at this point if i do a render
+那么现在，如果我做一次渲染
+
+163
+00:10:12,390 --> 00:10:15,370
+I should see in the specified folder one
+我应该会在指定文件夹里看到
+
+164
+00:10:15,370 --> 00:10:17,390
+Png file for each path
+每个通道对应一个 PNG 文件
+
+165
+00:10:17,390 --> 00:10:19,590
+Unfortunately , as far as i knew
+遗憾的是，据我所知
+
+166
+00:10:19,590 --> 00:10:24,450
+The way they are named is kind of hard coded there's no way to get rid of that frame
+它们的命名方式有点像是硬编码的，没办法去掉那个帧
+
+167
+00:10:24,450 --> 00:10:26,000
+Count in the name for instance
+比如文件名里的帧编号
+
+168
+00:10:26,000 --> 00:10:28,940
+So that's really annoying a quirk in the workflows
+所以这真的很烦人，是工作流程里的一个怪毛病
+
+169
+00:10:28,940 --> 00:10:33,207
+At my upcoming i don't aims to solve amongst many oils
+目前我也不打算解决太多这类问题
+
+170
+00:10:33,207 --> 00:10:36,950
+Anyway , each image for no contains only black pixels
+总之，目前每张图像只包含黑色像素
+
+171
+00:10:36,950 --> 00:10:40,172
+so time to actually trail these passes
+所以现在该真正输出这些通道了
+
+172
+00:10:40,172 --> 00:10:42,450
+That happens in the material
+这要在材质里完成
+
+173
+00:10:42,450 --> 00:10:48,707
+For each path i'm going to create an aov output node and specify the correct name
+对于每个通道，我会创建一个 AOV Output 节点，并指定正确的名称
+
+174
+00:10:48,707 --> 00:10:51,950
+Albedo , roughness and soon
+反照率、粗糙度等等
+
+175
+00:11:00,180 --> 00:11:03,820
+All these passes buds your acity of type color
+所有这些通道，除了不透明度，都是颜色类型
+
+176
+00:11:03,820 --> 00:11:06,460
+So i'm only interested in the color input pm
+所以我只关心颜色输入引脚
+
+177
+00:11:06,460 --> 00:11:08,490
+Okay , for the opacity pass
+好，至于不透明度通道
+
+178
+00:11:08,490 --> 00:11:12,610
+I'm just interesting in outputting a value of one point o that's it
+我只想输出一个 1.0 的值，就这样
+
+179
+00:11:12,610 --> 00:11:15,910
+So that's how i'm going to generate the pba passes
+这就是我生成这些 AOV 通道的方式
+
+180
+00:11:15,910 --> 00:11:17,430
+See if i do a render
+所以如果我渲染一下
+
+181
+00:11:17,430 --> 00:11:19,710
+I get to see the updated opacity
+我就能看到更新后的不透明度
+
+182
+00:11:21,100 --> 00:11:23,680
+All right , let's start with a roughness pass
+好，我们从粗糙度通道开始
+
+183
+00:11:23,680 --> 00:11:26,440
+First time going to create a uv map node
+首先，我要创建一个 UV Map 节点
+
+184
+00:11:26,440 --> 00:11:30,360
+By the way , i found no better way to visualize what i'm working on
+顺便说一句，我想不到更好的办法来可视化我正在处理的内容
+
+185
+00:11:30,360 --> 00:11:33,090
+But to use materas emission pin
+除了使用材质的 Emission 引脚
+
+186
+00:11:33,090 --> 00:11:34,650
+Let me know in the comments below
+请在下方评论区告诉我
+
+187
+00:11:34,650 --> 00:11:36,680
+If you can think of a better solution
+如果你能想到更好的解决方案
+
+188
+00:11:36,680 --> 00:11:41,170
+Although feel free to share if you have any tips to improve this overall workflow
+不过，如果你有任何改进整个工作流程的技巧，也欢迎分享
+
+189
+00:11:41,170 --> 00:11:42,680
+I'm just showing what i know
+我只是在展示我所知道的内容
+
+190
+00:11:42,680 --> 00:11:46,080
+But blender has not been my main priority for a long time now
+但 Blender 已经很久不是我的主要优先事项了
+
+191
+00:11:46,080 --> 00:11:48,570
+And the software is progressing at a huge base
+而且这款软件正以极快的速度发展
+
+192
+00:11:48,570 --> 00:11:49,960
+So it's hard to keep track of
+所以很难跟上它的变化
+
+193
+00:11:49,960 --> 00:11:51,680
+Also new features and walk flows
+还有新功能和新的工作流程
+
+194
+00:11:51,680 --> 00:11:54,380
+Anyway , using a separate ex wise in node
+总之，使用 Separate XYZ 节点
+
+195
+00:11:54,380 --> 00:11:57,980
+I can isolate the hoanal gradient of that uv map
+我可以分离出那个 UV 贴图的水平渐变
+
+196
+00:11:59,509 --> 00:12:01,470
+let's subtract o point five
+减去 0.5
+
+197
+00:12:05,060 --> 00:12:06,860
+yet is the absolute value
+然后取绝对值
+
+198
+00:12:08,680 --> 00:12:12,040
+And multiplied by two to created by linear gradient
+再乘以 2，得到一个线性渐变
+
+199
+00:12:13,650 --> 00:12:18,130
+I might even use a power operation to control the gradients full of
+我甚至可能用幂运算来控制渐变的衰减
+
+200
+00:12:20,070 --> 00:12:23,310
+I use the one minus operation to invert it as well
+我也会用 1 减运算把它反转
+
+201
+00:12:30,680 --> 00:12:34,740
+Using a mixed node i'm going to send the base rough nest to open eight
+使用混合节点，我把基础粗糙度设置为0.8
+
+202
+00:12:34,740 --> 00:12:37,870
+And then say open twenty five around the edges
+然后在边缘设置为0.25
+
+203
+00:12:37,870 --> 00:12:42,170
+And i'm going to highlight the center line just a tiny bit like so
+接着我会像这样稍微提亮一下中心线
+
+204
+00:12:47,680 --> 00:12:50,840
+Well that's my roughness map for the grass blade
+这就是我做好的草叶粗糙度贴图
+
+205
+00:12:50,840 --> 00:12:54,750
+Simple but should provide a somewhat interesting picular behavior
+虽然简单，但应该能带来一些有趣的镜面反射效果
+
+206
+00:12:54,750 --> 00:12:58,830
+I follow eyebowling things though values may need further tricks
+这些数值是我凭感觉调的，可能还需要进一步调整
+
+207
+00:12:58,830 --> 00:13:02,150
+Once tested in engine with a proper er lighting condition
+等在实际引擎中经过合适的光照条件测试之后
+
+208
+00:13:07,540 --> 00:13:08,920
+For the speakular map
+至于镜面贴图
+
+209
+00:13:08,920 --> 00:13:10,520
+I'm going to do the same thing
+我也用同样的方法
+
+210
+00:13:10,520 --> 00:13:13,250
+Except that i'm going to flip gradients around
+只不过我会把渐变翻转过来
+
+211
+00:13:13,250 --> 00:13:15,700
+And use quite low values overall
+而且整体使用相当低的数值
+
+212
+00:13:17,860 --> 00:13:19,900
+Again , that's just an example
+再次强调，这只是一个示例
+
+213
+00:13:19,900 --> 00:13:23,680
+That's as you mean , that's the artistic direction you're aiming for
+具体取决于你自己，取决于你想要追求的艺术方向
+
+214
+00:13:23,680 --> 00:13:26,760
+And it's quite fun to try new things with grass shaders
+用草着色器尝试新玩法还挺有趣的
+
+215
+00:13:26,760 --> 00:13:28,240
+Try new looks and so on
+尝试新的外观之类的
+
+216
+00:13:28,240 --> 00:13:30,620
+Especially for stylized rendering of course
+当然，尤其是针对风格化渲染
+
+217
+00:13:34,300 --> 00:13:36,560
+Anyway , regarding the ivido pass
+总之，关于 AO 通道
+
+218
+00:13:36,560 --> 00:13:40,380
+Well i'm going to use similar tricks to generate coral gradients
+我会用类似的技巧来生成颜色渐变
+
+219
+00:13:42,840 --> 00:13:45,420
+I'm also going to use the random value blender
+我还会用到 Blender 的随机值
+
+220
+00:13:45,420 --> 00:13:49,810
+Generates pay object to bring in some extraccolour variation paragrass blade
+按对象生成，为每片草叶带来一些额外的颜色变化
+
+221
+00:13:49,810 --> 00:13:52,320
+There are plenty of shadow tricks to think of you
+还有很多阴影技巧可以考虑
+
+222
+00:13:52,320 --> 00:13:53,980
+But i'm keeping it simple
+但我尽量保持简单
+
+223
+00:14:04,360 --> 00:14:05,700
+For the normal pass
+对于法线通道
+
+224
+00:14:05,700 --> 00:14:09,459
+I can simply remember the wards based normals to a zero to one range
+我只需要把基于世界的法线重新映射到 0 到 1 的范围
+
+225
+00:14:09,459 --> 00:14:11,079
+and feed the white channel
+然后输入到白色通道
+
+226
+00:14:19,440 --> 00:14:20,780
+Further from them pass
+至于那个通道
+
+227
+00:14:20,780 --> 00:14:21,900
+Well you guessed it
+你猜对了
+
+228
+00:14:21,900 --> 00:14:24,800
+The objects from the value will do just fine
+用物体的随机值就完全够用了
+
+229
+00:14:26,170 --> 00:14:28,510
+And finally easy height pass
+最后是高度通道
+
+230
+00:14:28,510 --> 00:14:31,390
+That one is a little bit more involved
+这个稍微复杂一点
+
+231
+00:14:31,390 --> 00:14:33,530
+I'm going to create a cube
+我会创建一个立方体
+
+232
+00:14:38,080 --> 00:14:43,422
+Displayed as bones prevented from being rendered
+显示为边界框，并设置为不参与渲染
+
+233
+00:14:43,422 --> 00:14:47,650
+Enter edit mode to offset vertices by one unit in z
+进入编辑模式，把顶点沿 Z 轴偏移一个单位
+
+234
+00:14:47,650 --> 00:14:49,920
+So select all press g
+所以全选后按 G
+
+235
+00:14:49,920 --> 00:14:52,420
+Z and one on the name pad
+按 Z，然后在数字键盘上按 1
+
+236
+00:14:52,420 --> 00:14:56,390
+Then i'm going to scale it down by fifty percent and applies the skate
+然后我把它缩小百分之五十，并应用缩放
+
+237
+00:14:59,960 --> 00:15:03,000
+Next , using a texture accoordinator node
+接下来，使用纹理坐标节点
+
+238
+00:15:04,530 --> 00:15:08,382
+I can specify this cube to generate object coordinates
+我可以指定这个立方体来生成物体坐标
+
+239
+00:15:08,382 --> 00:15:11,800
+Isolate the z component to create a vertical gradient
+分离出 Z 分量来创建垂直渐变
+
+240
+00:15:11,800 --> 00:15:14,130
+And therefore generate a height map
+从而生成高度贴图
+
+241
+00:15:14,130 --> 00:15:16,160
+Just have to scale the cube in z
+只需要在 Z 轴上缩放立方体
+
+242
+00:15:16,160 --> 00:15:19,420
+And shift in z position to create the desire red range
+再调整 Z 轴位置，来得到理想的范围
+
+243
+00:15:27,920 --> 00:15:33,720
+Finally for the transmission i may simply use it tubon gradient derived from new visas
+最后，对于透射，我可能只需使用由新 UV 生成的渐变纹理
+
+244
+00:15:33,720 --> 00:15:37,080
+Well voa at that point i just have to draw render
+好了，到那时我只需进行渲染
+
+245
+00:15:37,080 --> 00:15:40,475
+To save all pbr passes to disk
+将所有 PBR 通道保存到磁盘
+
+246
+00:15:40,475 --> 00:15:43,780
+Rendering a single grass blade is quite diso
+渲染单片草叶其实相当简单
+
+247
+00:15:43,780 --> 00:15:46,020
+So let's create a couple of grass gramps
+所以让我们创建几丛草
+
+248
+00:15:50,180 --> 00:15:52,000
+I'm fast for while a bit here
+这里我会稍微快进一下
+
+249
+00:15:52,000 --> 00:15:57,400
+because in the end it's just a matter of duplicating that when grass blade entering edit mode
+因为最终无非就是复制那片草叶，进入编辑模式
+
+250
+00:15:57,400 --> 00:16:03,080
+and use proportional editing to move vertices around and create interesting shapes and whatnt
+然后用比例编辑移动顶点，做出有趣的形状之类的
+
+251
+00:16:10,480 --> 00:16:12,860
+You may fool around with modifiers as well
+你也可以随意摆弄修改器
+
+252
+00:16:12,860 --> 00:16:15,960
+Like bend , twist and soon the sky is the limit
+比如弯曲、扭曲等等，创意没有上限
+
+253
+00:16:15,960 --> 00:16:17,680
+Let your creativity speak
+让你的创造力尽情发挥
+
+254
+00:16:19,360 --> 00:16:22,520
+So do that to create a couple of grass crumbs volds
+那就这样做，创建几个不同的草丛变体
+
+255
+00:16:22,520 --> 00:16:27,650
+But be sure to leave enough room in between glimpse that's very important to prevent bleeding
+但一定要在草丛之间留出足够的间距，这对防止渗色非常重要
+
+256
+00:16:27,650 --> 00:16:29,770
+Mods are two picking a sigon anyway
+反正贴图的尺寸也足够大
+
+257
+00:16:29,770 --> 00:16:31,270
+that's pretty much sheet
+差不多就是这样
+
+258
+00:16:32,540 --> 00:16:34,660
+I'm just going to update the high trench
+我只需更新一下高分辨率版本
+
+259
+00:16:34,660 --> 00:16:35,580
+and that's it
+就这样
+
+260
+00:16:39,320 --> 00:16:41,360
+press rondo and tada
+按下渲染，然后嗒哒
+
+261
+00:16:55,400 --> 00:16:57,752
+Here comes a very annoying part
+接下来是一个非常烦人的部分
+
+262
+00:16:57,752 --> 00:16:59,580
+Dilating textures
+纹理扩边
+
+263
+00:16:59,580 --> 00:17:01,310
+Seize this albedo texture
+看看这张反照率纹理
+
+264
+00:17:01,310 --> 00:17:03,440
+You might think it's good to go , right
+你可能觉得它已经可以直接用了，对吧
+
+265
+00:17:03,440 --> 00:17:05,902
+Imported in newi
+导入到 Unity 中
+
+266
+00:17:05,902 --> 00:17:09,700
+Use its rgb components to drive a materials albedo
+用它的 RGB 分量来驱动材质的基础色
+
+267
+00:17:09,700 --> 00:17:12,760
+And their effectionate for your opacity mask
+并用它的 Alpha 通道作为不透明度遮罩
+
+268
+00:17:12,760 --> 00:17:18,340
+However notice is black hot lines that are creeping in the more distant i am to the mesh
+不过注意，离网格越远，越会冒出黑色细线
+
+269
+00:17:21,060 --> 00:17:23,580
+If i get rid of the textures affechannel
+如果我去掉纹理的 Alpha 通道
+
+270
+00:17:23,580 --> 00:17:28,180
+I can see that albedo pixels were written where there was an alpha value
+我能看到反照率像素被写入到原本有 Alpha 值的地方
+
+271
+00:17:28,180 --> 00:17:29,820
+Even the tiniest amount
+哪怕只有极小的一点
+
+272
+00:17:29,820 --> 00:17:32,730
+Hence the idea is think it's a binary state
+因此会以为它是二值状态
+
+273
+00:17:32,730 --> 00:17:34,960
+And that's totally expected
+这完全在意料之中
+
+274
+00:17:34,960 --> 00:17:38,820
+however , that albedo texture is killed down by half
+然而，这张反照率纹理被缩小了一半
+
+275
+00:17:38,820 --> 00:17:41,620
+and then half more and again and again to create
+然后再缩小一半，如此反复，生成
+
+276
+00:17:41,620 --> 00:17:43,395
+What we call the meat chain
+我们所说的 Mip 链
+
+277
+00:17:43,395 --> 00:17:48,000
+That's to lose the rendering engine to sample very few pixels from the texture
+这是为了让渲染引擎在纹理中只采样很少的像素
+
+278
+00:17:48,000 --> 00:17:50,800
+If the object is teeny tiny on the screen
+如果物体在屏幕上非常小
+
+279
+00:17:50,800 --> 00:17:55,702
+It's an optimization trick as well as a way to prevent aliasing . and it's great
+这既是优化技巧，也是防止锯齿的方法，非常棒
+
+280
+00:17:55,702 --> 00:17:56,670
+The dumb side
+不利的一面是
+
+281
+00:17:56,670 --> 00:18:00,310
+However , is that a texture of stars to turn into a blurry miss
+不过，如果纹理开始变得模糊不清
+
+282
+00:18:00,310 --> 00:18:02,640
+As it feels are you go along the meat chain
+随着你沿着 Mip 链向下，它会逐渐被填满
+
+283
+00:18:02,640 --> 00:18:06,260
+Therefore pixels that our outside is opacity mask
+位于不透明度遮罩之外的像素
+
+284
+00:18:06,260 --> 00:18:09,770
+Gradually participate more and more in the final color
+会逐渐越来越多地参与最终颜色
+
+285
+00:18:09,770 --> 00:18:10,880
+You know the words
+你知道最糟的情况
+
+286
+00:18:10,880 --> 00:18:14,470
+This background color is bleeding in and you get black outlines
+背景色会渗进来，然后你就会看到黑色轮廓
+
+287
+00:18:14,470 --> 00:18:15,770
+So to prevent this
+所以，为了防止这种情况
+
+288
+00:18:15,770 --> 00:18:17,690
+Textures have to be dilated
+必须对纹理进行扩张处理
+
+289
+00:18:17,690 --> 00:18:19,950
+And there are many solutions to do this
+有很多方法可以做到这一点
+
+290
+00:18:19,950 --> 00:18:22,240
+Photoshop is of course a solution
+Photoshop 当然是一种解决方案
+
+291
+00:18:22,240 --> 00:18:25,530
+But i aggress or suggest a free and open source alternative
+但我建议使用一个免费开源的替代方案
+
+292
+00:18:25,530 --> 00:18:29,270
+You may , for instance , use gmp and its value propagate filter
+例如，你可以使用 GIMP 及其 Value Propagate 滤镜
+
+293
+00:18:29,270 --> 00:18:30,929
+Set it to more opaque
+把它设置为“更不透明”
+
+294
+00:18:30,929 --> 00:18:35,640
+Click okay , and tab control if until the texture is entirely floated
+点击“确定”，然后反复按 Ctrl+F，直到纹理被完全填充
+
+295
+00:18:39,980 --> 00:18:43,220
+then we apply the initial out for channel and volu
+然后应用原来的 Alpha 通道，搞定
+
+296
+00:18:49,120 --> 00:18:50,640
+Visually it's the same
+视觉上看起来是一样的
+
+297
+00:18:50,640 --> 00:18:54,940
+but no background pixels on the wrong your black but contain corals
+但背景像素不会变成错误的黑色，而是带有颜色
+
+298
+00:18:54,940 --> 00:18:56,942
+And that's one solution
+这就是一种解决方案
+
+299
+00:18:56,942 --> 00:18:59,550
+You can as though of course duplicate the layer
+当然，你也可以复制图层
+
+300
+00:18:59,550 --> 00:19:01,320
+Blaze the underlying one
+模糊下面那一层
+
+301
+00:19:01,320 --> 00:19:03,510
+Merge wins and repeat
+向下合并，然后重复
+
+302
+00:19:07,700 --> 00:19:09,740
+And we apply your fat channel
+然后应用 Alpha 通道
+
+303
+00:19:09,740 --> 00:19:13,300
+You can probably build a script in gm to do that for you
+你大概可以在 GIMP 里写个脚本替你完成
+
+304
+00:19:16,020 --> 00:19:18,800
+Image magic is probably a solution as well
+ImageMagick 可能也是一种方案
+
+305
+00:19:18,800 --> 00:19:21,900
+There's probably a common lines that exists to batch process
+可能已经有现成的命令行工具可以批量处理
+
+306
+00:19:21,900 --> 00:19:24,277
+A bunch of images or in one go
+一次性处理一堆图像
+
+307
+00:19:24,277 --> 00:19:28,090
+No didating textures come with two important good chess
+不过，扩张后的纹理会带来两个重要的坑
+
+308
+00:19:28,090 --> 00:19:29,790
+One is file size
+一个是文件大小
+
+309
+00:19:29,790 --> 00:19:30,670
+For instance
+例如
+
+310
+00:19:30,670 --> 00:19:36,880
+Deleting a texture using a brew results in an image that is mostly comprised of smooth quence
+用模糊来扩张纹理，得到的图像主要由平滑的颜色构成
+
+311
+00:19:40,000 --> 00:19:41,270
+And algorithms
+以及渐变
+
+312
+00:19:41,270 --> 00:19:44,740
+Large blocks of the same colore winstead be ideal
+相反，大块相同颜色才是理想情况
+
+313
+00:19:44,740 --> 00:19:47,180
+Segunar cha dileting a texture
+另一种扩张纹理的方法
+
+314
+00:19:47,180 --> 00:19:49,960
+Doesn't really solve a black hotline problem
+并不能真正解决黑色轮廓问题
+
+315
+00:19:49,960 --> 00:19:52,050
+Well , i mean it kind of solves it
+嗯，我的意思是它多少能解决这个问题
+
+316
+00:19:52,050 --> 00:19:53,750
+But not in an ideal way
+但方式并不理想
+
+317
+00:19:53,750 --> 00:19:55,670
+Although it's usually good enough
+不过通常也够用了
+
+318
+00:19:55,670 --> 00:19:59,730
+You see pixels from the background are going to bleeding no matter what
+你看，背景像素无论如何都会渗进来
+
+319
+00:19:59,730 --> 00:20:04,340
+And so in the distance you'll get to see some of that background color creeping in
+所以在远处，你会看到一些背景色慢慢渗进来
+
+320
+00:20:04,340 --> 00:20:08,620
+The thing is , most dilation algorithms work from the edges
+问题在于，大多数扩张算法都是从边缘开始的
+
+321
+00:20:08,620 --> 00:20:14,580
+Their first dilated background color is going to be biased towards the edge color , if that makes sense
+膨胀后的背景色会偏向边缘颜色，如果这说得通的话
+
+322
+00:20:14,580 --> 00:20:17,140
+Some things that may be very apparent if
+有些情况可能会非常明显，如果
+
+323
+00:20:17,140 --> 00:20:19,220
+Let's say for some artistic reasons
+比如说，出于某些美术上的原因
+
+324
+00:20:19,220 --> 00:20:21,645
+You have very bright edges , right
+你的边缘非常亮，对吧
+
+325
+00:20:21,645 --> 00:20:25,290
+And actually the same issue appears in know your textures as well
+而且实际上，同样的问题也会出现在法线贴图里
+
+326
+00:20:25,290 --> 00:20:31,605
+And roughness and speaklar maps may quite often features that kind of edge treatment , especially for grass , right
+粗糙度和高光贴图里也常常会出现那种边缘效果，尤其是草，对吧
+
+327
+00:20:31,605 --> 00:20:35,720
+This bright edges may result in a bright dilated background
+这些亮边可能会导致膨胀后的背景变亮
+
+328
+00:20:35,720 --> 00:20:38,030
+Which is going to bleeding with meat maps
+这会在 Mipmap 中产生渗色
+
+329
+00:20:38,030 --> 00:20:40,230
+Again , it's not usually a big issue
+再说一次，这通常不是大问题
+
+330
+00:20:40,230 --> 00:20:41,780
+But it's something to know
+但这是你需要知道的事
+
+331
+00:20:41,780 --> 00:20:45,330
+So dileting textures can be a pain in the beat
+所以膨胀纹理可能非常麻烦
+
+332
+00:20:45,330 --> 00:20:48,650
+it's a process that comes with a few technical accdalties
+这个过程会伴随一些技术上的小问题
+
+333
+00:20:48,650 --> 00:20:53,770
+And that i believe still for most artists involves a lot of manual labor
+而且我相信，对大多数美术人员来说，这仍然涉及大量手工操作
+
+334
+00:20:53,770 --> 00:20:56,130
+Meaning lots of clicking on buttons
+也就是大量点击按钮
+
+335
+00:20:56,130 --> 00:20:58,310
+So to serve the file compression
+所以，为了解决文件压缩
+
+336
+00:20:58,310 --> 00:21:01,450
+Edge bias and time consuming process issues
+边缘偏向和过程耗时的问题
+
+337
+00:21:01,450 --> 00:21:06,775
+A new technique was presented at gdc twenty nineteen called mip floating
+2019 年 GDC 上提出了一种新技术，叫 Mip Flooding
+
+338
+00:21:06,775 --> 00:21:10,290
+and someone was kind enough to release a python script
+而且有人很贴心地发布了一个 Python 脚本
+
+339
+00:21:10,290 --> 00:21:12,370
+That implements it for free
+免费实现了它
+
+340
+00:21:16,180 --> 00:21:20,340
+All right , so there are a couple of steps to make that python script walking blender
+好了，要让那个 Python 脚本在 Blender 里运行，有几个步骤
+
+341
+00:21:20,340 --> 00:21:22,980
+But hopefully nothing seem to problematic
+但希望没有什么看起来太麻烦的地方
+
+342
+00:21:22,980 --> 00:21:25,690
+First i'm going to open this github page
+首先，我要打开这个 GitHub 页面
+
+343
+00:21:25,690 --> 00:21:27,890
+Link is in the video description below
+链接在下方视频简介里
+
+344
+00:21:27,890 --> 00:21:30,490
+I'm also going to give the author i shut out
+我也要感谢一下作者
+
+345
+00:21:30,490 --> 00:21:32,045
+Thanks for the script
+谢谢你的脚本
+
+346
+00:21:32,045 --> 00:21:33,850
+Now if your familiar with git
+如果你熟悉 Git
+
+347
+00:21:33,850 --> 00:21:35,830
+You may get defines with a pool
+你可能会想直接 pull 下来
+
+348
+00:21:35,830 --> 00:21:38,450
+But don't loading the zip from the github page
+但不要从 GitHub 页面下载 zip
+
+349
+00:21:38,450 --> 00:21:40,365
+Although does a job
+虽然那样也能用
+
+350
+00:21:40,365 --> 00:21:43,757
+So i'm going to unzip it and work up
+所以我要把它解压，然后继续
+
+351
+00:21:43,757 --> 00:21:47,710
+Next step piece to create a python script in blender like so
+下一步是在 Blender 里创建一个 Python 脚本，就像这样
+
+352
+00:21:47,710 --> 00:21:50,960
+And use the code sample provided on the git page
+然后使用 Git 页面上提供的代码示例
+
+353
+00:21:54,500 --> 00:21:59,160
+Now that me floating python script uses a python image library
+这个 Mip Flooding Python 脚本使用一个 Python 图像库
+
+354
+00:21:59,160 --> 00:22:02,202
+Aka pill or its work pillow
+也就是 PIL，或者说 Pillow
+
+355
+00:22:02,202 --> 00:22:05,690
+The thing is , blender comes with its own version of python
+问题是，Blender 自带自己的 Python 版本
+
+356
+00:22:05,690 --> 00:22:08,090
+And it does not have that image library
+而它没有那个图像库
+
+357
+00:22:08,090 --> 00:22:11,537
+So i need to install it for that specific python version
+所以我需要为那个特定的 Python 版本安装它
+
+358
+00:22:11,537 --> 00:22:13,680
+A very annoying process to figure out
+弄清楚这个过程非常烦人
+
+359
+00:22:13,680 --> 00:22:15,860
+When you don't know what you're doing like me
+尤其是当你像我一样不知道该怎么做的时候
+
+360
+00:22:15,860 --> 00:22:17,660
+But here's what worked for me
+但以下方法对我有效
+
+361
+00:22:17,660 --> 00:22:20,270
+As usual , feel free to do things differently
+像往常一样，你可以随意采用不同的做法
+
+362
+00:22:20,270 --> 00:22:26,320
+I'm going to open a command prompt in windows in administrator mode using the city command
+我将使用 cmd 命令在 Windows 中以管理员模式打开命令提示符
+
+363
+00:22:26,320 --> 00:22:30,920
+I'm going to navigate to where the blender python executable is installed
+我将切换到 Blender 的 Python 可执行文件所安装的位置
+
+364
+00:22:35,800 --> 00:22:38,560
+using it times then going to install pip
+然后使用它来安装 pip
+
+365
+00:22:40,430 --> 00:22:43,950
+And finally using pip i'm going to install pillow
+最后，我将使用 pip 安装 Pillow
+
+366
+00:22:43,950 --> 00:22:47,230
+And that should allow me to import pill in blender
+这样应该就能让我在 Blender 中导入 PIL
+
+367
+00:22:53,200 --> 00:22:57,207
+Note , however , that pill is not imported in that python script
+不过请注意，那个 Python 脚本中并没有导入 PIL
+
+368
+00:22:57,207 --> 00:23:01,670
+Well limeine it is it's that miflooding libraries that imports it
+嗯，严格来说是的，是那个 flooding 库导入了它
+
+369
+00:23:01,670 --> 00:23:03,510
+So it's definitely a requirement
+所以它绝对是一项必需条件
+
+370
+00:23:03,510 --> 00:23:04,030
+Okay
+好的
+
+371
+00:23:04,030 --> 00:23:08,400
+Therefore the next step is to make that mifloating library import walk
+所以下一步是让那个 flooding 库的导入正常工作
+
+372
+00:23:08,400 --> 00:23:11,280
+Because python has no knowledge of it yet
+因为 Python 目前还不知道它
+
+373
+00:23:11,280 --> 00:23:15,490
+So i'm going to copy the path where that library is located
+所以我要复制那个库所在的路径
+
+374
+00:23:15,490 --> 00:23:17,500
+next import c
+接下来导入 sys
+
+375
+00:23:20,140 --> 00:23:22,470
+And make python aware of that path
+并让 Python 知道这个路径
+
+376
+00:23:22,470 --> 00:23:26,140
+Voa that should arrome to imposes me floating in library
+瞧，这样应该就能让我导入那个 flooding 库了
+
+377
+00:23:27,160 --> 00:23:32,200
+Final step is to specify where my pvr passes are located on disk
+最后一步是指定我的 PVR 通道文件在磁盘上的位置
+
+378
+00:23:33,930 --> 00:23:36,770
+Renaes them as they contend the propelsif
+重命名它们，使其包含正确的后缀
+
+379
+00:23:45,460 --> 00:23:50,960
+Twix the script a little bit so that it processes all passes and va rens the script
+稍微调整一下脚本，让它处理所有通道，然后运行脚本
+
+380
+00:23:50,960 --> 00:23:54,190
+And images on disk should be flooded
+这样磁盘上的图像应该就会被填充处理
+
+381
+00:23:54,190 --> 00:23:57,300
+You notice images are so much transparent still
+你会注意到图像仍然有些透明
+
+382
+00:23:57,300 --> 00:23:58,890
+But it's no biggie
+但这没什么大不了的
+
+383
+00:23:58,890 --> 00:24:01,399
+the rgb channels are correctiflooded
+RGB 通道是正确的
+
+384
+00:24:01,399 --> 00:24:03,760
+So you can just get rid of that alpha channel
+所以你完全可以把那个 alpha 通道去掉
+
+385
+00:24:03,760 --> 00:24:07,340
+Or import images in ue without the alpha channel
+或者在 UE 中导入图像时不带 alpha 通道
+
+386
+00:24:11,720 --> 00:24:14,240
+All right . i'm going to create a new scene
+好的，我要创建一个新场景
+
+387
+00:24:15,780 --> 00:24:18,740
+Shift a image mesh plane
+按 Shift+A，添加图像网格平面
+
+388
+00:24:18,740 --> 00:24:23,020
+And opens your acity map in the shading workspace
+然后在着色工作区中打开你的不透明度贴图
+
+389
+00:24:23,020 --> 00:24:25,700
+I'm going to use the color as alpha
+我要把颜色用作 alpha
+
+390
+00:24:29,600 --> 00:24:32,120
+Use a non color corrose space
+使用 Non-Color 色彩空间
+
+391
+00:24:32,120 --> 00:24:34,470
+Set the emission strength to one
+把自发光强度设为 1
+
+392
+00:24:34,470 --> 00:24:37,080
+and set the random method to blended
+并将渲染方法设为“混合”
+
+393
+00:24:39,620 --> 00:24:41,520
+Back in the modelling workspace
+回到建模工作区
+
+394
+00:24:41,520 --> 00:24:44,290
+I'm going to change the viewport shedding mode
+我要更改视口着色模式
+
+395
+00:24:44,290 --> 00:24:46,480
+Add a to disselect all
+按 Alt+A 取消全选
+
+396
+00:24:46,480 --> 00:24:49,140
+And i'm going to make sure i mean vertex mode
+并确保我处于顶点模式
+
+397
+00:24:49,140 --> 00:24:51,907
+So tap one on the keyboard to do that
+所以在键盘上按 1 即可
+
+398
+00:24:51,907 --> 00:24:57,182
+And i'm going to right click while holding control to create vertex here
+我将按住 Ctrl 并右键单击，在这里创建一个顶点
+
+399
+00:24:57,182 --> 00:24:59,660
+And keep doing that to detroit
+然后继续这样做，把它画出来
+
+400
+00:24:59,660 --> 00:25:01,460
+Fills group of grass blades
+填充一组草叶
+
+401
+00:25:06,380 --> 00:25:09,275
+No , there are a couple of things to think about here
+不，这里还有几件事需要考虑
+
+402
+00:25:09,275 --> 00:25:13,280
+Vertices must never be placed outside this converse
+顶点绝不能放在这个范围之外
+
+403
+00:25:13,280 --> 00:25:15,940
+It's very important for upcoming step
+这对接下来的步骤非常重要
+
+404
+00:25:15,940 --> 00:25:19,372
+I also want to leave them in a margin just a bit
+我还想让它们稍微留出一点边距
+
+405
+00:25:19,372 --> 00:25:21,800
+I want to leave some order margin as well
+我也想留一些外边距
+
+406
+00:25:21,800 --> 00:25:24,820
+Like not to be too close to his og groups , right
+比如不要离它的其他组太近，对吧
+
+407
+00:25:24,820 --> 00:25:28,880
+And of course i want to think about the vertex count and how to use that
+当然，我还要考虑顶点数量以及如何利用它
+
+408
+00:25:28,880 --> 00:25:31,600
+It is to best minimize overdraw
+目的是尽可能减少过度绘制
+
+409
+00:25:31,600 --> 00:25:34,010
+Meaning has the least amount of transparent
+也就是让透明像素数量最少
+
+410
+00:25:34,010 --> 00:25:36,610
+Pixels with the least amount of vertices
+同时用尽可能少的顶点
+
+411
+00:25:36,610 --> 00:25:41,600
+For instance , adding a vertex here would reduce overdraw by some amount
+例如，在这里添加一个顶点会在一定程度上减少过度绘制
+
+412
+00:25:41,600 --> 00:25:43,190
+But is it worth it
+但这值得吗
+
+413
+00:25:43,190 --> 00:25:47,010
+Well , there is likely no right on zero up to you to decide
+嗯，很可能没有绝对的对错，由你决定
+
+414
+00:25:47,010 --> 00:25:50,190
+And i want to think about vertex animation
+我还需要考虑顶点动画
+
+415
+00:25:50,190 --> 00:25:52,190
+Like how to place vertices
+比如如何放置顶点
+
+416
+00:25:52,190 --> 00:25:54,870
+So the cat can be best deformed to apply
+这样卡片才能以最佳方式变形，从而
+
+417
+00:25:54,870 --> 00:25:57,312
+Good looking with animation and so on
+在动画中呈现出好看的效果，等等
+
+418
+00:25:57,312 --> 00:26:00,520
+Finally , i also want to think about house of card
+最后，我还想考虑卡片
+
+419
+00:26:00,520 --> 00:26:04,800
+can be deformed and bent to create an interesting volume and silhouette
+如何变形和弯曲，以创造有趣的体积和轮廓
+
+420
+00:26:04,800 --> 00:26:06,900
+And then just have a flat cd
+然后再变成一张平的卡片
+
+421
+00:26:06,900 --> 00:26:11,125
+Don't worry too much about it that at first though this will come with experience
+不过一开始不用太担心，这要随着经验慢慢积累
+
+422
+00:26:11,125 --> 00:26:13,800
+Anyway , i'm going to select these four vertices
+总之，我要选中这四个顶点
+
+423
+00:26:13,800 --> 00:26:16,120
+and tab the f k to create a quad
+然后按 F 键创建一个四边形
+
+424
+00:26:16,120 --> 00:26:19,470
+And keep doing that until the whole car is your east
+一直这样做，直到整张卡片都铺成网格
+
+425
+00:26:19,470 --> 00:26:21,900
+It's important at this point to make sure
+此时要确保
+
+426
+00:26:21,900 --> 00:26:24,410
+Normals are facing the correct way z
+法线朝向正确的方向
+
+427
+00:26:24,410 --> 00:26:27,540
+So i'm going to activate the face orientation oily
+所以我要开启面朝向叠加显示
+
+428
+00:26:27,540 --> 00:26:32,120
+and if any geometry is shown in red selected and flip the normes
+如果有几何体显示为红色，就选中并翻转法线
+
+429
+00:26:37,520 --> 00:26:38,340
+Moving on
+接下来
+
+430
+00:26:38,340 --> 00:26:41,620
+I'm going to add an edge group here using control r
+我要在这里用 Ctrl+R 添加一条循环边
+
+431
+00:26:41,620 --> 00:26:43,840
+And with these two vertices selected
+在选中这两个顶点的情况下
+
+432
+00:26:43,840 --> 00:26:46,600
+i'm going to press j to create an edge
+我要按 J 键创建一条边
+
+433
+00:26:46,600 --> 00:26:49,240
+And turns out i can place that is like
+结果我可以这样放置它
+
+434
+00:26:49,240 --> 00:26:52,080
+So to get rid of that unnecessary triangle
+这样就消除了那个不必要的三角形
+
+435
+00:26:53,970 --> 00:26:55,040
+Cool
+很好
+
+436
+00:26:55,040 --> 00:26:55,610
+Oh
+哦
+
+437
+00:26:55,610 --> 00:26:58,820
+and actually i'm going to add a via text here at an edge
+实际上，我要在这条边上添加一个顶点
+
+438
+00:26:58,820 --> 00:27:04,860
+Via jk the world type g to slide that vtex along that edge to get rid of that trangle
+通过按 G 键，让这个顶点沿着那条边滑动，从而消除那个三角形
+
+439
+00:27:04,860 --> 00:27:10,290
+That's going to allow me to extract a bit more volume from that card in the upcoming step
+这样在下一步我就能从这张卡片中塑造出更多体积
+
+440
+00:27:10,290 --> 00:27:12,520
+Anyway , that's ldz route
+总之，这就是大致流程
+
+441
+00:27:12,520 --> 00:27:15,870
+I'm going to repeat the process for l d one and two
+我将对 LOD1 和 LOD2 重复这个过程
+
+442
+00:27:15,870 --> 00:27:19,310
+Ideally reducing the vertex count by half each time
+理想情况下，每次把顶点数减半
+
+443
+00:27:19,310 --> 00:27:25,705
+The last eld should likely be just a single quid or even a single triangle when possible
+最后一个 LOD 最好只是一个四边形，甚至尽可能只有一个三角形
+
+444
+00:27:25,705 --> 00:27:28,890
+Winston repeat for the ozil cars and voila
+然后对其他的卡片重复操作，瞧
+
+445
+00:27:28,890 --> 00:27:35,480
+I'm just going to make sure that is all lay flattened that plane by scanning the object to zero in zero
+我要确认它完全展平，通过把物体在 Z 轴上缩放到零来压平那个平面
+
+446
+00:27:35,480 --> 00:27:37,450
+Next i'm going to double checks that
+接下来我会再检查一遍
+
+447
+00:27:37,450 --> 00:27:41,697
+No verses lay outside the combs and it looks okay to me
+没有顶点落在边界之外，看起来没问题
+
+448
+00:27:41,697 --> 00:27:45,540
+Pressing seven on the ipad to ensure i'm looking from above
+按数字键盘上的 7，确保我是从上方查看
+
+449
+00:27:45,540 --> 00:27:51,160
+i'm going to tap a to select everything press you and select project from view
+按 A 全选，按 U 并选择“从视图投影”
+
+450
+00:27:51,160 --> 00:27:55,890
+Bones and well uv london and cards are ready to go
+好了，UV 已经展开，卡片也准备就绪
+
+451
+00:27:55,890 --> 00:27:59,050
+Well almost . i'm going to do one more step
+嗯，还差一点。我还要再做一步
+
+452
+00:27:59,050 --> 00:28:03,330
+That is going to facilitate lds selection further down the road
+这会在后续方便选择 LOD
+
+453
+00:28:03,330 --> 00:28:07,090
+so i'm going to say this mattyre is lds zero
+所以我要把这个材质命名为 LOD0
+
+454
+00:28:08,640 --> 00:28:09,720
+duplicated
+复制它
+
+455
+00:28:12,360 --> 00:28:13,919
+Name it l d one
+命名为 LOD1
+
+456
+00:28:14,980 --> 00:28:17,730
+And applied to the eld one cards
+并应用到 LOD1 卡片上
+
+457
+00:28:17,730 --> 00:28:22,940
+By the way the l key is very useful to expand the selection to the whole mesh
+顺便说一句，L 键在把选择扩展到整个网格时非常有用
+
+458
+00:28:29,020 --> 00:28:31,690
+Anyway , duplicate the material once more
+总之，再复制一次这个材质
+
+459
+00:28:31,690 --> 00:28:36,202
+Name mel d two and apply it to the eld two cds
+命名为 LOD2，并应用到 LOD2 卡片上
+
+460
+00:28:36,202 --> 00:28:40,810
+That way i can use material selection feature to select lds
+这样我就能用材质选择功能来选择 LOD
+
+461
+00:28:40,810 --> 00:28:43,530
+And that will come handy in just a minute
+这马上就会派上用场
+
+462
+00:28:51,160 --> 00:28:53,200
+All right , we are almost done
+好了，我们快完成了
+
+463
+00:28:53,200 --> 00:28:55,320
+I'm going to select this object
+我要选中这个物体
+
+464
+00:28:55,320 --> 00:28:58,105
+And press control c to copy it
+按 Ctrl+C 复制它
+
+465
+00:28:58,105 --> 00:29:00,240
+Create a new scene
+新建一个场景
+
+466
+00:29:00,240 --> 00:29:02,500
+And control v to past it
+按 Ctrl+V 粘贴它
+
+467
+00:29:03,650 --> 00:29:05,890
+I'm going to delete the compass
+我要删除 Compass
+
+468
+00:29:08,580 --> 00:29:10,680
+Then i'm going to select this bit
+然后我要选中这一部分
+
+469
+00:29:10,680 --> 00:29:15,300
+Press control l and press p to separate the geometry
+按 Ctrl+L，再按 P 分离几何体
+
+470
+00:29:16,360 --> 00:29:18,760
+And rinse and repeat for your accounts
+对你的其他卡片重复同样的操作
+
+471
+00:29:22,340 --> 00:29:25,500
+next in object mode i'm going to recenttell them
+接下来在物体模式下，我会把它们重新居中
+
+472
+00:29:31,080 --> 00:29:32,840
+and apply is our location
+并应用它的位置
+
+473
+00:29:34,360 --> 00:29:35,600
+In object mode
+在物体模式下
+
+474
+00:29:35,600 --> 00:29:37,800
+Still i'm going to select all objects
+我仍然会全选所有物体
+
+475
+00:29:37,800 --> 00:29:43,640
+Press r x and type ninety using the num pad and applies the rotation
+按 R、X，用数字键盘输入 90，然后应用旋转
+
+476
+00:29:43,640 --> 00:29:47,210
+Press shift c to receive the cursor on the view
+按 Shift+C 把游标重置到视图中心
+
+477
+00:29:47,210 --> 00:29:48,760
+Select all objects
+全选所有物体
+
+478
+00:29:48,760 --> 00:29:50,060
+Go to edit mode
+进入编辑模式
+
+479
+00:29:50,060 --> 00:29:54,660
+Tap three for the side view and select one of these vertices at the top
+按 3 切换到侧视图，选中顶部这些顶点中的一个
+
+480
+00:29:54,660 --> 00:29:57,970
+next i'm going to use the proportional editing once more
+接下来我会再次使用比例编辑
+
+481
+00:29:57,970 --> 00:29:59,330
+With a sharp fall off
+使用陡峭的衰减
+
+482
+00:29:59,330 --> 00:30:02,130
+To apply a reasonable amount of curatrial
+施加合理程度的弯曲
+
+483
+00:30:05,760 --> 00:30:07,380
+Same looking from above
+从上方看也一样
+
+484
+00:30:07,380 --> 00:30:11,080
+I'm going to bend the geometry just a little bit like so
+我会像这样把几何体稍微弯一点
+
+485
+00:30:14,320 --> 00:30:17,540
+finally i'm going to isolate one of these objects
+最后，我会把这些对象中的一个单独隔离出来
+
+486
+00:30:17,540 --> 00:30:21,725
+And see how i can make these cards look at tiny bit more appealing
+看看怎样让这些卡片看起来稍微更吸引人一点
+
+487
+00:30:21,725 --> 00:30:25,980
+The goal is to try and make these cards have the maximum amount of pixel
+目标是尽量让这些卡片拥有最大量的像素
+
+488
+00:30:25,980 --> 00:30:28,610
+Courage when looked at from any angle
+覆盖率，无论从哪个角度看都是如此
+
+489
+00:30:28,610 --> 00:30:31,280
+A flat carl brings the worst case scenario
+一张完全平直的卡片会带来最糟糕的情况
+
+490
+00:30:31,280 --> 00:30:33,460
+Look at it from the side i need disappears
+从侧面看，它就消失了
+
+491
+00:30:33,460 --> 00:30:33,980
+Right
+对吧
+
+492
+00:30:33,980 --> 00:30:36,640
+And so that's where being a bit smart with the way
+所以这就是为什么，稍微聪明地处理
+
+493
+00:30:36,640 --> 00:30:38,700
+You create your cs is going to help
+你创建卡片的方式会很有帮助
+
+494
+00:30:38,700 --> 00:30:41,580
+So yeah , it's all about using your best judgment
+所以，对，关键就在于运用你最好的判断力
+
+495
+00:30:41,580 --> 00:30:44,840
+and trying not to deviate too much from the higher elods
+并尽量不要太偏离更高层级的 LOD
+
+496
+00:30:44,840 --> 00:30:49,480
+Because you likely have quite a bit of geometry to work with for the l d zero , right
+因为你的 LOD0 很可能有相当多的几何体可以用，对吧
+
+497
+00:30:49,480 --> 00:30:52,260
+So you can likely create an interesting volume
+所以你很可能能做出有趣的体积感
+
+498
+00:30:52,260 --> 00:30:52,750
+Sure
+当然
+
+499
+00:30:52,750 --> 00:30:56,980
+But keep in mind that this l d zero is going to quite appropriate
+但请记住，这个 LOD0 终究会
+
+500
+00:30:56,980 --> 00:30:59,220
+transition to the eld one at some point
+在某个时刻过渡到 LOD1
+
+501
+00:30:59,220 --> 00:31:01,120
+And then l d two and so on
+然后再过渡到 LOD2，以此类推
+
+502
+00:31:01,120 --> 00:31:03,160
+So there are a balance to find , right
+所以需要找到一个平衡点，对吧
+
+503
+00:31:03,160 --> 00:31:05,140
+Twik too much the eld zero
+如果过度调整 LOD0
+
+504
+00:31:05,140 --> 00:31:09,350
+And the lds switch is potentially going to be quite noticeable in game
+LOD 切换在游戏里可能会相当明显
+
+505
+00:31:09,350 --> 00:31:10,380
+On the other hand
+另一方面
+
+506
+00:31:10,380 --> 00:31:13,440
+It's a good idea to leverage the higher vertex count
+利用更高的顶点数量是个好主意
+
+507
+00:31:13,440 --> 00:31:15,820
+And add some extra oof to that fat card
+并给那张扁平卡片增加一些额外的分量感
+
+508
+00:31:15,820 --> 00:31:17,135
+If that makes sense
+如果这么说能理解的话
+
+509
+00:31:17,135 --> 00:31:20,020
+Anyway , repeat the process for all calves
+总之，对所有卡片重复这个过程
+
+510
+00:31:20,020 --> 00:31:22,720
+Use shade smooth on all objects
+对所有对象使用平滑着色
+
+511
+00:31:22,720 --> 00:31:23,820
+Rename them
+重命名它们
+
+512
+00:31:28,900 --> 00:31:30,780
+and put them in a collection
+然后把它们放进一个集合中
+
+513
+00:31:39,139 --> 00:31:42,510
+So let's step piece two crazy in game grass assets
+那么，让我们进入第二步：创建游戏内的草地资产
+
+514
+00:31:42,510 --> 00:31:46,300
+I'm going to create a linked duplicate of this collection
+我会创建这个集合的关联副本
+
+515
+00:31:48,420 --> 00:31:51,560
+And i'm going to select all objects in that collection
+然后选中该集合中的所有对象
+
+516
+00:31:51,560 --> 00:31:56,067
+And press alt d one or two times to duplicate cds
+按 Alt+D 一两次来复制卡片
+
+517
+00:31:56,067 --> 00:32:01,630
+Next i'm going to use a randomized transform operator to spread these scale apart
+接下来，我会使用随机变换操作把这些卡片分散开
+
+518
+00:32:01,630 --> 00:32:04,230
+And then manually find tune the result
+然后手动微调结果
+
+519
+00:32:15,420 --> 00:32:19,780
+Here i'm just trying to ensure cards i'll somewhat evenly spaced out
+这里我只是想确保卡片分布得相对均匀
+
+520
+00:32:19,780 --> 00:32:24,980
+and that the asset has a decent silhoueet and volume when looked at from any angle
+并确保这个资产从任何角度看都有不错的轮廓和体积感
+
+521
+00:32:45,020 --> 00:32:46,860
+And that looks good to me
+我觉得这样看起来不错
+
+522
+00:32:46,860 --> 00:32:49,540
+I'm not being too serious about it to be honest
+说实话，我并没有太较真
+
+523
+00:32:49,540 --> 00:32:51,687
+It's an asset for to toil of joel
+这是给教程用的资产
+
+524
+00:32:51,687 --> 00:32:52,310
+Anyway
+总之
+
+525
+00:32:52,310 --> 00:32:54,710
+No is probably the time to bake pivots
+现在大概该烘焙枢轴点了
+
+526
+00:32:54,710 --> 00:32:58,180
+Using my data baker adam or your preferred method
+使用我的 Data Baker 插件，或者你惯用的方法
+
+527
+00:32:58,180 --> 00:33:02,650
+and the reason i've kept erodio one and two part of the same object
+我之所以把 LOD1 和 LOD2 保留在同一个物体中
+
+528
+00:33:02,650 --> 00:33:07,130
+Is that i really like to bake a random value pair card in uv
+是因为我很喜欢在 UV 中为每张卡片烘焙一个随机值
+
+529
+00:33:07,130 --> 00:33:10,490
+It's extremely useful for lots of shadoor tricks
+它对很多着色器技巧都极其有用
+
+530
+00:33:10,490 --> 00:33:13,820
+Like say two of sense the wind animation pair card
+比如，用每张卡片的随机值来偏移风吹动画
+
+531
+00:33:13,820 --> 00:33:18,000
+Or add a bit of kt variation to the albedo paccar and zone
+或者给每张卡片的反照率加一点色相变化等等
+
+532
+00:33:18,000 --> 00:33:23,820
+And the way my adam works when this random value is generated and baked pair object
+我的插件的工作方式是，这个随机值会按物体生成并烘焙
+
+533
+00:33:23,820 --> 00:33:27,020
+So having separated elods into different objects
+所以如果把 LOD 拆成不同物体
+
+534
+00:33:27,020 --> 00:33:30,140
+Would have generated a different random value pair eld
+就会为每个 LOD 生成不同的随机值
+
+535
+00:33:30,140 --> 00:33:32,410
+And that be usually problematic
+而这通常会造成问题
+
+536
+00:33:32,410 --> 00:33:36,310
+Say i use that random value to offset the wind animation paccount
+比如我用这个随机值来偏移每张卡片的风吹动画
+
+537
+00:33:36,310 --> 00:33:39,940
+Switching lds in game would result in a different offset
+在游戏中切换 LOD 时，偏移量就会不同
+
+538
+00:33:39,940 --> 00:33:42,825
+And a set and jump in the wind animation , right
+风吹动画也会突然跳变，对吧
+
+539
+00:33:42,825 --> 00:33:46,760
+So here i kept all lds part of the same object to entrol
+所以这里我把所有 LOD 都保留为同一个物体的一部分，以确保
+
+540
+00:33:46,760 --> 00:33:50,210
+They share the same random value if that makes sense
+它们能共享同一个随机值——如果这说得通的话
+
+541
+00:33:50,210 --> 00:33:53,120
+But knows that pivots an extra data are baked
+但现在枢轴和额外数据都已经烘焙好了
+
+542
+00:33:53,120 --> 00:33:56,330
+And that all cards are merged into one single object
+而且所有卡片都已合并成一个物体
+
+543
+00:33:56,330 --> 00:34:00,710
+I can use the material selection feo to isolate each eld
+我可以用材质选择功能来隔离每个 LOD
+
+544
+00:34:02,470 --> 00:34:05,470
+then get rid of the lg one and two materials
+然后去掉 LOD1 和 LOD2 的材质
+
+545
+00:34:07,800 --> 00:34:10,240
+and export each two fbx
+并分别导出为 FBX
+
+546
+00:34:11,620 --> 00:34:12,440
+In new way
+总之
+
+547
+00:34:12,440 --> 00:34:14,940
+i'm then going to improve the l d zero
+然后我会优化 LOD0
+
+548
+00:34:25,380 --> 00:34:26,900
+then the eld one
+然后是 LOD1
+
+549
+00:34:31,100 --> 00:34:32,500
+and lerd two
+以及 LOD2
+
+550
+00:34:36,620 --> 00:34:39,720
+I may and fine tune the lds distances
+我可能会微调 LOD 的距离
+
+551
+00:34:39,720 --> 00:34:45,520
+But it's probably something to tweak once aggrass asset is putting your quote unquote game in context
+但这可能得等你把草资产放进所谓的游戏环境后再调整
+
+552
+00:34:45,520 --> 00:34:49,800
+Because in that preview window well eats how to grasp the view distance
+因为在那个预览窗口里，很难把握视距
+
+553
+00:35:01,080 --> 00:35:03,880
+Anyway i'm also going to add mature slot
+总之，我还要添加一个材质槽
+
+554
+00:35:03,880 --> 00:35:07,010
+to say hey is the l d two in the far distance
+用来表示：嘿，远处的 LOD2
+
+555
+00:35:07,010 --> 00:35:10,900
+Is going to use a different grass shader and match cheaper one
+会使用不同的草着色器，一个性能开销低得多的版本
+
+556
+00:35:17,680 --> 00:35:21,310
+Before diving into zzo i want to mention a couple of things
+在深入 LOD0 之前，我想提几件事
+
+557
+00:35:21,310 --> 00:35:23,230
+When it takes your packing
+说到纹理打包
+
+558
+00:35:23,230 --> 00:35:26,110
+It's common practice to reduce memory usage
+这是减少内存占用的常见做法
+
+559
+00:35:26,110 --> 00:35:30,970
+And i released on my patron it tools that lets you practextures in and gene
+我在 Patreon 上发布了一个工具，可以让你在引擎里打包纹理
+
+560
+00:35:30,970 --> 00:35:34,040
+For instance , the height , roughness and speaklar maps
+例如，高度、粗糙度和高光贴图
+
+561
+00:35:34,040 --> 00:35:37,535
+Could be packed into a single rgb texture
+可以打包到单个 RGB 纹理中
+
+562
+00:35:37,535 --> 00:35:41,100
+Same with a random on transmission maps or any useum app
+粗糙度、透射贴图或任何自定义贴图也是同样的道理
+
+563
+00:35:41,100 --> 00:35:45,290
+Pretty opacity is probably best kept as a separate image of
+准确来说，不透明度最好单独保留为一张图像，或者
+
+564
+00:35:45,290 --> 00:35:48,410
+Packed into the albedo affechannel for better compression
+打包进反照率的 Alpha 通道，以获得更好的压缩
+
+565
+00:35:48,410 --> 00:35:49,810
+But you may disagre
+但你可能不同意
+
+566
+00:35:49,810 --> 00:35:52,030
+There are no right or wrong ways to practics
+实践起来没有绝对的对错
+
+567
+00:35:52,030 --> 00:35:55,850
+Js it's a du next to ptexture color space
+顺便简单说一下纹理色彩空间
+
+568
+00:35:55,850 --> 00:35:57,010
+I'll be brief here
+我在这里会简短说明
+
+569
+00:35:57,010 --> 00:35:58,990
+Because this is a topic on its own
+因为这是一个独立的话题
+
+570
+00:35:58,990 --> 00:36:05,420
+the gist of it is that ideally you should walk in lina's space so srgb should be disabled
+要点是，理想情况下你应该在线性空间中工作，所以应禁用 sRGB
+
+571
+00:36:05,420 --> 00:36:10,867
+And your untire texturing walkflu from start to finish to the comforthis code of space
+并且你整个纹理工作流从头到尾都应保持在这个色彩空间里
+
+572
+00:36:10,867 --> 00:36:13,930
+Next , texture settings not allowed to say here
+接下来是纹理设置，这里就不多说了
+
+573
+00:36:13,930 --> 00:36:16,730
+Gray scale textures should be set to gray scale
+灰度纹理应设置为灰度
+
+574
+00:36:20,220 --> 00:36:22,660
+unpacked textures two mask
+未打包的纹理也按遮罩处理
+
+575
+00:36:27,200 --> 00:36:29,260
+Finally , texture usage
+最后是纹理用途
+
+576
+00:36:29,260 --> 00:36:31,840
+Most maps here should be quite spread forward
+这里大多数贴图都相当直接
+
+577
+00:36:31,840 --> 00:36:34,090
+I'll be doing a roughness speaker hanson
+我会做一个粗糙度高光的小示例
+
+578
+00:36:34,090 --> 00:36:37,730
+You might however wonder what's the purpose of that round the map
+不过你可能会想，那张法线贴图有什么用
+
+579
+00:36:37,730 --> 00:36:41,660
+Well , this is usually great to add a bit of pixel depth of it
+法线贴图通常很适合增加一点像素深度
+
+580
+00:36:41,660 --> 00:36:44,377
+And reduce that flat can look a little bit
+并减少那种看起来有点平的感觉
+
+581
+00:36:44,377 --> 00:36:46,730
+Pixel depth of set comes at a cost though
+不过像素深度偏移是有代价的
+
+582
+00:36:46,730 --> 00:36:50,370
+And has issues with dynamic shadows something to keep in mind
+而且它和动态阴影会有问题，这点要记住
+
+583
+00:36:51,900 --> 00:36:53,220
+Same for the height map
+高度贴图也一样
+
+584
+00:36:53,220 --> 00:36:55,660
+It can be used to add some pixel lips offset
+它可以用来添加一些像素深度偏移
+
+585
+00:36:55,660 --> 00:36:56,960
+As though to be honest
+不过说实话
+
+586
+00:36:56,960 --> 00:37:01,070
+It's probably not going to be that useful as is on grass scouts
+用在草资产上，它可能并没有那么有用
+
+587
+00:37:01,070 --> 00:37:03,080
+Height maps are mostly used for hide
+高度贴图主要用于高度混合
+
+588
+00:37:03,080 --> 00:37:06,890
+Blending two sets of textures like quiz landscape layers . right
+比如混合两组纹理，就像景观图层那样，对吧
+
+589
+00:37:06,890 --> 00:37:12,810
+I just wanted to show you that it's possible to quite easily run under a height map in blender
+我只是想让你看到，在 Blender 里可以很轻松地渲染出高度贴图
+
+590
+00:37:12,810 --> 00:37:15,060
+Same is true for the transmission map
+透射贴图也是一样
+
+591
+00:37:15,060 --> 00:37:18,830
+It could be used to drive the sips surface scattering amount or all also things
+它可以用来驱动次表面散射的强度，或者其他类似的东西
+
+592
+00:37:18,830 --> 00:37:23,570
+But using a simple tub on graent to do that is probably a bit naive under
+但用简单的 ColorRamp 来做这件事，可能有点天真
+
+593
+00:37:23,570 --> 00:37:25,620
+But again , i just wanted to show you
+不过再说一次，我只是想给你展示
+
+594
+00:37:25,620 --> 00:37:28,940
+What's possible up to you to let your creativities speak
+有哪些可能性；接下来就看你自己发挥创造力了
+
+595
+00:37:28,940 --> 00:37:35,830
+And up to you to output the gradients and coordata from blender that you need to build your own grass shader
+也看你自己从 Blender 输出所需的渐变和坐标，用来构建自己的草地着色器
+
+596
+00:37:35,830 --> 00:37:39,280
+Speaking of , he has a very simple grass shadow example
+说到这个，这里有一个非常简单的草地着色器示例
+
+597
+00:37:39,280 --> 00:37:41,760
+This is quite a crude shadow to be honest
+说实话，这是一个相当粗糙的着色器
+
+598
+00:37:41,760 --> 00:37:43,975
+I'm just going to briefly go very
+我只会简短地过一下
+
+599
+00:37:43,975 --> 00:37:46,960
+because building aggress shader is a topic on its own
+因为构建草地着色器本身就是一个独立的话题
+
+600
+00:37:46,960 --> 00:37:49,320
+And is out of the scope of this video
+并且超出了本视频的范围
+
+601
+00:37:49,320 --> 00:37:52,540
+It's something i've cover out in previous videos anyway
+这个我在之前的视频里已经讲过了
+
+602
+00:37:52,540 --> 00:37:54,410
+So here's the albedo map
+这是反照率贴图
+
+603
+00:37:54,410 --> 00:37:57,820
+Multiplied with clothes based on a tub and predicted noise
+与基于平铺和程序化噪声的云纹相乘
+
+604
+00:37:57,820 --> 00:38:01,940
+Texture and the painstance and paccad random values
+以及纹理、每个实例和每张卡片的随机值
+
+605
+00:38:03,789 --> 00:38:05,030
+Roughness and speaker
+粗糙度和高光
+
+606
+00:38:05,030 --> 00:38:08,738
+Our maps are left ed towards the constant value at a distance
+我们的贴图在远处会朝一个常量值插值过渡
+
+607
+00:38:08,738 --> 00:38:10,809
+There are tricks involving mipmaps
+有一些涉及 mipmap 的技巧
+
+608
+00:38:10,809 --> 00:38:13,630
+Two bags and behaviour or directly in the texture
+可以把这种行为烘焙进去，或者直接在纹理里处理
+
+609
+00:38:13,630 --> 00:38:17,010
+Again something i already covered in a precious video
+这也是我之前在视频里讲过的内容
+
+610
+00:38:17,010 --> 00:38:19,310
+here's your opacity map with a shadow pass
+这是带阴影通道的不透明度贴图
+
+611
+00:38:19,310 --> 00:38:22,310
+Switch to desert near the tips and fake light
+在叶尖附近切换为抖动，并让假光
+
+612
+00:38:22,310 --> 00:38:26,060
+Bleeding through the grass a little bit and casting a weaker shadow
+从草叶间透出一点，并投射更弱的阴影
+
+613
+00:38:26,060 --> 00:38:27,520
+here's the normal map
+这是法线贴图
+
+614
+00:38:28,850 --> 00:38:31,210
+Tension space normals are used as well
+切线空间法线也用上了
+
+615
+00:38:31,210 --> 00:38:34,210
+Space normans a huge hack but whatever
+切线空间法线是个很大的取巧，不过无所谓
+
+616
+00:38:44,240 --> 00:38:48,800
+some hacky wind animation using my spirit , a reprojection material function
+用我的 sprite 做了一些取巧的风动画，是一个重投影材质函数
+
+617
+00:38:50,380 --> 00:38:55,030
+And finally some pixel dips offset at a distance
+最后是远处的像素深度偏移
+
+618
+00:38:55,030 --> 00:38:57,580
+That pixel depth offset is disabled
+这个像素深度偏移会被禁用
+
+619
+00:38:57,580 --> 00:39:00,150
+When the animation is termed off as well
+当动画也被关闭时
+
+620
+00:39:01,470 --> 00:39:04,310
+Roughness and picture out are both constants
+粗糙度和高光都是常量
+
+621
+00:39:05,470 --> 00:39:10,190
+Same for the normans and vr that's a decent looking grass asset
+法线和 VR 也一样；这是一个看起来还不错的草资产
+
+622
+00:39:11,670 --> 00:39:15,250
+The real difficulty lies in building a large cross field
+真正的难点在于构建一大片草地
+
+623
+00:39:15,250 --> 00:39:17,900
+That looks good under all lighting conditions
+让它在各种光照条件下都好看
+
+624
+00:39:17,900 --> 00:39:21,770
+That feels natural , that obviously platforms well
+感觉自然，而且显然性能表现不错
+
+625
+00:39:21,770 --> 00:39:26,465
+And that hers the file distance transition with the underlying landscape material will
+以及与底层地形材质之间的最终距离过渡
+
+626
+00:39:26,465 --> 00:39:29,840
+Will a huge technical and artistic challenge
+将是一个巨大的技术和艺术挑战
+
+627
+00:39:29,840 --> 00:39:31,620
+But baby steps , you know
+但一步一步来，你懂的
+
+628
+00:39:31,620 --> 00:39:35,150
+Making a decent looking grass asset is a nice first step
+做出一个看起来不错的草资产，就是很好的第一步
+
+629
+00:39:35,150 --> 00:39:37,920
+You may practice by building extra variations
+你可以通过制作更多变体来练习
+
+630
+00:39:37,920 --> 00:39:40,080
+Trying different looks and so on
+尝试不同的外观等等
+
+631
+00:39:40,080 --> 00:39:44,270
+Now obviously this entire workflow isn't tailored from the night
+显然，这整套工作流并不是为 Nanite 量身定制的
+
+632
+00:39:44,270 --> 00:39:46,560
+Because flow i'm not gonna lie
+因为，说实话，我不骗你
+
+633
+00:39:46,560 --> 00:39:49,380
+I kind of hate what walking with the night means
+我有点讨厌使用 Nanite 意味着什么
+
+634
+00:39:49,380 --> 00:39:52,619
+When it comes to foliage assets and very tax animation
+尤其是在植被资产和顶点动画方面
+
+635
+00:39:52,619 --> 00:39:55,570
+So i'm sticking with the old ways flow
+所以我还是坚持老办法
+
+636
+00:39:55,570 --> 00:39:56,520
+And yeah
+嗯，就这样
+
+637
+00:39:56,520 --> 00:40:01,790
+I think that's it that's my walkthrough for creating four each assets in blender
+我想就这些了，这就是我在 Blender 里创建植被资产的流程讲解
+
+638
+00:40:01,790 --> 00:40:05,270
+I'm sure are steps that could be simplified and sped up
+我相信有些步骤可以简化并加速
+
+639
+00:40:05,270 --> 00:40:07,630
+But it's only know nothing too complex
+但它只是，你知道，没什么太复杂的
+
+640
+00:40:07,630 --> 00:40:10,860
+And i feel like i can get things done relatively quickly
+而且我觉得自己能相对快速地完成
+
+641
+00:40:10,860 --> 00:40:15,920
+As that said , i'm hoping to drastically speed of the process with my upcoming adam
+正如之前所说，我希望用即将推出的 Adam 大幅加快这个过程
+
+642
+00:40:15,920 --> 00:40:17,760
+It still needs a bit of walkthrough
+它还需要一点操作演示
+
+643
+00:40:17,760 --> 00:40:18,932
+So stay tuned
+所以敬请期待
+
+644
+00:40:18,932 --> 00:40:22,960
+Anyway , that concludes this free path series on realistic grass
+总之，这期关于写实草地的小型免费系列就到这里
+
+645
+00:40:22,960 --> 00:40:26,670
+Now this asset slightly leans towards tyler's grass
+现在这个资产稍微偏向 Tyler 的草地风格
+
+646
+00:40:26,670 --> 00:40:32,160
+But honestly , there are pretty much no difference between creating realistic and stylus assets
+但说实话，制作写实资产和风格化资产几乎没什么区别
+
+647
+00:40:32,160 --> 00:40:36,370
+The work who is pretty much item tical it's all about artistic direction
+工作流程基本一模一样，关键都在于艺术方向
+
+648
+00:40:36,370 --> 00:40:38,830
+And how much time you spend on adding details
+以及你愿意花多少时间添加细节
+
+649
+00:40:38,830 --> 00:40:40,980
+And so you could for instance
+所以比如说，你可以
+
+650
+00:40:40,980 --> 00:40:42,840
+Skirt these high poly assets
+跳过这些高面数资产
+
+651
+00:40:42,840 --> 00:40:47,630
+Rely on more intricate texturing techniques to generate the pbr passes and so on
+转而依靠更复杂的贴图技术来生成 PBR 通道等等
+
+652
+00:40:47,630 --> 00:40:50,330
+But yeah , creating highly realistic assets
+不过没错，制作高度写实的资产
+
+653
+00:40:50,330 --> 00:40:53,650
+should be no different than creating stylized assets
+应该和制作风格化资产没有区别
+
+654
+00:40:53,650 --> 00:40:55,550
+That's it for today's video
+今天的视频就到这里
+
+655
+00:40:55,550 --> 00:40:56,950
+I hope you liked it
+希望你们喜欢
+
+656
+00:40:56,950 --> 00:41:00,340
+Files are available as such a one world on my patron
+文件已在我的 Patreon 上提供
+
+657
+00:41:00,340 --> 00:41:04,900
+You can also find a turn of great educational uv projects demos on assets
+你也能在那里找到很多很棒的 UV 教学项目演示和资产
+
+658
+00:41:04,900 --> 00:41:06,720
+So feel free to take a look at it
+所以欢迎去看看
+
+659
+00:41:06,720 --> 00:41:09,715
+Any support is much much appreciated
+任何支持都非常非常感谢
+
+660
+00:41:09,715 --> 00:41:12,860
+Speaking of , thanks to all view for sticking around
+说到这个，感谢大家一直看到最后
+
+661
+00:41:12,860 --> 00:41:15,260
+And thanks for your incredible support
+也感谢你们的大力支持
+
+662
+00:41:15,260 --> 00:41:16,530
+You are best
+你们最棒了
+
+663
+00:41:16,530 --> 00:41:18,780
+All right , i will see you in the next video
+好了，我们下个视频见
+
+664
+00:41:18,780 --> 00:41:20,700
+In the meantime , take care of yourself
+在此期间，照顾好自己
+
+665
+00:41:20,700 --> 00:41:23,080
+Enjoy your summaral break if you have one
+如果你有暑假，就好好享受吧
+
+666
+00:41:23,080 --> 00:41:23,900
+Bye bye
+拜拜
